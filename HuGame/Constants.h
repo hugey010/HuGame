@@ -25,4 +25,11 @@
 #define MENU_FONT_SIZE (float)30.0
 #define MENU_FONT "Helvetica"
 
+// HUD DEFINITIONS
+#define HUD_FONT "Helvetica"
+#define HUD_FONT_SIZE (float)30.0
+
+// GAME DEFINITIONS
+#define ROUND_INTERVAL 120.0 // seconds, 2 minutes
+
 #endif

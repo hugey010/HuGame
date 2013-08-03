@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "Constants.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -28,53 +29,43 @@ bool HelloWorld::init()
     {
         return false;
     }
+    
+    // Create Opening Menu 
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    
+    CCLabelTTF *mNewGameLabel = CCLabelTTF::create("New Game", MENU_FONT, MENU_FONT_SIZE);
+    CCMenuItemLabel *mNewGameItem = CCMenuItemLabel::create(mNewGameLabel, this, menu_selector(HelloWorld::newGameCallback));
+    mNewGameItem->setPosition(CCPointZero);
+    
+    
+    CCLabelTTF *mContinueGameLabel = CCLabelTTF::create("Continue Game", MENU_FONT, MENU_FONT_SIZE);
+    CCMenuItemLabel *mContinueGameItem = CCMenuItemLabel::create(mContinueGameLabel, this, menu_selector(HelloWorld::continueGameCallback));
+    mNewGameItem->setPosition(ccp(0, -2 * MENU_FONT_SIZE));
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        this,
-                                        menu_selector(HelloWorld::menuCloseCallback) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
-
+    CCLabelTTF *mEndGameLabel = CCLabelTTF::create("End Game", MENU_FONT, MENU_FONT_SIZE);
+    CCMenuItemLabel *mEndGameItem = CCMenuItemLabel::create(mEndGameLabel, this, menu_selector(HelloWorld::endGameCallback));
+    mEndGameItem->setPosition(ccp(0, -4 * MENU_FONT_SIZE));
+    
     // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition( CCPointZero );
+    CCMenu* pMenu = CCMenu::create(mNewGameItem, mContinueGameItem, mEndGameItem, NULL);
+    pMenu->setPosition(ccp(size.width / 2, size.height / 2 + 100));
     this->addChild(pMenu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
-
-    // ask director the window size
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 2, size.height - 20) );
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
-
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width/2, size.height/2) );
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
     
     return true;
 }
 
-void HelloWorld::menuCloseCallback(CCObject* pSender)
+void HelloWorld::newGameCallback(CCObject* pSender)
+{
+    CCLog("Make that new game");
+}
+
+void HelloWorld::continueGameCallback(CCObject* pSender)
+{
+    CCLog("Continue a game");
+}
+
+void HelloWorld::endGameCallback(CCObject* pSender)
 {
     CCDirector::sharedDirector()->end();
 

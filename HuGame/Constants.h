@@ -9,6 +9,7 @@
 #ifndef HuGame_Constants_h
 #define HuGame_Constants_h
 
+#define CC_SHARED_DIRECTOR CCDirector::sharedDirector()
 
 // Screen size
 #define SCREEN_SIZE cocos2d::CCDirector::sharedDirector()->getWinSize()

@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "Constants.h"
+#include "HuGameScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -31,7 +32,7 @@ bool HelloWorld::init()
     }
     
     // Create Opening Menu 
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    CCSize size = CC_SHARED_DIRECTOR->getWinSize();
     
     CCLabelTTF *mNewGameLabel = CCLabelTTF::create("New Game", MENU_FONT, MENU_FONT_SIZE);
     CCMenuItemLabel *mNewGameItem = CCMenuItemLabel::create(mNewGameLabel, this, menu_selector(HelloWorld::newGameCallback));
@@ -50,7 +51,6 @@ bool HelloWorld::init()
     CCMenu* pMenu = CCMenu::create(mNewGameItem, mContinueGameItem, mEndGameItem, NULL);
     pMenu->setPosition(ccp(size.width / 2, size.height / 2 + 100));
     this->addChild(pMenu, 1);
-
     
     return true;
 }
@@ -58,6 +58,7 @@ bool HelloWorld::init()
 void HelloWorld::newGameCallback(CCObject* pSender)
 {
     CCLog("Make that new game");
+    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
 }
 
 void HelloWorld::continueGameCallback(CCObject* pSender)

@@ -14,6 +14,7 @@
 		968FF19017AB4C78002BFF45 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18917AB4C78002BFF45 /* Player.png */; };
 		968FF19117AB4C78002BFF45 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18A17AB4C78002BFF45 /* Projectile.png */; };
 		968FF19217AB4C78002BFF45 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18B17AB4C78002BFF45 /* Target.png */; };
+		96FCBABB17AD59C000A717DD /* HuGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FCBAB917AD59C000A717DD /* HuGameScene.cpp */; };
 		96FF9DCB178A658300CF6E9D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF9DCA178A658300CF6E9D /* QuartzCore.framework */; };
 		96FF9DCD178A658300CF6E9D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF9DCC178A658300CF6E9D /* OpenGLES.framework */; };
 		96FF9DCF178A658300CF6E9D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF9DCE178A658300CF6E9D /* OpenAL.framework */; };
@@ -296,6 +297,8 @@
 		968FF18A17AB4C78002BFF45 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Projectile.png; path = Resources/Sprites/Projectile.png; sourceTree = "<group>"; };
 		968FF18B17AB4C78002BFF45 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = Resources/Sprites/Target.png; sourceTree = "<group>"; };
 		96FCBAB717AD519C00A717DD /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		96FCBAB917AD59C000A717DD /* HuGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameScene.cpp; sourceTree = "<group>"; };
+		96FCBABA17AD59C000A717DD /* HuGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameScene.h; sourceTree = "<group>"; };
 		96FF9DC7178A658300CF6E9D /* HuGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FF9DCA178A658300CF6E9D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		96FF9DCC178A658300CF6E9D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -914,6 +917,15 @@
 				96FCBAB717AD519C00A717DD /* Constants.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		96FCBAB817AD599B00A717DD /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				96FCBABA17AD59C000A717DD /* HuGameScene.h */,
+				96FCBAB917AD59C000A717DD /* HuGameScene.cpp */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		96FF9DBE178A658300CF6E9D = {
@@ -2117,6 +2129,7 @@
 		96FFA16B178A658800CF6E9D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				96FCBAB817AD599B00A717DD /* Scenes */,
 				96FCBAB617AD518700A717DD /* Constants */,
 				96FFA16C178A658800CF6E9D /* AppDelegate.h */,
 				96FFA16D178A658800CF6E9D /* AppDelegate.cpp */,
@@ -2453,6 +2466,7 @@
 				96FFA160178A658800CF6E9D /* cpVect.c in Sources */,
 				96FFA16E178A658800CF6E9D /* AppDelegate.cpp in Sources */,
 				96FFA171178A658800CF6E9D /* HelloWorldScene.cpp in Sources */,
+				96FCBABB17AD59C000A717DD /* HuGameScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

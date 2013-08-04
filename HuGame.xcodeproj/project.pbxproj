@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
+		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
+		960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893D317AEC30C00A779E6 /* HuGameBackground.cpp */; };
+		960893D717AEC64200A779E6 /* background_desert.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 960893D617AEC64200A779E6 /* background_desert.jpg */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
 		968FF18E17AB4C78002BFF45 /* dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18717AB4C78002BFF45 /* dot1.png */; };
@@ -291,6 +295,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
+		960893CF17AEBC4D00A779E6 /* HuGameFortress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameFortress.h; sourceTree = "<group>"; };
+		960893D117AEC21100A779E6 /* puppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puppy.png; path = Resources/Sprites/puppy.png; sourceTree = "<group>"; };
+		960893D317AEC30C00A779E6 /* HuGameBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameBackground.cpp; sourceTree = "<group>"; };
+		960893D417AEC30C00A779E6 /* HuGameBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameBackground.h; sourceTree = "<group>"; };
+		960893D617AEC64200A779E6 /* background_desert.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background_desert.jpg; path = Resources/Sprites/background_desert.jpg; sourceTree = "<group>"; };
 		968FF18517AB4C78002BFF45 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseNormal.png; path = Resources/Sprites/CloseNormal.png; sourceTree = "<group>"; };
 		968FF18617AB4C78002BFF45 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseSelected.png; path = Resources/Sprites/CloseSelected.png; sourceTree = "<group>"; };
 		968FF18717AB4C78002BFF45 /* dot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dot1.png; path = Resources/Sprites/dot1.png; sourceTree = "<group>"; };
@@ -937,10 +947,14 @@
 		96FCBABD17ADA5B500A717DD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				960893CF17AEBC4D00A779E6 /* HuGameFortress.h */,
+				960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */,
 				96FCBABF17ADBB8500A717DD /* HuGameHud.h */,
 				96FCBABE17ADBB8500A717DD /* HuGameHud.cpp */,
 				96FCBAC217ADEAC700A717DD /* HuPlayer.h */,
 				96FCBAC117ADEAC700A717DD /* HuPlayer.cpp */,
+				960893D417AEC30C00A779E6 /* HuGameBackground.h */,
+				960893D317AEC30C00A779E6 /* HuGameBackground.cpp */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -994,12 +1008,14 @@
 			children = (
 				968FF18517AB4C78002BFF45 /* CloseNormal.png */,
 				968FF18617AB4C78002BFF45 /* CloseSelected.png */,
+				960893D617AEC64200A779E6 /* background_desert.jpg */,
 				968FF18717AB4C78002BFF45 /* dot1.png */,
 				968FF18817AB4C78002BFF45 /* dot2.png */,
 				968FF18917AB4C78002BFF45 /* Player.png */,
 				968FF18A17AB4C78002BFF45 /* Projectile.png */,
 				968FF18B17AB4C78002BFF45 /* Target.png */,
 				96FF9DE0178A658300CF6E9D /* Default.png */,
+				960893D117AEC21100A779E6 /* puppy.png */,
 				96FF9DE2178A658300CF6E9D /* HelloWorld.png */,
 				96FF9DE4178A658300CF6E9D /* Icon-72.png */,
 				96FF9DE6178A658300CF6E9D /* Icon-Small-50.png */,
@@ -2225,6 +2241,8 @@
 				968FF19017AB4C78002BFF45 /* Player.png in Resources */,
 				968FF19117AB4C78002BFF45 /* Projectile.png in Resources */,
 				968FF19217AB4C78002BFF45 /* Target.png in Resources */,
+				960893D217AEC21100A779E6 /* puppy.png in Resources */,
+				960893D717AEC64200A779E6 /* background_desert.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2487,6 +2505,8 @@
 				96FCBABB17AD59C000A717DD /* HuGameScene.cpp in Sources */,
 				96FCBAC017ADBB8500A717DD /* HuGameHud.cpp in Sources */,
 				96FCBAC317ADEAC700A717DD /* HuPlayer.cpp in Sources */,
+				960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */,
+				960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,5 +31,7 @@
 
 // GAME DEFINITIONS
 #define ROUND_INTERVAL 120.0 // seconds, 2 minutes
+#define GROUND_END_Y SCREEN_HEIGHT / 3
+
 
 #endif

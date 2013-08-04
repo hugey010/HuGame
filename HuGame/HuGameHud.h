@@ -11,11 +11,12 @@
 
 #include "cocos2d.h"
 
+using namespace cocos2d;
+
 class HuGameHud : cocos2d::CCLayer
 {
 public:
     virtual bool init();
-    cocos2d::CCLabelTTF* labelClock;
     CREATE_FUNC(HuGameHud);
     
     void clockTick(CCObject* pSender);
@@ -23,10 +24,11 @@ public:
 
     
 private:
-    cocos2d::CCLabelTTF* labelCurrency;
-    cocos2d::CCLabelTTF* labelHealth;
-    cocos2d::CCLabelTTF* labelRound;
-    cocos2d::CCLabelTTF* labelGameName;
+    CCLabelTTF* labelClock;
+    CCLabelTTF* labelCurrency;
+    CCLabelTTF* labelHealth;
+    CCLabelTTF* labelRound;
+    CCLabelTTF* labelGameName;
     
     // the private variables
     int numClockTicks;

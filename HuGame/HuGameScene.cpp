@@ -9,6 +9,8 @@
 #include "HuGameScene.h"
 #include "Constants.h"
 #include "HuGameHud.h"
+#include "HuGameFortress.h"
+#include "HuGameBackground.h"
 
 using namespace cocos2d;
 
@@ -42,11 +44,24 @@ bool HuGameScene::init()
 
     
     // lay out all of the HUD elements
+    /*
+        TODO: the second argument for addChild is the z order. higher numbers get drawn later
+        this might need to be changed because I don't know what is most important, nor how many
+        layers i'll have
+     */
     
-    //HuGameHUD *hud =
     
     HuGameHud *hud = HuGameHud::create();
-    this->addChild((CCLayer*)hud,5);
+    this->addChild((CCLayer*)hud,4);
+    
+    // create a fortress layer which handles drawing all the modifications / upgrades the user has
+    
+    HuGameFortress *fortress = HuGameFortress::create();
+    this->addChild((CCLayer*)fortress, 5);
+    
+    HuGameBackground *background = HuGameBackground::create();
+    this->addChild((CCLayer*)background, 1);
+    
     
     // create hud class which updates itself based on the model (possible on a timer or maybe a listener")
     /*

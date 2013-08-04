@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "Constants.h"
 #include "HuGameScene.h"
+#include "HuPlayer.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -58,13 +59,18 @@ bool HelloWorld::init()
 void HelloWorld::newGameCallback(CCObject* pSender)
 {
     CCLog("Make that new game");
+    
+    // create a new player instance
+    HuPlayer::getInstance()->create();
+    
     CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
+    
 }
 
 void HelloWorld::continueGameCallback(CCObject* pSender)
 {
     CCLog("Continue a game");
-    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
+    //CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
 }
 
 void HelloWorld::endGameCallback(CCObject* pSender)

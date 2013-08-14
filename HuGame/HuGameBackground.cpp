@@ -13,6 +13,11 @@ using namespace cocos2d;
 
 bool HuGameBackground::init()
 {
+    if ( !CCLayer::init() )
+    {
+        return false;
+    }
+    
     CCLayerColor *ground = CCLayerColor::create(ccc4(205, 133, 63, 255));
     ground->setPosition(ccp(0, 0));
     ground->setContentSize(CCSizeMake(SCREEN_WIDTH, GROUND_END_Y));

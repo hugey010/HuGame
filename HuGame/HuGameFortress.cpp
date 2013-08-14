@@ -16,6 +16,11 @@ using namespace cocos2d;
 bool HuGameFortress::init()
 {
     
+    if ( !CCLayer::init() )
+    {
+        return false;
+    }
+    
     // the very center defense item. What would everyone want to defend??? //
     
     CCSprite *centerDefense = CCSprite::create("puppy.png");

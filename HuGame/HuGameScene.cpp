@@ -11,6 +11,7 @@
 #include "HuGameHud.h"
 #include "HuGameFortress.h"
 #include "HuGameBackground.h"
+#import "HuGameNPCs.h"
 
 using namespace cocos2d;
 
@@ -50,6 +51,11 @@ bool HuGameScene::init()
         layers i'll have
      */
     
+    // the hud should handle the swapping of current weapons
+    // the hud will also handle pausing the game
+    // it will probably be responsible for menus and other things like that
+    
+    
     
     HuGameHud *hud = HuGameHud::create();
     this->addChild((CCLayer*)hud,4);
@@ -87,6 +93,12 @@ bool HuGameScene::init()
     // I would think touches should be handled by each thing respectively. touches on HUD,
     
     // what on the hugamescene actually requires touching from here and isnt a component
+    
+    // HuGameNPCs will handle deploying of the enemies
+    // touch and gesture handling for killing enemies
+    //
+    HuGameNPCs *npcs = HuGameNPCs::create();
+    this->addChild((CCLayer*)npcs, 6);
     
     
     

@@ -27,6 +27,10 @@ void HuPlayer::create()
     // possibly start at level 0 as a demo or tutorial
     this->level = 1;
     this->name = CCStringMake("");
+    
+    // base stuff
+    this->baseHeight = 100;
+    this->baseWidth = 100;
 
 
 }

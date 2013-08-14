@@ -23,6 +23,10 @@ public:
     int currency;
     cocos2d::CCString *name;
     
+    // fortress (base) info
+    float baseWidth;
+    float baseHeight;
+    
     void create();
     void save();
     

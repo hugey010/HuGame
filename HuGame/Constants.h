@@ -33,5 +33,7 @@
 #define ROUND_INTERVAL 120.0 // seconds, 2 minutes
 #define GROUND_END_Y SCREEN_HEIGHT / 3
 
+#define ENEMY_SPEED 300
+
 
 #endif

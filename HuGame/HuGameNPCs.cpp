@@ -30,14 +30,20 @@ bool HuGameNPCs::init()
     
     
     int leftRight = (enemy->getPositionX() < (SCREEN_WIDTH / 2)) ? 1 : -1;
-    float realFinalX = (SCREEN_WIDTH / 2) + leftRight * (player->baseWidth / 2);
+    float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (player->baseWidth / 2);
     float realFinalY = enemy->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
+   
+    CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
+    CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
     
-    enemy->runAction(CCSequence::create(CCArray::create(
-                CCMoveTo::create(2, realDestination)
-                                         )));
+    CCArray *actionArray = CCArray::create();
+    actionArray->addObject(move);
+    actionArray->addObject(moveBack);
+    CCSequence *actionSequence = CCSequence::create(actionArray);
     
+    enemy->runAction(actionSequence);
+
     this->enemies->addObject(enemy);
     
 

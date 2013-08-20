@@ -67,6 +67,7 @@ bool HuGameScene::init()
     
     HuGameBackground *background = HuGameBackground::create();
     this->addChild((CCLayer*)background, 1);
+
     
     
     // create hud class which updates itself based on the model (possible on a timer or maybe a listener")

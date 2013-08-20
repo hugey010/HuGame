@@ -11,8 +11,6 @@
 
 #include "cocos2d.h"
 
-using namespace cocos2d;
-
 class HuGameNPCs : cocos2d::CCLayer
 {
 public:
@@ -20,10 +18,10 @@ public:
     CREATE_FUNC(HuGameNPCs);
 
 protected:
-    CCArray* enemies;
+    cocos2d::CCArray* enemies;
 
 private:
-    CCPoint generateEnemyInitialPoint();
+    cocos2d::CCPoint generateEnemyInitialPoint();
 
 
 };

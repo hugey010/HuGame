@@ -11,8 +11,6 @@
 
 #include "cocos2d.h"
 
-using namespace cocos2d;
-
 class HuGameHud : cocos2d::CCLayer
 {
 public:
@@ -24,11 +22,11 @@ public:
 
     
 private:
-    CCLabelTTF* labelClock;
-    CCLabelTTF* labelCurrency;
-    CCLabelTTF* labelHealth;
-    CCLabelTTF* labelRound;
-    CCLabelTTF* labelGameName;
+    cocos2d::CCLabelTTF* labelClock;
+    cocos2d::CCLabelTTF* labelCurrency;
+    cocos2d::CCLabelTTF* labelHealth;
+    cocos2d::CCLabelTTF* labelRound;
+    cocos2d::CCLabelTTF* labelGameName;
     
     // the private variables
     int numClockTicks;

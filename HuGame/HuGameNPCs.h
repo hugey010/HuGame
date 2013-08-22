@@ -24,6 +24,8 @@ private:
     cocos2d::CCPoint generateEnemyInitialPoint();
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
+    
+    void didSwipe(cocos2d::CCObject *sender);
 
 };
 

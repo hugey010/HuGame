@@ -12,6 +12,12 @@
 		960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893D317AEC30C00A779E6 /* HuGameBackground.cpp */; };
 		960893D717AEC64200A779E6 /* background_desert.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 960893D617AEC64200A779E6 /* background_desert.jpg */; };
 		960893D917AECC3F00A779E6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D817AECC3F00A779E6 /* Default-568h@2x.png */; };
+		9628399017C6792C003B49E9 /* CCGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398417C6792C003B49E9 /* CCGestureRecognizer.cpp */; };
+		9628399117C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398617C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp */; };
+		9628399217C6792C003B49E9 /* CCPanGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398817C6792C003B49E9 /* CCPanGestureRecognizer.cpp */; };
+		9628399317C6792C003B49E9 /* CCPinchGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398A17C6792C003B49E9 /* CCPinchGestureRecognizer.cpp */; };
+		9628399417C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */; };
+		9628399517C6792C003B49E9 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
 		968FF18E17AB4C78002BFF45 /* dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18717AB4C78002BFF45 /* dot1.png */; };
@@ -304,6 +310,18 @@
 		960893D417AEC30C00A779E6 /* HuGameBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameBackground.h; sourceTree = "<group>"; };
 		960893D617AEC64200A779E6 /* background_desert.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background_desert.jpg; path = Resources/Sprites/background_desert.jpg; sourceTree = "<group>"; };
 		960893D817AECC3F00A779E6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9628398417C6792C003B49E9 /* CCGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398517C6792C003B49E9 /* CCGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGestureRecognizer.h; sourceTree = "<group>"; };
+		9628398617C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLongPressGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398717C6792C003B49E9 /* CCLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		9628398817C6792C003B49E9 /* CCPanGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPanGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398917C6792C003B49E9 /* CCPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPanGestureRecognizer.h; sourceTree = "<group>"; };
+		9628398A17C6792C003B49E9 /* CCPinchGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPinchGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398B17C6792C003B49E9 /* CCPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPinchGestureRecognizer.h; sourceTree = "<group>"; };
+		9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSwipeGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398D17C6792C003B49E9 /* CCSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
+		9628398F17C6792C003B49E9 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
 		9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameNPCs.cpp; sourceTree = "<group>"; };
 		9669B3F417B0B3F90065493F /* HuGameNPCs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HuGameNPCs.h; sourceTree = "<group>"; };
 		968FF18517AB4C78002BFF45 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseNormal.png; path = Resources/Sprites/CloseNormal.png; sourceTree = "<group>"; };
@@ -932,6 +950,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9628398317C6792C003B49E9 /* CCGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				9628398417C6792C003B49E9 /* CCGestureRecognizer.cpp */,
+				9628398517C6792C003B49E9 /* CCGestureRecognizer.h */,
+				9628398617C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp */,
+				9628398717C6792C003B49E9 /* CCLongPressGestureRecognizer.h */,
+				9628398817C6792C003B49E9 /* CCPanGestureRecognizer.cpp */,
+				9628398917C6792C003B49E9 /* CCPanGestureRecognizer.h */,
+				9628398A17C6792C003B49E9 /* CCPinchGestureRecognizer.cpp */,
+				9628398B17C6792C003B49E9 /* CCPinchGestureRecognizer.h */,
+				9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */,
+				9628398D17C6792C003B49E9 /* CCSwipeGestureRecognizer.h */,
+				9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */,
+				9628398F17C6792C003B49E9 /* CCTapGestureRecognizer.h */,
+			);
+			path = CCGestureRecognizer;
+			sourceTree = "<group>";
+		};
 		96FCBAB617AD518700A717DD /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -2170,6 +2207,7 @@
 		96FFA16B178A658800CF6E9D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9628398317C6792C003B49E9 /* CCGestureRecognizer */,
 				96FCBABD17ADA5B500A717DD /* Components */,
 				96FCBAB817AD599B00A717DD /* Scenes */,
 				96FCBAB617AD518700A717DD /* Constants */,
@@ -2517,6 +2555,12 @@
 				960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */,
 				960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */,
 				96EA7CD917BB2B21003EC8CF /* HuGameNPCs.cpp in Sources */,
+				9628399017C6792C003B49E9 /* CCGestureRecognizer.cpp in Sources */,
+				9628399117C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp in Sources */,
+				9628399217C6792C003B49E9 /* CCPanGestureRecognizer.cpp in Sources */,
+				9628399317C6792C003B49E9 /* CCPinchGestureRecognizer.cpp in Sources */,
+				9628399417C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp in Sources */,
+				9628399517C6792C003B49E9 /* CCTapGestureRecognizer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

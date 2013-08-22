@@ -22,7 +22,8 @@ protected:
 
 private:
     cocos2d::CCPoint generateEnemyInitialPoint();
-
+    void enemyMoveFinished(cocos2d::CCNode *sender);
+    void makeEnemy();
 
 };
 

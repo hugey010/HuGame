@@ -19,8 +19,15 @@ bool HuGameNPCs::init()
         return false;
     }
     
-    this->enemies = CCArray::create();
-    
+    this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
+ 
+    return true;
+}
+
+void HuGameNPCs::makeEnemy()
+{
+        
     CCSprite *enemy = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 20, 20)));
     enemy->setPosition(this->generateEnemyInitialPoint());
     this->addChild(enemy);
@@ -33,21 +40,37 @@ bool HuGameNPCs::init()
     float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (player->baseWidth / 2);
     float realFinalY = enemy->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
-   
+    
     CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
-    CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
+    CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
+    CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
+    //CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
+    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::enemyMoveFinished));
     
     CCArray *actionArray = CCArray::create();
     actionArray->addObject(move);
-    actionArray->addObject(moveBack);
+    actionArray->addObject(finished);
+    
+    
     CCSequence *actionSequence = CCSequence::create(actionArray);
     
     enemy->runAction(actionSequence);
-
-    this->enemies->addObject(enemy);
+    enemy->runAction(scale);
+    enemy->runAction(rotate);
     
+    if (!enemies) {
+        this->enemies = CCArray::create();
+    }
+    
+    //this->enemies->addObject(enemy);
+}
 
-    return true;
+void HuGameNPCs::enemyMoveFinished(CCNode *sender)
+{
+    CCSprite *enemy = (CCSprite*)sender;
+    CCLog("enemy %s move finished", enemy->description());
+    this->removeChild(enemy);
+    //enemies->removeObject(enemy);
 }
 
 CCPoint HuGameNPCs::generateEnemyInitialPoint()

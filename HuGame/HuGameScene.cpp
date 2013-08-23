@@ -11,7 +11,8 @@
 #include "HuGameHud.h"
 #include "HuGameFortress.h"
 #include "HuGameBackground.h"
-#import "HuGameNPCs.h"
+#include "HuGameNPCs.h"
+#include "HuGameAttacks.h"
 
 using namespace cocos2d;
 
@@ -101,6 +102,8 @@ bool HuGameScene::init()
     HuGameNPCs *npcs = HuGameNPCs::create();
     this->addChild((CCLayer*)npcs, 6);
     
+    HuGameAttacks *attacks = HuGameAttacks::create();
+    this->addChild((CCLayer*)attacks, 7);
     
     
     return true;

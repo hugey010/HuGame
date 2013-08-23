@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "CCGestureRecognizer/CCSwipeGestureRecognizer.h"
 
-#define kHitBoxWidth 4
+#define kHitBoxWidth 32
 
 class HuGameAttacks : cocos2d::CCLayer
 {

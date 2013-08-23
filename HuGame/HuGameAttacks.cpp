@@ -23,7 +23,7 @@ bool HuGameAttacks::init()
     CCSwipeGestureRecognizer *swipe = CCSwipeGestureRecognizer::create();
     swipe->setTarget(this, callfuncO_selector(HuGameAttacks::didSwipe));
     swipe->setDirection(kSwipeGestureRecognizerDirectionDown | kSwipeGestureRecognizerDirectionUp | kSwipeGestureRecognizerDirectionLeft | kSwipeGestureRecognizerDirectionRight);
-    swipe->setCancelsTouchesInView(true);
+    //swipe->setCancelsTouchesInView(true);
     this->addChild(swipe);
     
     return true;
@@ -44,6 +44,11 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     
 
     CCRect rect = this->rectBetweenPoints(swipe->location, swipe->finalLocation, swipe->direction);
+    // temporarly drawin a rect with a sprite
+    CCLayerColor *line = CCLayerColor::create(ccc4(255, 255, 255, 255));
+    line->setPosition(ccp(rect.origin.x, rect.origin.y));
+    line->setContentSize(rect.size);
+    this->addChild(line);
     
     // send this rect to npc controller to determine if there is a collision
 }
@@ -53,29 +58,34 @@ void HuGameAttacks::didSwipe(CCObject *sender)
  will either be a vertical or horizontal rectangle with a constant width / height
  need to keep track if swipe is on left or right of screen (aka do not allow entire screen swipes)
  */
-CCRect rectBetweenPoints(CCPoint point1, CCPoint point2, CCSwipeGestureRecognizerDirection direction)
+CCRect HuGameAttacks::rectBetweenPoints(CCPoint point1, CCPoint point2, CCSwipeGestureRecognizerDirection direction)
 {
+    CCRect rect = CCRectZero;
     if ((point1.x < SCREEN_WIDTH / 2 && point2.x < SCREEN_WIDTH / 2) || (point1.x > SCREEN_WIDTH / 2 && point2.x > SCREEN_WIDTH / 2))
     {
-        if (direction == kSwipeGestureRecognizerDirectionDown || direction == kSwipeGestureRecognizerDirectionUp)
-        {
-            // x of first point - half of hit box width
-            // y is lower of both points
-            // width = box width
-            // height = distancy between y's
-            return CCRectMake(point1.x - kHitBoxWidth / 2, MIN(point1.y, point2.y), kHitBoxWidth,  abs(point1.y - point2.y));
+        // the first point is going to be based on the swipe direction
+        // the standard will be to use the first point as the starting x / y coordinate
+        switch (direction) {
+            case kSwipeGestureRecognizerDirectionLeft:
+                rect = CCRectMake(point1.x - abs(point1.x - point2.x), point1.y - kHitBoxWidth / 2, abs(point1.x - point2.x), kHitBoxWidth);
+                
+                break;
+            case kSwipeGestureRecognizerDirectionRight:
+                rect = CCRectMake(point1.x, point1.y - kHitBoxWidth / 2, abs(point1.x - point2.x), kHitBoxWidth);
+                
+                break;
+            case kSwipeGestureRecognizerDirectionDown:
+                rect = CCRectMake(point1.x - kHitBoxWidth / 2, point1.y - abs(point1.y - point2.y), kHitBoxWidth, abs(point1.y - point2.y));
+                
+                break;
+            case kSwipeGestureRecognizerDirectionUp:
+                rect = CCRectMake(point1.x - kHitBoxWidth / 2, point1.y, kHitBoxWidth, abs(point1.y - point2.y));
+                
+                break;
+                
         }
-        else if (direction == kSwipeGestureRecognizerDirectionLeft || direction == kSwipeGestureRecognizerDirectionRight)
-        {
-            // x lower of both points 
-            // y is y of first point - half hit box width 
-            // width = distance between x's
-            // height = box width
-            return CCRectMake(MIN(point1.x, point2.x), point1.y - kHitBoxWidth / 2, abs(point1.x - point2.x), kHitBoxWidth);
-        }
+
     }
-    else
-    {
-        return CCRectZero;
-    }
+    return rect;
+    
 }

@@ -25,6 +25,7 @@
 		968FF19017AB4C78002BFF45 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18917AB4C78002BFF45 /* Player.png */; };
 		968FF19117AB4C78002BFF45 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18A17AB4C78002BFF45 /* Projectile.png */; };
 		968FF19217AB4C78002BFF45 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18B17AB4C78002BFF45 /* Target.png */; };
+		96BE8E8817C6E3AC00C5E9AE /* HuGameAttacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8E8617C6E3AC00C5E9AE /* HuGameAttacks.cpp */; };
 		96EA7CD917BB2B21003EC8CF /* HuGameNPCs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */; };
 		96FCBABB17AD59C000A717DD /* HuGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FCBAB917AD59C000A717DD /* HuGameScene.cpp */; };
 		96FCBAC017ADBB8500A717DD /* HuGameHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FCBABE17ADBB8500A717DD /* HuGameHud.cpp */; };
@@ -331,6 +332,8 @@
 		968FF18917AB4C78002BFF45 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Player.png; path = Resources/Sprites/Player.png; sourceTree = "<group>"; };
 		968FF18A17AB4C78002BFF45 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Projectile.png; path = Resources/Sprites/Projectile.png; sourceTree = "<group>"; };
 		968FF18B17AB4C78002BFF45 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = Resources/Sprites/Target.png; sourceTree = "<group>"; };
+		96BE8E8617C6E3AC00C5E9AE /* HuGameAttacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameAttacks.cpp; sourceTree = "<group>"; };
+		96BE8E8717C6E3AC00C5E9AE /* HuGameAttacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameAttacks.h; sourceTree = "<group>"; };
 		96FCBAB717AD519C00A717DD /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		96FCBAB917AD59C000A717DD /* HuGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameScene.cpp; sourceTree = "<group>"; };
 		96FCBABA17AD59C000A717DD /* HuGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameScene.h; sourceTree = "<group>"; };
@@ -999,6 +1002,8 @@
 				960893D317AEC30C00A779E6 /* HuGameBackground.cpp */,
 				9669B3F417B0B3F90065493F /* HuGameNPCs.h */,
 				9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */,
+				96BE8E8717C6E3AC00C5E9AE /* HuGameAttacks.h */,
+				96BE8E8617C6E3AC00C5E9AE /* HuGameAttacks.cpp */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -2334,6 +2339,7 @@
 				96FF9E5A178A658400CF6E9D /* CCSet.cpp in Sources */,
 				96FF9E5D178A658400CF6E9D /* CCString.cpp in Sources */,
 				96FF9E60178A658400CF6E9D /* CCZone.cpp in Sources */,
+				96BE8E8817C6E3AC00C5E9AE /* HuGameAttacks.cpp in Sources */,
 				96FF9E63178A658400CF6E9D /* cocos2d.cpp in Sources */,
 				96FF9E66178A658400CF6E9D /* CCDrawingPrimitives.cpp in Sources */,
 				96FF9E69178A658400CF6E9D /* CCDrawNode.cpp in Sources */,

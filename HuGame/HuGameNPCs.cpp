@@ -21,15 +21,7 @@ bool HuGameNPCs::init()
     }
     
     this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
-    //this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
     
-    // some gesture recognizer stuff
-    CCSwipeGestureRecognizer *swipe = CCSwipeGestureRecognizer::create();
-    swipe->setTarget(this, callfuncO_selector(HuGameNPCs::didSwipe));
-    swipe->setDirection(kSwipeGestureRecognizerDirectionDown | kSwipeGestureRecognizerDirectionUp | kSwipeGestureRecognizerDirectionLeft | kSwipeGestureRecognizerDirectionRight);
-    swipe->setCancelsTouchesInView(true);
-    this->addChild(swipe);
- 
     return true;
 }
 
@@ -66,33 +58,12 @@ void HuGameNPCs::makeEnemy()
     enemy->runAction(scale);
     enemy->runAction(rotate);
     
-    if (!enemies) {
-        this->enemies = CCArray::create();
-    }
-    
-    //this->enemies->addObject(enemy);
-}
-
-void HuGameNPCs::didSwipe(CCObject *sender)
-{
-    CCSwipe *swipe = (CCSwipe*)sender;
-    CCLog("start position = (%f, %f)", swipe->location.x, swipe->location.y);
-    CCLog("end position = (%f, %f)", swipe->finalLocation.x, swipe->finalLocation.y);
-    
-    CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
-    dot1->setPosition(swipe->location);
-    this->addChild(dot1);
-    CCSprite *dot2 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
-    dot2->setPosition(swipe->finalLocation);
-    this->addChild(dot2);
 }
 
 void HuGameNPCs::enemyMoveFinished(CCNode *sender)
 {
     CCSprite *enemy = (CCSprite*)sender;
-    //CCLog("enemy %s move finished", enemy->description());
     this->removeChild(enemy);
-    //enemies->removeObject(enemy);
 }
 
 CCPoint HuGameNPCs::generateEnemyInitialPoint()

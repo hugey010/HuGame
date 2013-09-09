@@ -41,7 +41,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     float deltaX = swipe->finalLocation.x - swipe->location.x;
     float deltaY = swipe->finalLocation.y - swipe->location.y;
     CCLog("deltay = %f, deltax = %f", deltaY, deltaX);
-    float angleInDegrees = atan2f(deltaY, deltaX) * 180.0 / M_1_PI;
+    float angleInDegrees = atan2f(deltaY, deltaX) * 180.0 / M_PI;
     
     CCLog("angleInDegrees = %f, cosf = %f, sinf = %f, tanf = %f", angleInDegrees, cosf(angleInDegrees), sinf(angleInDegrees), tanf(angleInDegrees));
     

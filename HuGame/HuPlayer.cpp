@@ -31,6 +31,9 @@ void HuPlayer::create()
     // base stuff
     this->baseHeight = 100;
     this->baseWidth = 100;
+    
+    // attack stuff
+    this->attackWidth = 3;
 
 
 }

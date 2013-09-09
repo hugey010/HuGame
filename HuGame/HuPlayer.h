@@ -27,6 +27,9 @@ public:
     float baseWidth;
     float baseHeight;
     
+    // attack info
+    float attackWidth;
+    
     void create();
     void save();
     

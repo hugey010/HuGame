@@ -20,6 +20,9 @@
 #define SCREEN_WIDTH_PX cocos2d::CCDirector::sharedDirector()->getWinSizeInPixels().width
 #define SCREEN_HEIGHT_PX cocos2d::CCDirector::sharedDirector()->getWinSizeInPixels().height
 
+// INTERACTION DEFINITIONS
+#define SWIPE_BASE_BUFFER (SCREEN_WIDTH / 4.5)
+
 
 // MENU DEFINITIONS
 #define MENU_FONT_SIZE (float)30.0
@@ -34,6 +37,7 @@
 #define GROUND_END_Y SCREEN_HEIGHT / 3
 
 #define ENEMY_SPEED 300
+
 
 
 enum ElementalDamageTypes {

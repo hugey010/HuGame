@@ -52,7 +52,6 @@ void HuNPC::initialize() {
 void HuNPC::initWithLayer(cocos2d::CCLayer *layer) {
     this->layer = layer;
     this->initialize();
-    
 
 }
 

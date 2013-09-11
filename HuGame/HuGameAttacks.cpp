@@ -35,6 +35,22 @@ void HuGameAttacks::didSwipe(CCObject *sender)
 {
     CCSwipe *swipe = (CCSwipe*)sender;
     
+    // cancel swipe if it crosses center of screen (exactly)
+    if (swipe->location.x < SCREEN_WIDTH / 2.0) {
+        // swipe starts on left side of screen
+        if (swipe->finalLocation.x - SWIPE_BASE_BUFFER > SCREEN_WIDTH / 2.0) {
+            return;
+        }
+        
+        
+    } else {
+        // swipe starts on right side of screen
+        if (swipe->finalLocation.x + SWIPE_BASE_BUFFER < SCREEN_WIDTH / 2.0) {
+            return;
+        }
+        
+    }
+    
 
     
     // some logic for manipulating points according to the angle between swipe start and end

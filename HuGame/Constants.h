@@ -36,4 +36,14 @@
 #define ENEMY_SPEED 300
 
 
+enum ElementalDamageTypes {
+    FrostDamage = 1,
+    FireDamage = 2,
+    LightningDamage = 3,
+    PoisonDamage = 4,
+    PhysicalDamage = 5
+};
+
+
+
 #endif

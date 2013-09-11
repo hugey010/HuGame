@@ -10,8 +10,10 @@
 #include "Constants.h"
 #include "HuPlayer.h"
 #include "CCGestureRecognizer/CCSwipeGestureRecognizer.h"
+#include "HuNPC.h"
 
 using namespace cocos2d;
+
 
 bool HuGameNPCs::init()
 {
@@ -27,55 +29,22 @@ bool HuGameNPCs::init()
 
 void HuGameNPCs::makeEnemy()
 {
-        
-    CCSprite *enemy = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 20, 20)));
-    enemy->setPosition(this->generateEnemyInitialPoint());
-    this->addChild(enemy);
+    HuNPC *npc = new HuNPC;
+    npc->initWithLayer(this);
+
+}
+
+void HuGameNPCs::handleAttack(cocos2d::CCPoint vertices[],int numberOfVertices)
+{
+    CCLog("hugamenpcs handling attack");
+
+    // loop through all active npcs and detect an attack
+    // this is going to cause the npcs to be a class of its own hosting a ccsprite
     
     
-    HuPlayer *player = HuPlayer::getInstance();
     
-    
-    int leftRight = (enemy->getPositionX() < (SCREEN_WIDTH / 2)) ? 1 : -1;
-    float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (player->baseWidth / 2);
-    float realFinalY = enemy->getPositionY();
-    CCPoint realDestination = ccp(realFinalX, realFinalY);
-    
-    CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
-    CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
-    CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
-    //CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
-    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::enemyMoveFinished));
-    
-    CCArray *actionArray = CCArray::create();
-    actionArray->addObject(move);
-    actionArray->addObject(finished);
-    
-    
-    CCSequence *actionSequence = CCSequence::create(actionArray);
-    
-    enemy->runAction(actionSequence);
-    enemy->runAction(scale);
-    enemy->runAction(rotate);
     
 }
 
-void HuGameNPCs::enemyMoveFinished(CCNode *sender)
-{
-    CCSprite *enemy = (CCSprite*)sender;
-    this->removeChild(enemy);
-}
 
-CCPoint HuGameNPCs::generateEnemyInitialPoint()
-{
-    float x = 0;
-    float y = 0;
-    
-    // decide if starting on left side or right side
-    int leftRight = random() % 2;
-    x = SCREEN_WIDTH * leftRight;
-    
-    y = random() % (int)GROUND_END_Y;
-    
-    return ccp(x, y);
-}
+

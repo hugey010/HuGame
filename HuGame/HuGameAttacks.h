@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "CCGestureRecognizer/CCSwipeGestureRecognizer.h"
+#include "HuGameNPCs.h"
 
 #define kHitBoxWidth 32
 
@@ -19,6 +20,10 @@ class HuGameAttacks : cocos2d::CCLayer
 public:
     virtual bool init();
     CREATE_FUNC(HuGameAttacks);
+    
+    // reference to npcs
+    HuGameNPCs *npcs;
+    
     
 private:
     void didSwipe(cocos2d::CCObject *sender);

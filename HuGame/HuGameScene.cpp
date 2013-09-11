@@ -103,6 +103,7 @@ bool HuGameScene::init()
     this->addChild((CCLayer*)npcs, 6);
     
     HuGameAttacks *attacks = HuGameAttacks::create();
+    attacks->npcs = npcs;
     this->addChild((CCLayer*)attacks, 7);
     
     

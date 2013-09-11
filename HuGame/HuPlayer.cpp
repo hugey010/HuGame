@@ -7,7 +7,6 @@
 //
 
 #include "HuPlayer.h"
-#include "cocos2d.h"
 
 using namespace cocos2d;
 
@@ -33,7 +32,7 @@ void HuPlayer::create()
     this->baseWidth = 100;
     
     // attack stuff
-    this->attackWidth = 3;
+    this->attackWidth = 50;
 
 
 }

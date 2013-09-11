@@ -9,7 +9,6 @@
 #ifndef __HuGame__HuPlayer__
 #define __HuGame__HuPlayer__
 
-#include <iostream>
 #include "cocos2d.h"
 
 class HuPlayer

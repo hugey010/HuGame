@@ -47,9 +47,19 @@ bool HuGameHud::init()
 
 void HuGameHud::clockTick(CCObject *pSender)
 {
+    // update all stuff
+    this->updateHud();
+}
+
+void HuGameHud::updateHud() {
     numClockTicks++;
     int timeleft = ROUND_INTERVAL - numClockTicks;
     timeleft = timeleft > 0 ? timeleft : 0;
     CCString *clock = CCString::createWithFormat("Timeleft: %ds", timeleft);
     this->labelClock->setString(clock->getCString());
+    
+    CCString *health = CCString::createWithFormat("Health: %d", HuPlayer::getInstance()->health);
+    labelHealth->setString(health->getCString());
+    
+    
 }

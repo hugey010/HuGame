@@ -52,28 +52,34 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCPoint point4 =  ccp(swipe->location.x - widthOffset * cosf(angleInDegrees), swipe->location.y - widthOffset * sinf(angleInDegrees));
     
     // drawing dots for help
+    /*
     CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
-    dot1->setPosition(point3);
+    dot1->setPosition(point1);
     this->addChild(dot1);
     
     CCSprite *dot2 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
-    dot2->setPosition(point1);
+    dot2->setPosition(point2);
     this->addChild(dot2);
     
+    CCSprite *dot3 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
+    dot3->setPosition(point3);
+    this->addChild(dot3);
+    
+    CCSprite *dot4 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
+    dot4->setPosition(point4);
+    this->addChild(dot4);
+     */
+   
+    // weird issue with ccdrawpoly, but fuck it. its probably not how im going to be drawing my attacks anyways
+    int swipeVerticesCount = 4;
     CCPoint swipeVerts[] = {point1, point2, point3, point4};
     CCDrawNode *drawNode = CCDrawNode::create();
-    drawNode->drawPolygon(swipeVerts, 4, ccc4f(1,0,0,1), 3, ccc4f(1,1,1,1));
+    drawNode->drawPolygon(swipeVerts, swipeVerticesCount, ccc4f(1,0,0,1), 3, ccc4f(1,1,1,1));
     this->addChild(drawNode);
     
-
-    CCRect rect = this->rectBetweenPoints(swipe->location, swipe->finalLocation, swipe->direction);
-    // temporarly drawin a rect with a sprite
-    CCLayerColor *line = CCLayerColor::create(ccc4(255, 255, 255, 255));
-    line->setPosition(ccp(rect.origin.x, rect.origin.y));
-    line->setContentSize(rect.size);
-    //this->addChild(line);
     
     // send this rect to npc controller to determine if there is a collision
+    this->npcs->handleAttack(swipeVerts, swipeVerticesCount);
 }
 
 /*

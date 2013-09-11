@@ -30,6 +30,8 @@ private:
     
     // the private variables
     int numClockTicks;
+    
+    void updateHud();
 
 };
 

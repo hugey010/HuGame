@@ -16,10 +16,15 @@ class HuGameNPCs : cocos2d::CCLayer
 public:
     virtual bool init();
     CREATE_FUNC(HuGameNPCs);
+    
+    // for handling attacks
+    void handleAttack(cocos2d::CCPoint vertices[], int numberOfVertices);
+    
+    // create an npc class which gets extended by all your special objects. npc will have all the base features a class needs
+    
 
 
 private:
-    cocos2d::CCPoint generateEnemyInitialPoint();
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
 

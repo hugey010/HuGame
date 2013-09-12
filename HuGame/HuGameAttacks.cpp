@@ -56,10 +56,10 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     // some logic for manipulating points according to the angle between swipe start and end
     float deltaX = swipe->finalLocation.x - swipe->location.x;
     float deltaY = swipe->finalLocation.y - swipe->location.y;
-    CCLog("deltay = %f, deltax = %f", deltaY, deltaX);
+    //CCLog("deltay = %f, deltax = %f", deltaY, deltaX);
     float angleInDegrees = atan2f(deltaY, deltaX) * 180.0 / M_PI;
     
-    CCLog("angleInDegrees = %f, cosf = %f, sinf = %f, tanf = %f", angleInDegrees, cosf(angleInDegrees), sinf(angleInDegrees), tanf(angleInDegrees));
+    //CCLog("angleInDegrees = %f, cosf = %f, sinf = %f, tanf = %f", angleInDegrees, cosf(angleInDegrees), sinf(angleInDegrees), tanf(angleInDegrees));
     
     float widthOffset = HuPlayer::getInstance()->attackWidth / 2.0;
     CCPoint point1 =  ccp(swipe->finalLocation.x + widthOffset * cosf(angleInDegrees), swipe->finalLocation.y + widthOffset * sinf(angleInDegrees));
@@ -90,9 +90,9 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     // weird issue with ccdrawpoly, but fuck it. its probably not how im going to be drawing my attacks anyways
     int swipeVerticesCount = 4;
     CCPoint swipeVerts[] = {point1, point2, point3, point4};
-    CCDrawNode *drawNode = CCDrawNode::create();
-    drawNode->drawPolygon(swipeVerts, swipeVerticesCount, ccc4f(1,0,0,1), 3, ccc4f(1,1,1,1));
-    this->addChild(drawNode);
+    //CCDrawNode *drawNode = CCDrawNode::create();
+    //drawNode->drawPolygon(swipeVerts, swipeVerticesCount, ccc4f(1,0,0,1), 3, ccc4f(1,1,1,1));
+    //this->addChild(drawNode);
     
     
     // send this rect to npc controller to determine if there is a collision

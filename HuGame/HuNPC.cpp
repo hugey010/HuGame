@@ -59,11 +59,11 @@ void HuNPC::enemyMoveFinished(CCNode *sender)
 {
     // begin basic attack
     HuPlayer::getInstance()->health -= dealsDamage;
-    CCLog("attacked player for %d damage", dealsDamage);
-    layer->removeChild(this->sprite);
+    //CCLog("attacked player for %d damage", dealsDamage);
+   // layer->removeChild(this->sprite);
 }
 
-void HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
+bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
     this->health -= HuPlayer::getInstance()->damageModifier;
     if (this->health <= 0) {
         layer->removeChild(sprite);
@@ -73,9 +73,13 @@ void HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
         // kill it and clean up npc
         killNPC();
         
+        return true;
+        
         
     }
     this->currentElementalDamage.insert(damageType);
+    
+    return false;
     
 
 }

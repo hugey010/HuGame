@@ -27,6 +27,7 @@ public:
 private:
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
+    static bool collisionBetween(cocos2d::CCPoint vertices[], cocos2d::CCSprite *sprite);
 
 };
 

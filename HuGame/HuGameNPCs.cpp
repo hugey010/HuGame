@@ -50,11 +50,24 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             // check for collision
             //npc->sprite->getS
            // npc->sprite->getContentSize().width
-            if (collisionBetween(vertices, npc->sprite)) {
+            // get sprite points
+            CCRect spriteRect = npc->sprite->boundingBox();
+            CCPoint spritePoint1 = ccp(spriteRect.origin.x, spriteRect.origin.y);
+            CCPoint spritePoint2 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y + spriteRect.size.height);
+            CCPoint spritePoint3 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y);
+            CCPoint spritePoint4 = ccp(spriteRect.origin.x, spriteRect.origin.y + spriteRect.size.height);
+            
+            CCPoint spriteVerts[] = {spritePoint1, spritePoint2, spritePoint3, spritePoint4};
+
+            collisionBetween(vertices, spriteVerts);
+            /*
+            if (collisionBetween(vertices, spriteVerts)) {
                 this->removeChild(npc->sprite);
                 npcs->removeObjectAtIndex(i);
                 CCLog("hit an object");
             }
+            */
+            
             
             
             
@@ -91,32 +104,51 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
     
 }
 
-static bool collisionBetween(cocos2d::CCPoint vertices[], cocos2d::CCSprite *sprite) {
+// detects collision between 4 sided polygon and sprite bounding box
+bool HuGameNPCs::collisionBetween(CCPoint polygonVertices[], CCPoint spriteVerts[]) {
+   
+    for (int i = 0; i < 4; i++) {
+        CCPoint normalizedVector = HuGameNPCs::normalizedVector(polygonVertices[i]);
+        
+    }
    
     // get polygon points
-    CCPoint polygonPoint1 = ccp(vertices[0].x, vertices[0].y);
-    CCPoint polygonPoint2 = ccp(vertices[1].x, vertices[1].y);
-    CCPoint polygonPoint3 = ccp(vertices[2].x, vertices[2].y);
-    CCPoint polygonPoint4 = ccp(vertices[3].x, vertices[3].y);
+    CCPoint polygonPoint1 = ccp(polygonVertices[0].x, polygonVertices[0].y);
+    CCPoint polygonPoint2 = ccp(polygonVertices[1].x, polygonVertices[1].y);
+    CCPoint polygonPoint3 = ccp(polygonVertices[2].x, polygonVertices[2].y);
+    CCPoint polygonPoint4 = ccp(polygonVertices[3].x, polygonVertices[3].y);
    
-    // get sprite points
-    CCRect spriteRect = sprite->boundingBox();
-    CCPoint spritePoint1 = ccp(spriteRect.origin.x, spriteRect.origin.y);
-    CCPoint spritePoint2 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y + spriteRect.size.height);
-    CCPoint spritePoint3 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y);
-    CCPoint spritePoint4 = ccp(spriteRect.origin.x, spriteRect.origin.y + spriteRect.size.height);
+
+   
+    // normalize each vector
+    CCPoint normalPolyVector1 = HuGameNPCs::normalizedVector(polygonPoint1);
+    CCPoint normalPolyVector2 = HuGameNPCs::normalizedVector(polygonPoint2);
+    CCPoint normalPolyVector3 = HuGameNPCs::normalizedVector(polygonPoint3);
+    CCPoint normalPolyVector4 = HuGameNPCs::normalizedVector(polygonPoint4);
+
+    // project polygon onto axis. need min / max values
+    float dotProductPoly1 = HuGameNPCs::dotProduct(normalPolyVector1, polygonPoint1);
+    float minDot = dotProductPoly1;
+    float maxDot = dotProductPoly1;
     
-    // project every edge normal
-    
-        //CCPoint spritePoint1 = ccp(sprite->)
  
-    
-    //ccVertex2F vert = vertex2(0, 0);
-    
-    
-    return false;
+    return true;
 }
 
+// again assuming eash shape only has 4 sides
+void HuGameNPCs::projectPolygon(CCPoint normalizedVector, CCPoint polygonVertices[], CCPoint spriteVertices[], int &max, int &min) {
+    
+}
+
+CCPoint HuGameNPCs::normalizedVector(CCPoint vector) {
+    float size = sqrtf(vector.x * vector.x + vector.y * vector.y);
+    return ccp(vector.x / size, vector.y / size);
+}
+
+// assumes is 1x2 and 2x1 vectors respectively
+float HuGameNPCs::dotProduct(cocos2d::CCPoint first, cocos2d::CCPoint second) {
+    return first.x * second.x + first.y * second.y;
+}
 
 
 

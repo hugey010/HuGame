@@ -23,11 +23,18 @@ public:
     void handleAttack(cocos2d::CCPoint vertices[], int numberOfVertices, ElementalDamageTypes damageType);
         
 
+    // stuff for collision detection
+    static bool collisionBetween(cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVerts[]);
+    static cocos2d::CCPoint normalizedVector(cocos2d::CCPoint vector);
+    static float dotProduct(cocos2d::CCPoint first, cocos2d::CCPoint second);
+    static void projectPolygon(cocos2d::CCPoint normalizedVector, cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVertices[], int &max, int &min);
 
 private:
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
-    static bool collisionBetween(cocos2d::CCPoint vertices[], cocos2d::CCSprite *sprite);
+    
+
+
 
 };
 

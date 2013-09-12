@@ -33,6 +33,8 @@ void HuPlayer::create()
     
     // attack stuff
     this->attackWidth = 50;
+    // TODO: this probably should be 100 to start out with
+    this->damageModifier = 100;
 
 
 }

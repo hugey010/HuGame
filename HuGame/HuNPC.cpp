@@ -63,8 +63,8 @@ void HuNPC::enemyMoveFinished(CCNode *sender)
     layer->removeChild(this->sprite);
 }
 
-void HuNPC::takeDamageFromPlayer(int damage, ElementalDamageTypes damageType) {
-    this->health -= damage;
+void HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
+    this->health -= HuPlayer::getInstance()->damageModifier;
     if (this->health <= 0) {
         layer->removeChild(sprite);
         HuPlayer::getInstance()->currency += givesCurrency;

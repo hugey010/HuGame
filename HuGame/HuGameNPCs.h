@@ -10,6 +10,8 @@
 #define __HuGame__HuGameNPCs__
 
 #include "cocos2d.h"
+#include "HuPlayer.h"
+#include "Constants.h"
 
 class HuGameNPCs : cocos2d::CCLayer
 {
@@ -18,10 +20,8 @@ public:
     CREATE_FUNC(HuGameNPCs);
     
     // for handling attacks
-    void handleAttack(cocos2d::CCPoint vertices[], int numberOfVertices);
-    
-    // create an npc class which gets extended by all your special objects. npc will have all the base features a class needs
-    
+    void handleAttack(cocos2d::CCPoint vertices[], int numberOfVertices, ElementalDamageTypes damageType);
+        
 
 
 private:

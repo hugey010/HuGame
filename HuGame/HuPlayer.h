@@ -20,6 +20,7 @@ public:
     int health;
     int level;
     int currency;
+    int damageModifier;
     cocos2d::CCString *name;
     
     // fortress (base) info

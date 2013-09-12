@@ -29,7 +29,7 @@ public:
     void killNPC();
     
     void initWithLayer(cocos2d::CCLayer *layer);
-    void takeDamageFromPlayer(int damage, ElementalDamageTypes damageType);
+    void takeDamageFromPlayer(ElementalDamageTypes damageType);
     
     // randomly makes a point on the ground on either the left or right side of screen
     static cocos2d::CCPoint generateEnemyInitialPoint();

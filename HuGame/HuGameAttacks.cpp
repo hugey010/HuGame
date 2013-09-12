@@ -67,6 +67,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCPoint point3 =  ccp(swipe->location.x + widthOffset * cosf(angleInDegrees), swipe->location.y + widthOffset * sinf(angleInDegrees));
     CCPoint point4 =  ccp(swipe->location.x - widthOffset * cosf(angleInDegrees), swipe->location.y - widthOffset * sinf(angleInDegrees));
     
+    
     // drawing dots for help
     /*
     CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
@@ -95,7 +96,8 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     
     
     // send this rect to npc controller to determine if there is a collision
-    this->npcs->handleAttack(swipeVerts, swipeVerticesCount);
+    // TODO: hard coding a damage type
+    this->npcs->handleAttack(swipeVerts, swipeVerticesCount, PhysicalDamage);
 }
 
 /*

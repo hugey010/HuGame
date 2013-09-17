@@ -28,6 +28,8 @@ public:
 private:
     void didSwipe(cocos2d::CCObject *sender);
     cocos2d::CCRect rectBetweenPoints(cocos2d::CCPoint point1, cocos2d::CCPoint point2, CCSwipeGestureRecognizerDirection direction);
+    
+    void draw();
 };
 
 #endif /* defined(__HuGame__HuGameAttacks__) */

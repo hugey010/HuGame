@@ -24,14 +24,19 @@ public:
         
 
     // stuff for collision detection
-    static bool collisionBetween(cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVerts[]);
-    static cocos2d::CCPoint normalizedVector(cocos2d::CCPoint vector);
-    static float dotProduct(cocos2d::CCPoint first, cocos2d::CCPoint second);
-    static void projectPolygon(cocos2d::CCPoint normalizedVector, cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVertices[], int &max, int &min);
+    // should all be static
+    bool collisionBetween(cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVerts[]);
+    cocos2d::CCPoint normalizedVector(cocos2d::CCPoint vector);
+    float dotProduct(cocos2d::CCPoint first, cocos2d::CCPoint second);
+    void projectPolygonMinMax(cocos2d::CCPoint normalizedVector, cocos2d::CCPoint vertices[], float *max, float *min);
+    float intervalDistance(float minA, float maxA, float minB, float maxB);
+    bool axisSeparatePolygons(cocos2d::CCPoint edge, cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVerts[]);
+
 
 private:
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
+    
     
 
 

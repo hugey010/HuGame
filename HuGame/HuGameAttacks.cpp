@@ -68,8 +68,9 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCPoint point4 =  ccp(swipe->location.x - widthOffset * cosf(angleInDegrees), swipe->location.y - widthOffset * sinf(angleInDegrees));
     
     
+    
     // drawing dots for help
-    /*
+    
     CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
     dot1->setPosition(point1);
     this->addChild(dot1);
@@ -85,7 +86,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCSprite *dot4 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
     dot4->setPosition(point4);
     this->addChild(dot4);
-     */
+     
    
     // weird issue with ccdrawpoly, but fuck it. its probably not how im going to be drawing my attacks anyways
     int swipeVerticesCount = 4;
@@ -134,5 +135,9 @@ CCRect HuGameAttacks::rectBetweenPoints(CCPoint point1, CCPoint point2, CCSwipeG
 
     }
     return rect;
+    
+}
+
+void HuGameAttacks::draw() {
     
 }

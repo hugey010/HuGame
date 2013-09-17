@@ -59,14 +59,12 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             
             CCPoint spriteVerts[] = {spritePoint1, spritePoint2, spritePoint3, spritePoint4};
 
-            collisionBetween(vertices, spriteVerts);
-            /*
+           // collisionBetween(vertices, spriteVerts);
             if (collisionBetween(vertices, spriteVerts)) {
                 this->removeChild(npc->sprite);
                 npcs->removeObjectAtIndex(i);
                 CCLog("hit an object");
             }
-            */
             
             
             
@@ -108,10 +106,61 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 bool HuGameNPCs::collisionBetween(CCPoint polygonVertices[], CCPoint spriteVerts[]) {
    
     for (int i = 0; i < 4; i++) {
-        CCPoint normalizedVector = HuGameNPCs::normalizedVector(polygonVertices[i]);
+        for (int j = 0; j < 1; j++) {
+            CCPoint vectors[] = {polygonVertices[0], polygonVertices[1], polygonVertices[2], polygonVertices[3]};
+            if (j == 0) {
+                for (int k = 0; k < 4; k++) {
+                    vectors[i] = spriteVerts[i];
+                }
+            }
+            
+            
+            for (int edgeCounter = 0; edgeCounter < 4; edgeCounter++) {
+                int pointCounter2 = edgeCounter - 1;
+                if (pointCounter2 == -1) {
+                    pointCounter2 = 4;
+                }
+                
+                // debug for drawing dot where edge should be
+                // need the -y component for edge
+                // and x component
+                vectors[edgeCounter] = normalizedVector(vectors[edgeCounter]);
+                vectors[pointCounter2] = normalizedVector(vectors[pointCounter2]);
+                CCPoint edge = ccp(-1 * (vectors[edgeCounter].y - vectors[pointCounter2].y), vectors[edgeCounter].x - vectors[pointCounter2].x);
+                CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+                dot1->setPosition(edge);
+                //CCLog("edge x = %f, edge y = %f", edge.x, edge.y);
+                this->addChild(dot1);
+                
+                //CCLog("edge.x = %f, edge.y = %f", edge.x, edge.y);
+                if (axisSeparatePolygons(edge, polygonVertices, spriteVerts)) {
+                    return false;
+                }
+                
+            }
+            
+            
+            /*
+            CCPoint normalizedVector = HuGameNPCs::normalizedVector(vectors[i]);
+            float minA = 0.0f, minB = 0.0f, maxA = 0.0f, maxB = 0.0f;
+
+            HuGameNPCs::projectPolygonMinMax(normalizedVector, vectors, &maxA, &minA);
+            HuGameNPCs::projectPolygonMinMax(normalizedVector, vectors, &maxB, &minB);
+          
+            //CCLog("minA = %f, minB = %f, maxA = %f, maxB = %f", minA, minB, maxA, maxB);
+ 
+
+            if (HuGameNPCs::intervalDistance(minA, maxA, minB, maxB) <= 0) {
+                return true;
+            }
+            
+            return false;
+             */
+        }
         
     }
-   
+  
+    /*
     // get polygon points
     CCPoint polygonPoint1 = ccp(polygonVertices[0].x, polygonVertices[0].y);
     CCPoint polygonPoint2 = ccp(polygonVertices[1].x, polygonVertices[1].y);
@@ -130,19 +179,63 @@ bool HuGameNPCs::collisionBetween(CCPoint polygonVertices[], CCPoint spriteVerts
     float dotProductPoly1 = HuGameNPCs::dotProduct(normalPolyVector1, polygonPoint1);
     float minDot = dotProductPoly1;
     float maxDot = dotProductPoly1;
+     */
+    
+    
     
  
-    return true;
+    return false;
+}
+
+bool HuGameNPCs::axisSeparatePolygons(CCPoint edge, CCPoint polygonVertices[], CCPoint spriteVerts[]) {
+    float minA = 0.0f, minB = 0.0f, maxA = 0.0f, maxB = 0.0f;
+    
+    projectPolygonMinMax(edge, polygonVertices, &maxA, &minA);
+    projectPolygonMinMax(edge, spriteVerts, &maxB, &minB);
+    
+    if (minA > maxB || minB > maxA) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+float HuGameNPCs::intervalDistance(float minA, float maxA, float minB, float maxB) {
+    if (minA < minB) {
+        return minB - maxA;
+    } else {
+        return minA - maxB;
+    }
 }
 
 // again assuming eash shape only has 4 sides
-void HuGameNPCs::projectPolygon(CCPoint normalizedVector, CCPoint polygonVertices[], CCPoint spriteVertices[], int &max, int &min) {
-    
+// alters the values of max and min, basically the side effect and only usage of this 'function'
+void HuGameNPCs::projectPolygonMinMax(CCPoint normalizedVector, CCPoint vertices[], float *max, float *min) {
+    float dotProduct = HuGameNPCs::dotProduct(normalizedVector, vertices[0]);
+    min = &dotProduct;
+    max = &dotProduct;
+    for (int i = 0; i < 4; i++) {
+        
+        float nextDotProduct = HuGameNPCs::dotProduct(normalizedVector, vertices[i]);
+        float newMin = fminf(nextDotProduct, *min);
+        //CCLog("min = %f, max = %f", *min, *max);
+        min = &newMin;
+        float newMax = fmaxf(nextDotProduct, *max);
+        max = &newMax;
+        
+    }
 }
 
 CCPoint HuGameNPCs::normalizedVector(CCPoint vector) {
+    
+    //CCLog("vectorToNormal x = %f, y = %f", vector.x, vector.y);
     float size = sqrtf(vector.x * vector.x + vector.y * vector.y);
-    return ccp(vector.x / size, vector.y / size);
+    CCPoint point = ccp(vector.y / size, vector.x / size);
+    
+    //CCLog("normalizedVector x = %f, y = %f", point.x, point.y);
+    
+    return point;
+     
 }
 
 // assumes is 1x2 and 2x1 vectors respectively

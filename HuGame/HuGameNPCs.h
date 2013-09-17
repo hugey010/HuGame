@@ -31,7 +31,8 @@ public:
     void projectPolygonMinMax(cocos2d::CCPoint normalizedVector, cocos2d::CCPoint vertices[], float *max, float *min);
     float intervalDistance(float minA, float maxA, float minB, float maxB);
     bool axisSeparatePolygons(cocos2d::CCPoint edge, cocos2d::CCPoint polygonVertices[], cocos2d::CCPoint spriteVerts[]);
-
+    bool areIntersecting(float v1x1, float v1y1, float v1x2, float v1y2,
+                         float v2x1, float v2y1, float v2x2, float v2y2);
 
 private:
     void enemyMoveFinished(cocos2d::CCNode *sender);

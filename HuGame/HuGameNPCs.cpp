@@ -63,7 +63,7 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             if (collisionBetween(vertices, spriteVerts)) {
                 this->removeChild(npc->sprite);
                 npcs->removeObjectAtIndex(i);
-                CCLog("hit an object");
+                //CCLog("hit an object");
             }
             
             
@@ -105,86 +105,105 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 // detects collision between 4 sided polygon and sprite bounding box
 bool HuGameNPCs::collisionBetween(CCPoint polygonVertices[], CCPoint spriteVerts[]) {
    
+
+    // a side is a pair of connected vertices
+    int intersections = 0;
+    
+    CCPoint polyEdges[4][2];
+    CCPoint spriteEdges[4][2];
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 1; j++) {
-            CCPoint vectors[] = {polygonVertices[0], polygonVertices[1], polygonVertices[2], polygonVertices[3]};
-            if (j == 0) {
-                for (int k = 0; k < 4; k++) {
-                    vectors[i] = spriteVerts[i];
-                }
-            }
-            
-            
-            for (int edgeCounter = 0; edgeCounter < 4; edgeCounter++) {
-                int pointCounter2 = edgeCounter - 1;
-                if (pointCounter2 == -1) {
-                    pointCounter2 = 4;
-                }
-                
-                // debug for drawing dot where edge should be
-                // need the -y component for edge
-                // and x component
-                vectors[edgeCounter] = normalizedVector(vectors[edgeCounter]);
-                vectors[pointCounter2] = normalizedVector(vectors[pointCounter2]);
-                CCPoint edge = ccp(-1 * (vectors[edgeCounter].y - vectors[pointCounter2].y), vectors[edgeCounter].x - vectors[pointCounter2].x);
-                CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
-                dot1->setPosition(edge);
-                //CCLog("edge x = %f, edge y = %f", edge.x, edge.y);
-                this->addChild(dot1);
-                
-                //CCLog("edge.x = %f, edge.y = %f", edge.x, edge.y);
-                if (axisSeparatePolygons(edge, polygonVertices, spriteVerts)) {
-                    return false;
-                }
-                
-            }
-            
-            
-            /*
-            CCPoint normalizedVector = HuGameNPCs::normalizedVector(vectors[i]);
-            float minA = 0.0f, minB = 0.0f, maxA = 0.0f, maxB = 0.0f;
-
-            HuGameNPCs::projectPolygonMinMax(normalizedVector, vectors, &maxA, &minA);
-            HuGameNPCs::projectPolygonMinMax(normalizedVector, vectors, &maxB, &minB);
-          
-            //CCLog("minA = %f, minB = %f, maxA = %f, maxB = %f", minA, minB, maxA, maxB);
- 
-
-            if (HuGameNPCs::intervalDistance(minA, maxA, minB, maxB) <= 0) {
-                return true;
-            }
-            
-            return false;
-             */
+        int secondVertex = i+1;
+        if (secondVertex == 4) {
+            secondVertex = 0;
         }
+        polyEdges[i][0] = ccp(polygonVertices[i].x, polygonVertices[i].y);
+        polyEdges[i][1] = ccp(polygonVertices[secondVertex].x, polygonVertices[secondVertex].y);
         
+        // drawing dot for polygon edge 1
+        CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+        dot1->setPosition(polyEdges[i][0]);
+        //this->addChild(dot1);
+        
+        CCSprite *dot2 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
+        dot2->setPosition(polyEdges[i][1]);
+        this->addChild(dot2);
+        
+        spriteEdges[i][0] = ccp(spriteVerts[i].x, spriteVerts[i].y);
+        spriteEdges[i][1] = ccp(spriteVerts[secondVertex].x, spriteVerts[secondVertex].y);
+
     }
-  
-    /*
-    // get polygon points
-    CCPoint polygonPoint1 = ccp(polygonVertices[0].x, polygonVertices[0].y);
-    CCPoint polygonPoint2 = ccp(polygonVertices[1].x, polygonVertices[1].y);
-    CCPoint polygonPoint3 = ccp(polygonVertices[2].x, polygonVertices[2].y);
-    CCPoint polygonPoint4 = ccp(polygonVertices[3].x, polygonVertices[3].y);
-   
+    
+    for (int side = 0; side < 4; side++) {
+        // Test if current side intersects with ray.
 
-   
-    // normalize each vector
-    CCPoint normalPolyVector1 = HuGameNPCs::normalizedVector(polygonPoint1);
-    CCPoint normalPolyVector2 = HuGameNPCs::normalizedVector(polygonPoint2);
-    CCPoint normalPolyVector3 = HuGameNPCs::normalizedVector(polygonPoint3);
-    CCPoint normalPolyVector4 = HuGameNPCs::normalizedVector(polygonPoint4);
+        if (areIntersecting(polyEdges[side][0].x, polyEdges[side][0].y, polyEdges[side][1].x, polyEdges[side][1].y, spriteEdges[side][0].x, spriteEdges[side][0].y, spriteEdges[side][1].x, spriteEdges[side][1].y)) {
+            intersections++;
+        }
+    }
+    if ((intersections & 1) == 1) {
+        // Inside of polygon
+        return true;
+    } else {
+        // Outside of polygon
+        return false;
+    }
+    //return false;
+}
 
-    // project polygon onto axis. need min / max values
-    float dotProductPoly1 = HuGameNPCs::dotProduct(normalPolyVector1, polygonPoint1);
-    float minDot = dotProductPoly1;
-    float maxDot = dotProductPoly1;
-     */
+/*
+#define NO 0
+#define YES 1
+#define COLLINEAR 2
+ */
+
+bool HuGameNPCs::areIntersecting(float v1x1, float v1y1, float v1x2, float v1y2,
+                    float v2x1, float v2y1, float v2x2, float v2y2)
+{
+    float d1, d2;
+    float a1, a2, b1, b2, c1, c2;
     
+    // Convert vector 1 to a line (line 1) of infinite length.
+    // We want the line in linear equation standard form: A*x + B*y + C = 0
+    // See: http://en.wikipedia.org/wiki/Linear_equation
+    a1 = v1y2 - v1y1;
+    b1 = v1x1 - v1x2;
+    c1 = (v1x2 * v1y1) - (v1x1 * v1y2);
     
+    // Every point (x,y), that solves the equation above, is on the line,
+    // every point that does not solve it, is either above or below the line.
+    // We insert (x1,y1) and (x2,y2) of vector 2 into the equation above.
+    d1 = (a1 * v2x1) + (b1 * v2y1) + c1;
+    d2 = (a1 * v2x2) + (b1 * v2y2) + c1;
     
- 
-    return false;
+    // If d1 and d2 both have the same sign, they are both on the same side of
+    // our line 1 and in that case no intersection is possible. Careful, 0 is
+    // a special case, that's why we don't test ">=" and "<=", but "<" and ">".
+    if (d1 > 0 && d2 > 0) return true;
+    if (d1 < 0 && d2 < 0) return false;
+    
+    // We repeat everything above for vector 2.
+    // We start by calculating line 2 in linear equation standard form.
+    a2 = v2y2 - v2y1;
+    b2 = v2x1 - v2x2;
+    c2 = (v2x2 * v1y1) - (v2x1 * v2y2);
+    
+    // Calulate d1 and d2 again, this time using points of vector 1
+    d1 = (a2 * v1x1) + (b2 * v1y1) + c2;
+    d2 = (a2 * v1x2) + (b2 * v1y2) + c2;
+    
+    // Again, if both have the same sign (and neither one is 0),
+    // no intersection is possible.
+    if (d1 > 0 && d2 > 0) return false;
+    if (d1 < 0 && d2 < 0) return false;
+    
+    // If we get here, only three possibilities are left. Either the two
+    // vectors intersect in exactly one point or they are collinear
+    // (they both lie both on the same infinite line), in which case they
+    // may intersect in an infinite number of points or not at all.
+    if ((a1 * b2) - (a2 * b1) == 0.0f) return true; // colinear
+    
+    // If they are not collinear, they must intersect in exactly one point.
+    return true;
 }
 
 bool HuGameNPCs::axisSeparatePolygons(CCPoint edge, CCPoint polygonVertices[], CCPoint spriteVerts[]) {

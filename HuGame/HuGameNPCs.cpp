@@ -42,64 +42,50 @@ void HuGameNPCs::makeEnemy()
 
 void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, ElementalDamageTypes damageType)
 {
-    //CCLog("hugamenpcs handling attack");
-    
-    for (int i = 0; i < npcs->count(); i++) {
-        HuNPC *npc = (HuNPC*)npcs->objectAtIndex(i);
-        if (npc != NULL) {
-            // check for collision
-            //npc->sprite->getS
-           // npc->sprite->getContentSize().width
-            // get sprite points
-            CCRect spriteRect = npc->sprite->boundingBox();
-            CCPoint spritePoint1 = ccp(spriteRect.origin.x, spriteRect.origin.y);
-            CCPoint spritePoint2 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y + spriteRect.size.height);
-            CCPoint spritePoint3 = ccp(spriteRect.origin.x + spriteRect.size.width, spriteRect.origin.y);
-            CCPoint spritePoint4 = ccp(spriteRect.origin.x, spriteRect.origin.y + spriteRect.size.height);
-            
-            CCPoint spriteVerts[] = {spritePoint1, spritePoint2, spritePoint3, spritePoint4};
+    CCObject *object = NULL;
+    CCARRAY_FOREACH(npcs, object) {
+        HuNPC *tempNPC = (HuNPC*)object;
+        
 
-           // collisionBetween(vertices, spriteVerts);
-            if (collisionBetween(vertices, spriteVerts)) {
-                this->removeChild(npc->sprite);
-                npcs->removeObjectAtIndex(i);
-                //CCLog("hit an object");
-            }
+        // first test, just checks for obvious miss
+        float minX = vertices[3].x;
+        float maxX = vertices[3].x;
+        float minY = vertices[3].y;
+        float maxY = vertices[3].y;
+        
+        for (int i = 0; i < 3; i++) {
             
-            
-            
-            
-            /*
-            CCLog("x = %f, y = %f, width = %f, height = %f", npc->sprite->getPosition().x, npc->sprite->getPosition().y, npc->sprite->getContentSize().width, npc->sprite->getContentSize().height);
-            
-            CCRect npcRect = CCRectMake(npc->sprite->getPosition().x, npc->sprite->getPosition().y, npc->sprite->getContentSize().width, npc->sprite->getContentSize().height);
-            for (int j = 0; j < 4; j++) {
-                CCLog("vertices[j].x = %f, vertices[j].y = %f", vertices[j].x, vertices[j].y);
-                if (npcRect.containsPoint(ccp(vertices[j].x, vertices[j].y))) {
-                    if (npc->takeDamageFromPlayer(damageType)) {
-                        this->removeChild(npc->sprite);
-                        npcs->removeObjectAtIndex(i);
-                        CCLog("hit an object");
-                    }
- 
-                    break;
-                }
-            }
-             */
-            
-            //CCLog("sprite position.x = %f, y = %f", npc->sprite->getPosition().x, npc->sprite->getPosition().y);
-            
+            minX = fminf(vertices[i].x, minX);
+            minY = fminf(vertices[i].y, minY);
+            maxX = fmaxf(vertices[i].x, maxX);
+            maxY = fmaxf(vertices[i].y, maxY);
         }
-    }
-    
-    
+        
 
-    // loop through all active npcs and detect an attack
-    // this is going to cause the npcs to be a class of its own hosting a ccsprite
+        
+        CCPoint p = tempNPC->sprite->getPosition();
+        
+
+        
+        if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
+            CCLog("skipped: p.x = %f, p.y = %f, minX = %f, minY = %f, maxX = %f, maxY = %f", p.x, p.y, minX, minY, maxX, maxY);
+            continue;
+        } else {
+            CCLog("found: p.x = %f, p.y = %f, minX = %f, minY = %f, maxX = %f, maxY = %f", p.x, p.y, minX, minY, maxX, maxY);
+
+            tempNPC->sprite->removeFromParent();
+            npcs->fastRemoveObject((CCNode*)tempNPC);
+        }
+        
+
+    }
+
+
     
-    
-    
-    
+}
+
+bool HuGameNPCs::pointCollision(CCPoint polygonVertices[], CCPoint point) {
+    return true;
 }
 
 // detects collision between 4 sided polygon and sprite bounding box
@@ -260,6 +246,16 @@ CCPoint HuGameNPCs::normalizedVector(CCPoint vector) {
 // assumes is 1x2 and 2x1 vectors respectively
 float HuGameNPCs::dotProduct(cocos2d::CCPoint first, cocos2d::CCPoint second) {
     return first.x * second.x + first.y * second.y;
+}
+
+void HuGameNPCs::removeAllEnemies() {
+    CCObject *object = NULL;
+    CCARRAY_FOREACH(npcs, object) {
+        HuNPC *tempNPC = (HuNPC*)object;
+        tempNPC->sprite->removeFromParent();
+        npcs->fastRemoveObject((CCNode*)tempNPC);
+    }
+    return;
 }
 
 

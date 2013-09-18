@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "CCGestureRecognizer/CCSwipeGestureRecognizer.h"
 #include "HuGameNPCs.h"
+#include "Constants.h"
 
 #define kHitBoxWidth 32
 
@@ -28,6 +29,9 @@ public:
 private:
     void didSwipe(cocos2d::CCObject *sender);
     cocos2d::CCRect rectBetweenPoints(cocos2d::CCPoint point1, cocos2d::CCPoint point2, CCSwipeGestureRecognizerDirection direction);
+    void animateAttack(cocos2d::CCPoint *swipeVerts, int swipeVerticesCount, ElementalDamageTypes PhysicalDamage, CCSwipeGestureRecognizerDirection direction);
+    void explosionFinished(cocos2d::CCNode *sender);
+
     
     void draw();
 };

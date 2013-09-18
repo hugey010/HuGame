@@ -7,7 +7,6 @@
 //
 
 #include "HuGameAttacks.h"
-#include "Constants.h"
 #include "HuPlayer.h"
 
 using namespace cocos2d;
@@ -67,7 +66,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCPoint point3 =  ccp(swipe->location.x + widthOffset * cosf(angleInDegrees), swipe->location.y + widthOffset * sinf(angleInDegrees));
     CCPoint point4 =  ccp(swipe->location.x - widthOffset * cosf(angleInDegrees), swipe->location.y - widthOffset * sinf(angleInDegrees));
     
-    
+    // draw  the attack hitting ground
     
     // drawing dots for help
    /*
@@ -86,7 +85,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCSprite *dot4 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
     dot4->setPosition(point4);
     this->addChild(dot4);
-     */t
+     */
    
     // weird issue with ccdrawpoly, but fuck it. its probably not how im going to be drawing my attacks anyways
     int swipeVerticesCount = 4;
@@ -97,45 +96,98 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     
     
     // send this rect to npc controller to determine if there is a collision
+    this->animateAttack(swipeVerts, swipeVerticesCount, PhysicalDamage, swipe->direction);
+    
+    
     // TODO: hard coding a damage type
     this->npcs->handleAttack(swipeVerts, swipeVerticesCount, PhysicalDamage);
 }
 
-/*
- Returns rect zero if the swipe is invalid. Otherwise returns the rect.
- will either be a vertical or horizontal rectangle with a constant width / height
- need to keep track if swipe is on left or right of screen (aka do not allow entire screen swipes)
- */
-CCRect HuGameAttacks::rectBetweenPoints(CCPoint point1, CCPoint point2, CCSwipeGestureRecognizerDirection direction)
-{
-    CCRect rect = CCRectZero;
-    if ((point1.x < SCREEN_WIDTH / 2 && point2.x < SCREEN_WIDTH / 2) || (point1.x > SCREEN_WIDTH / 2 && point2.x > SCREEN_WIDTH / 2))
-    {
-        // the first point is going to be based on the swipe direction
-        // the standard will be to use the first point as the starting x / y coordinate
-        switch (direction) {
-            case kSwipeGestureRecognizerDirectionLeft:
-                rect = CCRectMake(point1.x - abs(point1.x - point2.x), point1.y - kHitBoxWidth / 2, abs(point1.x - point2.x), kHitBoxWidth);
-                
-                break;
-            case kSwipeGestureRecognizerDirectionRight:
-                rect = CCRectMake(point1.x, point1.y - kHitBoxWidth / 2, abs(point1.x - point2.x), kHitBoxWidth);
-                
-                break;
-            case kSwipeGestureRecognizerDirectionDown:
-                rect = CCRectMake(point1.x - kHitBoxWidth / 2, point1.y - abs(point1.y - point2.y), kHitBoxWidth, abs(point1.y - point2.y));
-                
-                break;
-            case kSwipeGestureRecognizerDirectionUp:
-                rect = CCRectMake(point1.x - kHitBoxWidth / 2, point1.y, kHitBoxWidth, abs(point1.y - point2.y));
-                
-                break;
-                
-        }
-
-    }
-    return rect;
+void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, ElementalDamageTypes PhysicalDamage, CCSwipeGestureRecognizerDirection direction) {
+    float maxDistance = 0;
+    float minX = SCREEN_WIDTH;
     
+    CCPoint point1;
+    CCPoint point2;
+    
+
+    for (int i = 0; i < swipeVerticesCount; i++) {
+        for (int j = 3; j > i; j--) {
+            float distance = sqrtf(powf(swipeVerts[i].x - swipeVerts[j].x, 2) + powf(swipeVerts[i].y - swipeVerts[j].y, 2));
+            
+            if (maxDistance < distance) {
+                maxDistance = distance;
+                
+                point1 = swipeVerts[i];
+                point2 = swipeVerts[j];
+                
+                minX = fminf(point1.x, minX);
+                minX = fminf(point2.x, minX);
+            }
+        }
+        
+    }
+   
+    CCLog("minx = %f", minX);
+    CCLog("maxDistance = %f", maxDistance);
+    
+
+    float slope = (point2.y - point1.y) / (point2.x - point1.x);
+    CCLog("slope = %f", slope);
+    
+    
+    int numberOfExplosions = 15;
+    int xStep = maxDistance / numberOfExplosions;
+    CCLog("xstep = %d", xStep);
+    
+    
+    for (int i = 0; i < numberOfExplosions; i++) {
+    
+        float x = i * xStep + minX;
+        
+
+        float y = slope * (x - point1.x) + point1.y;
+        CCLog("x = %f, y = %f", x, y);
+        
+        
+        CCFiniteTimeAction *scale = CCScaleBy::create(0.4, 5);
+        CCFiniteTimeAction *rotate = CCRotateBy::create(0.4, 360);
+        CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
+        
+        CCArray *actionArray = CCArray::create();
+        //actionArray->addObject(scale);
+        actionArray->addObject(rotate);
+        actionArray->addObject(finished);
+       
+        CCSequence *actionSequence = CCSequence::create(actionArray);
+
+        
+        CCSprite *sprite;
+        if (direction == kSwipeGestureRecognizerDirectionDown || direction == kSwipeGestureRecognizerDirectionUp) {
+            sprite = CCSprite::create("dot1.png", CCRectMake(0, 0, 10, 10));
+        } else {
+           sprite = CCSprite::create("dot2.png", CCRectMake(0, 0, 10, 10));
+ 
+        }
+        
+        sprite->setPosition(ccp(x, y));
+        sprite->runAction(actionSequence);
+        sprite->runAction(scale);
+        sprite->runAction(rotate);
+        this->addChild(sprite);
+        
+    }
+
+    
+
+
+    
+    
+}
+
+void HuGameAttacks::explosionFinished(CCNode *sender) {
+    CCSprite *sprite = (CCSprite*)sender;
+    sprite->removeFromParent();
 }
 
 void HuGameAttacks::draw() {

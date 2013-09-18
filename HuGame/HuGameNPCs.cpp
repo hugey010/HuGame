@@ -68,13 +68,26 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 
         
         if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
-            CCLog("skipped: p.x = %f, p.y = %f, minX = %f, minY = %f, maxX = %f, maxY = %f", p.x, p.y, minX, minY, maxX, maxY);
             continue;
         } else {
-            CCLog("found: p.x = %f, p.y = %f, minX = %f, minY = %f, maxX = %f, maxY = %f", p.x, p.y, minX, minY, maxX, maxY);
-
-            tempNPC->sprite->removeFromParent();
+            tempNPC->takeDamageFromPlayer(damageType);
             npcs->fastRemoveObject((CCNode*)tempNPC);
+            /*
+            bool c = false;
+            int i = 0, j = 0;
+            for (i = 0, j = 3; i < 4; j = i++) {
+                if (((vertices[i].y > p.y) != (vertices[j].y > p.y)) &&
+                    (p.x < (vertices[j].x - vertices[i].x) * (p.y - vertices[i].y) / (vertices[j].y - vertices[i].y) + vertices[i].x)) {
+                    c = !c;
+                }
+            }
+            if (c) {
+                tempNPC->sprite->removeFromParent();
+                npcs->fastRemoveObject((CCNode*)tempNPC);
+            }
+             */
+
+
         }
         
 

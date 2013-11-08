@@ -35,6 +35,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCSwipe *swipe = (CCSwipe*)sender;
     
     // cancel swipe if it crosses center of screen (exactly)
+    /*
     if (swipe->location.x < SCREEN_WIDTH / 2.0) {
         // swipe starts on left side of screen
         if (swipe->finalLocation.x - SWIPE_BASE_BUFFER > SCREEN_WIDTH / 2.0) {
@@ -49,6 +50,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
         }
         
     }
+     */
     
 
     
@@ -136,7 +138,8 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
     CCLog("slope = %f", slope);
     
     
-    int numberOfExplosions = 15;
+    int numberOfExplosions = 50;
+    int randomness = 10;
     int xStep = maxDistance / numberOfExplosions;
     CCLog("xstep = %d", xStep);
     
@@ -144,13 +147,15 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
     for (int i = 0; i < numberOfExplosions; i++) {
     
         float x = i * xStep + minX;
-        
-
         float y = slope * (x - point1.x) + point1.y;
-        CCLog("x = %f, y = %f", x, y);
+        y = y - arc4random() % randomness;
+        y = y + arc4random() % randomness;
+        
+        x = x - arc4random() % randomness;
+        x = x + arc4random() % randomness;
         
         
-        CCFiniteTimeAction *scale = CCScaleBy::create(0.4, 5);
+        CCFiniteTimeAction *scale = CCScaleBy::create(0.4, 10);
         CCFiniteTimeAction *rotate = CCRotateBy::create(0.4, 360);
         CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
         
@@ -164,9 +169,9 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         
         CCSprite *sprite;
         if (direction == kSwipeGestureRecognizerDirectionDown || direction == kSwipeGestureRecognizerDirectionUp) {
-            sprite = CCSprite::create("dot1.png", CCRectMake(0, 0, 10, 10));
+            sprite = CCSprite::create("dot1.png", CCRectMake(0, 0, 2, 2));
         } else {
-           sprite = CCSprite::create("dot2.png", CCRectMake(0, 0, 10, 10));
+           sprite = CCSprite::create("dot2.png", CCRectMake(0, 0, 2, 2));
  
         }
         

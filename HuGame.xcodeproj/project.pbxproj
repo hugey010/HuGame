@@ -18,6 +18,7 @@
 		9628399317C6792C003B49E9 /* CCPinchGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398A17C6792C003B49E9 /* CCPinchGestureRecognizer.cpp */; };
 		9628399417C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */; };
 		9628399517C6792C003B49E9 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */; };
+		9659873C1829E88000AD0F70 /* HuEndRoundMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
 		968FF18E17AB4C78002BFF45 /* dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18717AB4C78002BFF45 /* dot1.png */; };
@@ -324,6 +325,8 @@
 		9628398D17C6792C003B49E9 /* CCSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
 		9628398F17C6792C003B49E9 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
+		9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuEndRoundMenuScene.cpp; sourceTree = "<group>"; };
+		9659873B1829E88000AD0F70 /* HuEndRoundMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuEndRoundMenuScene.h; sourceTree = "<group>"; };
 		9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameNPCs.cpp; sourceTree = "<group>"; };
 		9669B3F417B0B3F90065493F /* HuGameNPCs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HuGameNPCs.h; sourceTree = "<group>"; };
 		968FF18517AB4C78002BFF45 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseNormal.png; path = Resources/Sprites/CloseNormal.png; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 			children = (
 				96FCBABA17AD59C000A717DD /* HuGameScene.h */,
 				96FCBAB917AD59C000A717DD /* HuGameScene.cpp */,
+				9659873B1829E88000AD0F70 /* HuEndRoundMenuScene.h */,
+				9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2255,7 +2260,7 @@
 		96FF9DBF178A658300CF6E9D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 96FF9DC2178A658300CF6E9D /* Build configuration list for PBXProject "HuGame" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2349,6 +2354,7 @@
 				96FF9E66178A658400CF6E9D /* CCDrawingPrimitives.cpp in Sources */,
 				96FF9E69178A658400CF6E9D /* CCDrawNode.cpp in Sources */,
 				96FF9E6D178A658400CF6E9D /* CCGrabber.cpp in Sources */,
+				9659873C1829E88000AD0F70 /* HuEndRoundMenuScene.cpp in Sources */,
 				96FF9E70178A658400CF6E9D /* CCGrid.cpp in Sources */,
 				96FF9E8E178A658400CF6E9D /* aabb.c in Sources */,
 				96FF9E94178A658400CF6E9D /* mat4stack.c in Sources */,
@@ -2582,7 +2588,6 @@
 		96FFA172178A658800CF6E9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2606,6 +2611,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2614,7 +2620,6 @@
 		96FFA173178A658800CF6E9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (

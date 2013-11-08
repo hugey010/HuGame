@@ -32,8 +32,8 @@ void HuNPC::initialize() {
     CCPoint realDestination = ccp(realFinalX, realFinalY);
     
     CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
-    CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
-    CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
+    //CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
+    //CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
     //CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPC::enemyMoveFinished));
     
@@ -45,8 +45,8 @@ void HuNPC::initialize() {
     CCSequence *actionSequence = CCSequence::create(actionArray);
     
     sprite->runAction(actionSequence);
-    sprite->runAction(scale);
-    sprite->runAction(rotate);
+    //sprite->runAction(scale);
+    //sprite->runAction(rotate);
 }
 
 void HuNPC::initWithLayer(cocos2d::CCLayer *layer) {

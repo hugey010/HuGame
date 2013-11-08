@@ -13,6 +13,7 @@
 #include "HuGameBackground.h"
 #include "HuGameNPCs.h"
 #include "HuGameAttacks.h"
+#include "HuEndRoundMenuScene.h"
 
 using namespace cocos2d;
 
@@ -33,7 +34,6 @@ CCScene* HuGameScene::scene()
 
 bool HuGameScene::init()
 {
-
     if ( !CCLayer::init() )
     {
         return false;
@@ -115,4 +115,6 @@ bool HuGameScene::init()
 void HuGameScene::endRoundCallback(CCObject *pSender)
 {
     CCLog("end of round");
+    CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
+    
 }

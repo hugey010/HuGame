@@ -42,6 +42,11 @@ bool HuGameHud::init()
     this->labelRound->setPosition(ccp(SCREEN_WIDTH - 80, SCREEN_HEIGHT - 50));
     this->addChild(this->labelRound);
     
+    CCString *currency = CCString::createWithFormat("Coins: %d", player->currency);
+    this->labelCurrency = CCLabelTTF::create(currency->getCString(), HUD_FONT, HUD_FONT_SIZE);
+    this->labelCurrency->setPosition(ccp(SCREEN_WIDTH - 80, 50));
+    this->addChild(this->labelCurrency);
+    
     return true;
 }
 
@@ -58,8 +63,13 @@ void HuGameHud::updateHud() {
     CCString *clock = CCString::createWithFormat("Timeleft: %ds", timeleft);
     this->labelClock->setString(clock->getCString());
     
-    CCString *health = CCString::createWithFormat("Health: %d", HuPlayer::getInstance()->health);
+    HuPlayer *player = HuPlayer::getInstance();
+    
+    CCString *health = CCString::createWithFormat("Health: %d", player->health);
     labelHealth->setString(health->getCString());
     
+    CCString *currency = CCString::createWithFormat("Coins: %d", player->currency);
+    labelCurrency->setString(currency->getCString());
+
     
 }

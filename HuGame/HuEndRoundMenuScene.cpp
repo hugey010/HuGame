@@ -46,10 +46,7 @@ bool HuEndRoundMenuScene::init()
     
     player = HuPlayer::getInstance();
 
-    
-
-    
-        // health label
+   // health label
     HuPlayer *player = HuPlayer::getInstance();
     CCString *health = CCString::createWithFormat("Health: %d", player->health);
     healthLabel = CCLabelTTF::create(health->getCString(), MENU_FONT, MENU_FONT_SIZE);
@@ -126,15 +123,16 @@ void HuEndRoundMenuScene::refreshLabels()
     CCString *level = CCString::createWithFormat("Level: %d", player->level);
     roundLabel->setString(level->getCString());
     
-    
+    CCString *cannons = CCString::createWithFormat("Cannons: %d", player->numberOfCannons);
+    cannonLabel->setString(cannons->getCString());
 }
 
 // menu callbacks
 void HuEndRoundMenuScene::nextRoundPressed(cocos2d::CCObject *psender)
 {
-    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
-
+    HuPlayer::getInstance()->save();
     
+    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
 }
 
 void HuEndRoundMenuScene::sellAllPressed(cocos2d::CCObject *psender)

@@ -72,7 +72,8 @@ void HelloWorld::newGameCallback(CCObject* pSender)
 void HelloWorld::continueGameCallback(CCObject* pSender)
 {
     CCLog("Continue a game");
-    //CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
+    HuPlayer::loadLastPlayer();
+    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
 }
 
 void HelloWorld::endGameCallback(CCObject* pSender)

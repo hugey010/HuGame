@@ -18,16 +18,6 @@ using namespace cocos2d;
 
 HuPlayer* HuPlayer::mPInstance = NULL;
 
-HuPlayer *HuPlayer::getInstance() {
-    if (!mPInstance) {
-        mPInstance = new HuPlayer;
-        //setupDatabase();
-    }
-    
-    
-    return mPInstance;
-}
-
 void HuPlayer::create()
 {
     this->health = 100;
@@ -35,6 +25,7 @@ void HuPlayer::create()
     // possibly start at level 0 as a demo or tutorial
     this->level = 1;
     this->name = CCStringMake("myname");
+    this->name->retain();
     
     // base stuff
     this->baseHeight = 100;
@@ -87,7 +78,9 @@ static void setupDatabase()
         "BASEWIDTH REAL, " \
         "BASEHEIGHT REAL, " \
         "ATTACKWIDTH  REAL, " \
-        "DAMAGEMODIFIER INT)" \
+        "DAMAGEMODIFIER INT, " \
+        "NUMBEROFSOLDIERS INT, " \
+        "NUMBEROFCANNONS INT)" \
         ";";
         
         rc = sqlite3_exec(db, sql,  sqlPrintCallback, 0, &zErrMsg);
@@ -108,6 +101,7 @@ static void setupDatabase()
 
 void HuPlayer::save() {
     CCUserDefault::sharedUserDefault()->setIntegerForKey(kCurrentPlayerIdKey, playerID);
+    CCUserDefault::sharedUserDefault()->flush();
     
     sqlite3 *db;
     char *zErrMsg = 0;
@@ -124,13 +118,13 @@ void HuPlayer::save() {
         exit(0);
     }else{
         fprintf(stderr, "Opened database successfully\n");
-        char sqlbuffer[200];
-        int n = sprintf(sqlbuffer, "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER) VALUES (%d, %s, %d, %d, %d, %f, %f, %f, %d);", playerID, name->getCString(), health, currency, level, baseWidth, baseHeight, attackWidth, damageModifier);
-        if (n > 200) {
+        char sqlbuffer[400];
+        int n = sprintf(sqlbuffer, "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS) VALUES (%d, \"%s\", %d, %d, %d, %f, %f, %f, %d, %d, %d);", playerID, name->getCString(), health, currency, level, baseWidth, baseHeight, attackWidth, damageModifier, numberOfSoldiers, numberOfCannons);
+        if (n > 400) {
             fprintf(stdout, "SQL: save player sqlbuffer overflow\n");
-            return;
         }
         
+        fprintf(stdout, "sqlbuffer = %s\n", sqlbuffer);
         
         rc = sqlite3_exec(db, sqlbuffer,  sqlPrintCallback, 0, &zErrMsg);
         
@@ -149,15 +143,32 @@ void HuPlayer::save() {
 }
 
 static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColName) {
+    if (argc == 11) {
+        HuPlayer *player = HuPlayer::getInstance();
+        player->playerID = atoi(argv[0]);
+        player->name = CCString::create(argv[1]);
+        player->health = atoi(argv[2]);
+        player->currency = atoi(argv[3]);
+        player->level = atoi(argv[4]);
+        player->baseWidth = atof(argv[5]);
+        player->baseHeight = atof(argv[6]);
+        player->attackWidth = atof(argv[7]);
+        player->damageModifier = atof(argv[8]);
+        player->numberOfSoldiers = atoi(argv[9]);
+        player->numberOfCannons = atoi(argv[10]);
+        
+    } else {
+        fprintf(stdout, "Error: sqlite load callback incorrect number of arguments = %d\n", argc);
+    }
     int i;
     for(i=0; i<argc; i++){
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+        fprintf(stdout, "%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
     }
     printf("\n");
     return 0;
 }
 
-static void loadPlayerWithPlayerID(int playerID)
+void HuPlayer::loadPlayerWithID(int playerID)
 {
     
     sqlite3 *db;
@@ -200,14 +211,24 @@ static void loadPlayerWithPlayerID(int playerID)
     
 }
 
-static int currentPlayerID()
+int HuPlayer::currentPlayerID()
 {
     return CCUserDefault::sharedUserDefault()->getIntegerForKey(kCurrentPlayerIdKey);
 }
 
-static void loadLastPlayer() {
+void HuPlayer::loadLastPlayer() {
     
-    loadPlayerWithPlayerID(currentPlayerID());
+    HuPlayer::loadPlayerWithID(currentPlayerID());
     
+}
+
+HuPlayer *HuPlayer::getInstance() {
+    if (!mPInstance) {
+        mPInstance = new HuPlayer;
+        setupDatabase();
+        loadLastPlayer();
+    }
+    
+    return mPInstance;
 }
 

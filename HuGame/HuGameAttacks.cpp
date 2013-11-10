@@ -130,18 +130,18 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         
     }
    
-    CCLog("minx = %f", minX);
-    CCLog("maxDistance = %f", maxDistance);
+    //CCLog("minx = %f", minX);
+    //CCLog("maxDistance = %f", maxDistance);
     
 
     float slope = (point2.y - point1.y) / (point2.x - point1.x);
-    CCLog("slope = %f", slope);
+    //CCLog("slope = %f", slope);
     
     
     int numberOfExplosions = 50;
     int randomness = 10;
     int xStep = maxDistance / numberOfExplosions;
-    CCLog("xstep = %d", xStep);
+    //CCLog("xstep = %d", xStep);
     
     
     for (int i = 0; i < numberOfExplosions; i++) {

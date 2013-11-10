@@ -140,6 +140,7 @@ void HuEndRoundMenuScene::sellAllPressed(cocos2d::CCObject *psender)
     int currencyToAdd = 0;
     currencyToAdd += player->numberOfCannons * COST_CANNON;
     currencyToAdd += player->numberOfSoldiers * COST_SOLDIER;
+    player->currency += currencyToAdd;
     
     player->numberOfSoldiers = 0;
     player->numberOfCannons = 0;

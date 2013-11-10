@@ -13,8 +13,7 @@
 
 using namespace cocos2d;
 
-CCArray *npcs = new CCArray;
-
+CCArray *npcs;
 
 bool HuGameNPCs::init()
 {
@@ -22,6 +21,8 @@ bool HuGameNPCs::init()
     {
         return false;
     }
+    
+    npcs = new CCArray;
     
     //npcs = CCArray::createWithCapacity(1000);
     this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);

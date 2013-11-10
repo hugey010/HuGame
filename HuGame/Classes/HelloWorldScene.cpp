@@ -65,6 +65,8 @@ void HelloWorld::newGameCallback(CCObject* pSender)
     
     CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
     
+    
+    
 }
 
 void HelloWorld::continueGameCallback(CCObject* pSender)

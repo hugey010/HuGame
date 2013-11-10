@@ -11,21 +11,35 @@
 
 #include "cocos2d.h"
 
+typedef enum  {
+    DIFFICULTY_EASY,
+    DIFFICULTY_MEDIUM,
+    DIFFICULTY_HARD
+} PlayerDifficulty;
+
+
 class HuPlayer
 {
 public:
     static HuPlayer* getInstance();
-    static HuPlayer* loadPlayerWithName(cocos2d::CCString *name);
-    
+    static void loadLastPlayer();
+    static int currentPlayerID();
+    static void loadPlayerWithID(int playerID);
+    static void setupDatabase();
+   
+    int playerID;
     int health;
     int level;
     int currency;
     int damageModifier;
     cocos2d::CCString *name;
+    PlayerDifficulty difficulty;
     
     // fortress (base) info
     float baseWidth;
     float baseHeight;
+    int numberOfSoldiers;
+    int numberOfCannons;
     
     // attack info
     float attackWidth;
@@ -38,8 +52,9 @@ private:
     HuPlayer(){};
     HuPlayer(HuPlayer const&);       // Don't Implement
     void operator=(HuPlayer const&); // Don't implement
-    
+        
     static HuPlayer *mPInstance;
+    
 };
 
 #endif /* defined(__HuGame__HuPlayer__) */

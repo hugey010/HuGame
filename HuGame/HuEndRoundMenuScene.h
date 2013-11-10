@@ -20,10 +20,20 @@ public:
     CREATE_FUNC(HuEndRoundMenuScene);
     
     static cocos2d::CCScene* scene();
+    void refreshLabels();
     
     // menu button callbacks
     void nextRoundPressed(CCObject* psender);
+    void sellAllPressed(CCObject* psender);
     
+    // upgrades for defense
+    void addSoldierPressed(CCObject* sender);
+    void minusSoldierPressed(CCObject *sender);
+    void addCannonPressed(CCObject* sender);
+    void minusCannonPressed(CCObject* sender);
+   
+    // upgrades for player
+    void addHealthPressed(CCObject* sender);
 };
 
 

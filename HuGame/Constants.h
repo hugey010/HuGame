@@ -38,6 +38,10 @@
 
 #define ENEMY_SPEED 300
 
+#define COST_HEALTH 100
+#define COST_CANNON 50
+#define COST_SOLDIER 10
+
 
 
 enum ElementalDamageTypes {

@@ -9,6 +9,8 @@
 #include "HuPlayer.h"
 #include <stdio.h>
 #include <sqlite3.h>
+#include <string.h>
+#include <CCFileUtils.h>
 
 #define kCurrentPlayerIdKey "currentPlayerIdKey"
 
@@ -19,7 +21,7 @@ HuPlayer* HuPlayer::mPInstance = NULL;
 HuPlayer *HuPlayer::getInstance() {
     if (!mPInstance) {
         mPInstance = new HuPlayer;
-        setupDatabase();
+        //setupDatabase();
     }
     
     
@@ -63,7 +65,12 @@ static void setupDatabase()
     sqlite3 *db;
     char *zErrMsg = 0;
     int rc;
-    rc = sqlite3_open("data.db", &db);
+    
+    CCFileUtils *fileUtils = CCFileUtils::sharedFileUtils();
+    std::string dbPath = fileUtils->getWritablePath();
+    dbPath.append("HuData.db");
+    
+    rc = sqlite3_open(dbPath.c_str(), &db);
     
     if( rc ){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
@@ -105,7 +112,12 @@ void HuPlayer::save() {
     sqlite3 *db;
     char *zErrMsg = 0;
     int rc;
-    rc = sqlite3_open("data.db", &db);
+    
+    CCFileUtils *fileUtils = CCFileUtils::sharedFileUtils();
+    std::string dbPath = fileUtils->getWritablePath();
+    dbPath.append("HuData.db");
+    
+    rc = sqlite3_open(dbPath.c_str(), &db);
     
     if( rc ){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
@@ -151,8 +163,12 @@ static void loadPlayerWithPlayerID(int playerID)
     sqlite3 *db;
     char *zErrMsg = 0;
     int rc;
-    rc = sqlite3_open("data.db", &db);
     
+    CCFileUtils *fileUtils = CCFileUtils::sharedFileUtils();
+    std::string dbPath = fileUtils->getWritablePath();
+    dbPath.append("HuData.db");
+    
+    rc = sqlite3_open(dbPath.c_str(), &db);
     if( rc ){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);

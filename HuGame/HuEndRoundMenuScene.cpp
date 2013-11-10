@@ -47,8 +47,7 @@ bool HuEndRoundMenuScene::init()
     player = HuPlayer::getInstance();
 
     
-    CCLabelTTF *plusLabel = CCLabelTTF::create("+", MENU_FONT, MENU_FONT_SIZE);
-    CCLabelTTF *minusLabel = CCLabelTTF::create("-", MENU_FONT, MENU_FONT_SIZE);
+
     
         // health label
     HuPlayer *player = HuPlayer::getInstance();
@@ -70,30 +69,32 @@ bool HuEndRoundMenuScene::init()
     // SOLDIER ITEM
     CCString *soldiers = CCString::createWithFormat("Soldiers: %d", player->numberOfSoldiers);
     soldierLabel = CCLabelTTF::create(soldiers->getCString(), MENU_FONT, MENU_FONT_SIZE);
-    soldierLabel->setPosition(ccp(180, 320));
+    soldierLabel->setPosition(ccp(280, 340));
     this->addChild(soldierLabel);
     
+    CCLabelTTF *plusLabel = CCLabelTTF::create("+", MENU_FONT, MENU_FONT_SIZE + 50);
+    CCLabelTTF *minusLabel = CCLabelTTF::create("-", MENU_FONT, MENU_FONT_SIZE + 50);
+    
     CCMenuItemLabel *soldierPlusItem = CCMenuItemLabel::create(plusLabel, this, menu_selector(HuEndRoundMenuScene::addSoldierPressed));
-    soldierPlusItem->setPosition(ccp(soldierLabel->getPositionX() - 30, soldierLabel->getPositionY()));
-    this->addChild(soldierPlusItem);
+    soldierPlusItem->setPosition(ccp(soldierLabel->getPositionX() + 100, soldierLabel->getPositionY()));
 
     CCMenuItemLabel *soldierMinusItem = CCMenuItemLabel::create(minusLabel, this, menu_selector(HuEndRoundMenuScene::minusSoldierPressed));
-    soldierMinusItem->setPosition(ccp(soldierLabel->getPositionX() + 30, soldierLabel->getPositionY()));
-    this->addChild(soldierMinusItem);
+    soldierMinusItem->setPosition(ccp(soldierLabel->getPositionX() - 100, soldierLabel->getPositionY()));
    
     // CANNON ITEM
     CCString *cannons = CCString::createWithFormat("Cannons: %d", player->numberOfCannons);
     cannonLabel = CCLabelTTF::create(cannons->getCString(), MENU_FONT, MENU_FONT_SIZE);
-    cannonLabel->setPosition(ccp(180, 280));
+    cannonLabel->setPosition(ccp(280, 260));
     this->addChild(cannonLabel);
-   
-    CCMenuItemLabel *cannonPlusItem = CCMenuItemLabel::create(plusLabel, this, menu_selector(HuEndRoundMenuScene::addCannonPressed));
-    cannonPlusItem->setPosition(ccp(cannonLabel->getPositionX() - 30, soldierLabel->getPositionY()));
-    this->addChild(soldierPlusItem);
     
-    CCMenuItemLabel *cannonMinusItem = CCMenuItemLabel::create(minusLabel, this, menu_selector(HuEndRoundMenuScene::minusCannonPressed));
-    soldierMinusItem->setPosition(ccp(cannonLabel->getPositionX() + 30, soldierLabel->getPositionY()));
-    this->addChild(cannonMinusItem);
+    CCLabelTTF *plusLabel2 = CCLabelTTF::create("+", MENU_FONT, MENU_FONT_SIZE + 50);
+    CCLabelTTF *minusLabel2 = CCLabelTTF::create("-", MENU_FONT, MENU_FONT_SIZE + 50);
+    
+    CCMenuItemLabel *cannonPlusItem = CCMenuItemLabel::create(plusLabel2, this, menu_selector(HuEndRoundMenuScene::addCannonPressed));
+    cannonPlusItem->setPosition(ccp(cannonLabel->getPositionX() + 100, cannonLabel->getPositionY()));
+    
+    CCMenuItemLabel *cannonMinusItem = CCMenuItemLabel::create(minusLabel2, this, menu_selector(HuEndRoundMenuScene::minusCannonPressed));
+    cannonMinusItem->setPosition(ccp(cannonLabel->getPositionX() - 100, cannonLabel->getPositionY()));
     
     // NEXT ROUND ITEM
     CCLabelTTF *nextRoundLabel = CCLabelTTF::create("Next Round", MENU_FONT, MENU_FONT_SIZE);
@@ -106,7 +107,7 @@ bool HuEndRoundMenuScene::init()
     sellAllItem->setPosition(ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50));
     
     // CREATE THAT MENU
-    pMenu = CCMenu::create(nextRoundItem, sellAllItem,  NULL);
+    pMenu = CCMenu::create(nextRoundItem, sellAllItem, soldierMinusItem, soldierPlusItem, cannonMinusItem, cannonPlusItem,  NULL);
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
     

@@ -9,8 +9,8 @@
 #include "HuPlayer.h"
 #include <stdio.h>
 #include <sqlite3.h>
-#include <string.h>
 #include <CCFileUtils.h>
+#include <sstream>
 
 #define kCurrentPlayerIdKey "currentPlayerIdKey"
 
@@ -24,8 +24,8 @@ void HuPlayer::create()
     this->currency = 50;
     // possibly start at level 0 as a demo or tutorial
     this->level = 1;
-    this->name = CCStringMake("myname");
-    this->name->retain();
+    this->name = "somebody i used to know";
+    //this->name->retain();
     
     // base stuff
     this->baseHeight = 100;
@@ -118,15 +118,25 @@ void HuPlayer::save() {
         exit(0);
     }else{
         fprintf(stderr, "Opened database successfully\n");
-        char sqlbuffer[400];
-        int n = sprintf(sqlbuffer, "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS) VALUES (%d, \"%s\", %d, %d, %d, %f, %f, %f, %d, %d, %d);", playerID, name->getCString(), health, currency, level, baseWidth, baseHeight, attackWidth, damageModifier, numberOfSoldiers, numberOfCannons);
-        if (n > 400) {
-            fprintf(stdout, "SQL: save player sqlbuffer overflow\n");
-        }
+        std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS) VALUES (";
+        std::stringstream ss;
+        ss << playerID << ", ";
+        ss << "\"" << name << "\", ";
+        ss << health << ", ";
+        ss << currency << ", ";
+        ss << level << ", ";
+        ss << baseWidth << ", ";
+        ss << baseHeight << ", ";
+        ss << attackWidth << ", ";
+        ss << damageModifier << ", ";
+        ss << numberOfSoldiers << ", ";
+        ss << numberOfCannons << ");";
+        sql.append(ss.str());
         
-        fprintf(stdout, "sqlbuffer = %s\n", sqlbuffer);
         
-        rc = sqlite3_exec(db, sqlbuffer,  sqlPrintCallback, 0, &zErrMsg);
+        fprintf(stdout, "sqlstring = %s\n", sql.c_str());
+        
+        rc = sqlite3_exec(db, sql.c_str(),  sqlPrintCallback, 0, &zErrMsg);
         
         if (rc != SQLITE_OK) {
             fprintf(stdout, "SQL Error: saving player %s\n", zErrMsg);
@@ -146,7 +156,7 @@ static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColNam
     if (argc == 11) {
         HuPlayer *player = HuPlayer::getInstance();
         player->playerID = atoi(argv[0]);
-        player->name = CCString::create(argv[1]);
+        player->name = argv[1];
         player->health = atoi(argv[2]);
         player->currency = atoi(argv[3]);
         player->level = atoi(argv[4]);

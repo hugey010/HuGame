@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include "HuGameScene.h"
 #include "HuPlayer.h"
+#include "HuEndRoundMenuScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -73,7 +74,7 @@ void HelloWorld::continueGameCallback(CCObject* pSender)
 {
     CCLog("Continue a game");
     HuPlayer::loadLastPlayer();
-    CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
+    CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
 }
 
 void HelloWorld::endGameCallback(CCObject* pSender)

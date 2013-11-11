@@ -26,6 +26,7 @@
 
 // MENU DEFINITIONS
 #define MENU_FONT_SIZE (float)30.0
+#define MENU_FONT_HEADER_SIZE (float)40.0
 #define MENU_FONT "Helvetica"
 
 // HUD DEFINITIONS
@@ -33,7 +34,7 @@
 #define HUD_FONT_SIZE (float)30.0
 
 // GAME DEFINITIONS
-#define ROUND_INTERVAL 3.0 // seconds, 2 minutes
+#define ROUND_INTERVAL 20.0 // seconds, 2 minutes
 #define GROUND_END_Y SCREEN_HEIGHT / 3
 
 #define ENEMY_SPEED 300

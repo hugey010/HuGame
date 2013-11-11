@@ -114,7 +114,14 @@ bool HuGameScene::init()
 
 void HuGameScene::endRoundCallback(CCObject *pSender)
 {
-    CCLog("end of round");
+    HuPlayer *player = HuPlayer::getInstance();
+    if (player->health > 0) {
+        player->level++;
+        player->save();
+    } else {
+        HuPlayer::loadLastPlayer();
+    }
     CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
+
     
 }

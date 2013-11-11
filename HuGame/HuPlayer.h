@@ -10,6 +10,7 @@
 #define __HuGame__HuPlayer__
 
 #include "cocos2d.h"
+#include <string>
 
 typedef enum  {
     DIFFICULTY_EASY,
@@ -31,8 +32,9 @@ public:
     int health;
     int level;
     int currency;
+    std::string name;
     int damageModifier;
-    cocos2d::CCString *name;
+    //cocos2d::CCString *name;
     PlayerDifficulty difficulty;
     
     // fortress (base) info

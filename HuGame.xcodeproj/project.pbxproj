@@ -18,6 +18,7 @@
 		9628399317C6792C003B49E9 /* CCPinchGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398A17C6792C003B49E9 /* CCPinchGestureRecognizer.cpp */; };
 		9628399417C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */; };
 		9628399517C6792C003B49E9 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */; };
+		96569EA6183081E5000B5045 /* explosion_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 96569EA5183081E5000B5045 /* explosion_simple.png */; };
 		9659873C1829E88000AD0F70 /* HuEndRoundMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
@@ -325,6 +326,7 @@
 		9628398D17C6792C003B49E9 /* CCSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
 		9628398F17C6792C003B49E9 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
+		96569EA5183081E5000B5045 /* explosion_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_simple.png; sourceTree = "<group>"; };
 		9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuEndRoundMenuScene.cpp; sourceTree = "<group>"; };
 		9659873B1829E88000AD0F70 /* HuEndRoundMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuEndRoundMenuScene.h; sourceTree = "<group>"; };
 		9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameNPCs.cpp; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96569EA5183081E5000B5045 /* explosion_simple.png */,
 				968FF18517AB4C78002BFF45 /* CloseNormal.png */,
 				968FF18617AB4C78002BFF45 /* CloseSelected.png */,
 				960893D617AEC64200A779E6 /* background_desert.jpg */,
@@ -2305,6 +2308,7 @@
 				960893D217AEC21100A779E6 /* puppy.png in Resources */,
 				960893D717AEC64200A779E6 /* background_desert.jpg in Resources */,
 				960893D917AECC3F00A779E6 /* Default-568h@2x.png in Resources */,
+				96569EA6183081E5000B5045 /* explosion_simple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

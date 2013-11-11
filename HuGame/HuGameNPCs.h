@@ -39,6 +39,7 @@ public:
     
     
     void removeAllEnemies();
+    void explosionFinished(CCNode *node);
 
 
 private:

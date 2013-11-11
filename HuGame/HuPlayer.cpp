@@ -25,7 +25,6 @@ void HuPlayer::create()
     // possibly start at level 0 as a demo or tutorial
     this->level = 1;
     this->name = "somebody i used to know";
-    //this->name->retain();
     
     // base stuff
     this->baseHeight = 100;
@@ -67,7 +66,6 @@ static void setupDatabase()
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
     }else{
-        fprintf(stderr, "Opened database successfully\n");
         
         const char *sql= "CREATE TABLE IF NOT EXISTS PLAYERS(" \
         "ID INT PRIMARY KEY NOT NULL, "\
@@ -88,12 +86,9 @@ static void setupDatabase()
         if (rc != SQLITE_OK) {
             fprintf(stdout, "SQL Error: setupDatabase %s\n", zErrMsg);
             sqlite3_free(zErrMsg);
-        } else {
-            fprintf(stdout, "SQL: database setup successful.\n");
         }
         
         sqlite3_close(db);
-        
         
     }
     sqlite3_close(db);
@@ -117,7 +112,6 @@ void HuPlayer::save() {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
     }else{
-        fprintf(stderr, "Opened database successfully\n");
         std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS) VALUES (";
         std::stringstream ss;
         ss << playerID << ", ";

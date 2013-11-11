@@ -71,8 +71,29 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
         if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
             continue;
         } else {
+            // TODO: need to take damage properly.
+            
+            CCSprite *sprite = CCSprite::create("explosion_simple.png");
+            CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
+            
+            CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::explosionFinished));
+            CCSequence *actionSequence = CCSequence::create(scale, finished);
+            sprite->setPosition(tempNPC->sprite->getPosition());
+            this->addChild(sprite);
+            sprite->runAction(actionSequence);
+            
+            // have to remove npc after using its position
             tempNPC->takeDamageFromPlayer(damageType);
-            npcs->fastRemoveObject((CCNode*)tempNPC);
+            
+
+
+            if (tempNPC->health <= 0) {
+                npcs->fastRemoveObject((CCNode*)tempNPC);
+
+            }
+            
+            
+            
             /*
             bool c = false;
             int i = 0, j = 0;
@@ -270,6 +291,11 @@ void HuGameNPCs::removeAllEnemies() {
         npcs->fastRemoveObject((CCNode*)tempNPC);
     }
     return;
+}
+
+void HuGameNPCs::explosionFinished(cocos2d::CCNode *node) {
+    CCSprite *sprite = (CCSprite *)node;
+    sprite->removeFromParent();
 }
 
 

@@ -157,8 +157,8 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         
         CCFiniteTimeAction *scale = CCScaleBy::create(0.4, 10);
         CCFiniteTimeAction *rotate = CCRotateBy::create(0.4, 360);
-        CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
-        
+                CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
+
         CCArray *actionArray = CCArray::create();
         //actionArray->addObject(scale);
         actionArray->addObject(rotate);

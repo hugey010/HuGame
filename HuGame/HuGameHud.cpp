@@ -9,6 +9,7 @@
 #include "HuGameHud.h"
 #include "Constants.h"
 #import "HuPlayer.h"
+#include "HuLoserScene.h"
 
 #include <string>
 
@@ -70,6 +71,13 @@ void HuGameHud::updateHud() {
     
     CCString *currency = CCString::createWithFormat("Coins: %d", player->currency);
     labelCurrency->setString(currency->getCString());
+    
+    // load the last player and show loser screen
+    if (player->health <= 0) {
+        HuPlayer::loadLastPlayer();
+        CC_SHARED_DIRECTOR->replaceScene(HuLoserScene::scene());
+    }
+
 
     
 }

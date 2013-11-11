@@ -19,6 +19,8 @@
 		9628399417C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398C17C6792C003B49E9 /* CCSwipeGestureRecognizer.cpp */; };
 		9628399517C6792C003B49E9 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */; };
 		96569EA6183081E5000B5045 /* explosion_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 96569EA5183081E5000B5045 /* explosion_simple.png */; };
+		96569EA81830871A000B5045 /* adobe_wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 96569EA71830871A000B5045 /* adobe_wall.png */; };
+		96569EAB18308BA7000B5045 /* HuLoserScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96569EA918308BA7000B5045 /* HuLoserScene.cpp */; };
 		9659873C1829E88000AD0F70 /* HuEndRoundMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
@@ -327,6 +329,9 @@
 		9628398E17C6792C003B49E9 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
 		9628398F17C6792C003B49E9 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
 		96569EA5183081E5000B5045 /* explosion_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_simple.png; sourceTree = "<group>"; };
+		96569EA71830871A000B5045 /* adobe_wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adobe_wall.png; sourceTree = "<group>"; };
+		96569EA918308BA7000B5045 /* HuLoserScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuLoserScene.cpp; sourceTree = "<group>"; };
+		96569EAA18308BA7000B5045 /* HuLoserScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuLoserScene.h; sourceTree = "<group>"; };
 		9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuEndRoundMenuScene.cpp; sourceTree = "<group>"; };
 		9659873B1829E88000AD0F70 /* HuEndRoundMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuEndRoundMenuScene.h; sourceTree = "<group>"; };
 		9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameNPCs.cpp; sourceTree = "<group>"; };
@@ -995,6 +1000,8 @@
 				96FCBAB917AD59C000A717DD /* HuGameScene.cpp */,
 				9659873B1829E88000AD0F70 /* HuEndRoundMenuScene.h */,
 				9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */,
+				96569EAA18308BA7000B5045 /* HuLoserScene.h */,
+				96569EA918308BA7000B5045 /* HuLoserScene.cpp */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1064,6 +1071,7 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96569EA71830871A000B5045 /* adobe_wall.png */,
 				96569EA5183081E5000B5045 /* explosion_simple.png */,
 				968FF18517AB4C78002BFF45 /* CloseNormal.png */,
 				968FF18617AB4C78002BFF45 /* CloseSelected.png */,
@@ -2288,6 +2296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FF9DE1178A658300CF6E9D /* Default.png in Resources */,
+				96569EA81830871A000B5045 /* adobe_wall.png in Resources */,
 				96FF9DE3178A658300CF6E9D /* HelloWorld.png in Resources */,
 				96FF9DE5178A658300CF6E9D /* Icon-72.png in Resources */,
 				96FF9DE7178A658300CF6E9D /* Icon-Small-50.png in Resources */,
@@ -2490,6 +2499,7 @@
 				96FFA05D178A658700CF6E9D /* CCComAudio.cpp in Sources */,
 				96FFA060178A658700CF6E9D /* CCComController.cpp in Sources */,
 				96FFA063178A658700CF6E9D /* CCInputDelegate.cpp in Sources */,
+				96569EAB18308BA7000B5045 /* HuLoserScene.cpp in Sources */,
 				96FFA069178A658700CF6E9D /* CCControl.cpp in Sources */,
 				96FFA06C178A658700CF6E9D /* CCControlButton.cpp in Sources */,
 				96FFA06F178A658700CF6E9D /* CCControlColourPicker.cpp in Sources */,

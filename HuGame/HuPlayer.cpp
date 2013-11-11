@@ -33,7 +33,7 @@ void HuPlayer::create()
     // attack stuff
     this->attackWidth = 50;
     // TODO: this probably should be 100 to start out with
-    this->damageModifier = 100;
+    this->damageModifier = 50;
     
     this->numberOfCannons = 0;
     this->numberOfSoldiers = 0;

@@ -14,6 +14,7 @@
 #include "HuGameNPCs.h"
 #include "HuGameAttacks.h"
 #include "HuEndRoundMenuScene.h"
+#include "HuLoserScene.h"
 
 using namespace cocos2d;
 
@@ -118,10 +119,13 @@ void HuGameScene::endRoundCallback(CCObject *pSender)
     if (player->health > 0) {
         player->level++;
         player->save();
+        CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
+        
     } else {
         HuPlayer::loadLastPlayer();
+        CC_SHARED_DIRECTOR->replaceScene(HuLoserScene::scene());
+
     }
-    CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
 
     
 }

@@ -99,6 +99,7 @@ CCPoint HuNPC::generateEnemyInitialPoint()
     x = SCREEN_WIDTH * leftRight;
     
     y = random() % (int)GROUND_END_Y;
+    y = MAX(y, 10);
     
     return ccp(x, y);
 }

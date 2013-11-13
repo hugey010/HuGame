@@ -19,6 +19,7 @@ CCLabelTTF *cannonLabel;
 CCLabelTTF *healthLabel;
 CCLabelTTF *currencyLabel;
 CCLabelTTF *roundLabel;
+CCMenuItemLabel *defenseUpgradeItemLabel;
 
 HuPlayer *player;
 
@@ -111,8 +112,14 @@ bool HuEndRoundMenuScene::init()
     CCMenuItemLabel *sellAllItem = CCMenuItemLabel::create(sellAllLabel, this, menu_selector(HuEndRoundMenuScene::sellAllPressed));
     sellAllItem->setPosition(ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50));
     
+    // DEFENSE UPGRADE ITEM
+    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel + 1);
+    CCLabelTTF *defenseUpgradeLabel = CCLabelTTF::create(fortressLevelString->getCString(), MENU_FONT, MENU_FONT_SIZE);
+    defenseUpgradeItemLabel = CCMenuItemLabel::create(defenseUpgradeLabel, this, menu_selector(HuEndRoundMenuScene::upgradeDefensePressed));
+    defenseUpgradeItemLabel->setPosition(ccp(defenseLabel->getPositionX(), soldierLabel->getPositionY()));
+    
     // CREATE THAT MENU
-    pMenu = CCMenu::create(nextRoundItem, sellAllItem, soldierMinusItem, soldierPlusItem, cannonMinusItem, cannonPlusItem,  NULL);
+    pMenu = CCMenu::create(nextRoundItem, sellAllItem, soldierMinusItem, soldierPlusItem, cannonMinusItem, cannonPlusItem, defenseUpgradeItemLabel,  NULL);
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
     
@@ -133,6 +140,9 @@ void HuEndRoundMenuScene::refreshLabels()
     
     CCString *cannons = CCString::createWithFormat("Cannons: %d", player->numberOfCannons);
     cannonLabel->setString(cannons->getCString());
+    
+    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel + 1);
+    defenseUpgradeItemLabel->setString(fortressLevelString->getCString());
 }
 
 // menu callbacks
@@ -213,3 +223,39 @@ void HuEndRoundMenuScene::addHealthPressed(CCObject* sender) {
     
     refreshLabels();
 }
+
+void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
+    // different costs for different purchases of defese
+    switch (player->defenseUpgradeLevel) {
+        case DEFENSE_UPGRADE_0 :
+            if (player->currency >= COST_FORTRESS_1) {
+                player->currency -= COST_FORTRESS_1;
+                player->defenseUpgradeLevel = DEFENSE_UPGRADE_1;
+            }
+            
+            break;
+            
+        case DEFENSE_UPGRADE_1 :
+            if (player->currency >= COST_FORTRESS_2) {
+                player->currency -= COST_FORTRESS_2;
+                player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
+            }
+            
+            break;
+            
+        case DEFENSE_UPGRADE_2 :
+            if (player->currency >= COST_FORTRESS_3) {
+                player->currency -= COST_FORTRESS_3;
+                player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
+            }
+            
+            break;
+            
+        case DEFENSE_UPGRADE_3 :
+            // do nothing, this is max level of defense
+            break;
+    }
+    
+    refreshLabels();
+}
+

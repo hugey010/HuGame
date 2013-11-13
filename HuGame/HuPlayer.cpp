@@ -29,6 +29,7 @@ void HuPlayer::create()
     // base stuff
     this->baseHeight = 100;
     this->baseWidth = 100;
+    this->defenseUpgradeLevel = DEFENSE_UPGRADE_0;
     
     // attack stuff
     this->attackWidth = 50;

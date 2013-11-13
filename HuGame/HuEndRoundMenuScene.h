@@ -34,6 +34,8 @@ public:
    
     // upgrades for player
     void addHealthPressed(CCObject* sender);
+    
+    void upgradeDefensePressed(CCObject *sender);
 };
 
 

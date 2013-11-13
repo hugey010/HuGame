@@ -34,14 +34,18 @@
 #define HUD_FONT_SIZE (float)30.0
 
 // GAME DEFINITIONS
-#define ROUND_INTERVAL 20.0 // seconds, 2 minutes
+#define ROUND_INTERVAL 2.0 // seconds, 2 minutes
 #define GROUND_END_Y SCREEN_HEIGHT / 3
 
 #define ENEMY_SPEED 300
 
+// cost constants
 #define COST_HEALTH 100
 #define COST_CANNON 50
 #define COST_SOLDIER 10
+#define COST_FORTRESS_1 100
+#define COST_FORTRESS_2 500
+#define COST_FORTRESS_3 1000
 
 
 

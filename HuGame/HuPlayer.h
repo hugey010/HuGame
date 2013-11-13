@@ -19,7 +19,8 @@ typedef enum  {
 } PlayerDifficulty;
 
 typedef enum {
-    DEFENSE_UPGRADE_1 = 0,
+    DEFENSE_UPGRADE_0 = 0,
+    DEFENSE_UPGRADE_1 = 1,
     DEFENSE_UPGRADE_2 = 2,
     DEFENSE_UPGRADE_3 = 3
 } PlayerDefenseUpgrade;

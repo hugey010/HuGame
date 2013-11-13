@@ -227,33 +227,37 @@ void HuEndRoundMenuScene::addHealthPressed(CCObject* sender) {
 void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
     // different costs for different purchases of defese
     switch (player->defenseUpgradeLevel) {
-        case DEFENSE_UPGRADE_0 :
+        case DEFENSE_UPGRADE_0 : {
             if (player->currency >= COST_FORTRESS_1) {
                 player->currency -= COST_FORTRESS_1;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_1;
             }
             
             break;
+        }
             
-        case DEFENSE_UPGRADE_1 :
+        case DEFENSE_UPGRADE_1 : {
             if (player->currency >= COST_FORTRESS_2) {
                 player->currency -= COST_FORTRESS_2;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
             }
             
             break;
+        }
             
-        case DEFENSE_UPGRADE_2 :
+        case DEFENSE_UPGRADE_2 : {
             if (player->currency >= COST_FORTRESS_3) {
                 player->currency -= COST_FORTRESS_3;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
             }
             
             break;
+        }
             
-        case DEFENSE_UPGRADE_3 :
+        case DEFENSE_UPGRADE_3 : {
             // do nothing, this is max level of defense
             break;
+        }
     }
     
     refreshLabels();

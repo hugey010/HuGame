@@ -33,30 +33,34 @@ bool HuGameFortress::init()
 
 void HuGameFortress::handleBaseUpgrades() {
     HuPlayer *player = HuPlayer::getInstance();
-    CCSprite *spriteRight;
-    CCSprite *spriteLeft;
 
     switch (player->defenseUpgradeLevel) {
-        case DEFENSE_UPGRADE_1 :
-            spriteLeft = CCSprite::create("broken_fence_left.png");
+        case DEFENSE_UPGRADE_1 : {
+            CCSprite *spriteLeft = CCSprite::create("broken_fence_left.png");
             spriteLeft->setScale(0.7f);
             spriteLeft->setPosition(ccp(SCREEN_WIDTH / 2 - player->baseWidth / 2, GROUND_END_Y / 2));
             
-            spriteRight = CCSprite::create("broken_fence_right.png");
+            CCSprite *spriteRight = CCSprite::create("broken_fence_right.png");
             spriteRight->setScale(0.7f);
             spriteRight->setPosition(ccp(SCREEN_WIDTH / 2 + player->baseWidth / 2, GROUND_END_Y / 2));
             
+            this->addChild(spriteRight);
+            this->addChild(spriteLeft);
+            
             break;
-        case DEFENSE_UPGRADE_2 :
+        }
+        case DEFENSE_UPGRADE_2 : {
             break;
-        case DEFENSE_UPGRADE_3 :
+        }
+        case DEFENSE_UPGRADE_3 : {
             break;
-        default :
-            // do not add any sprites at the end of this nonsense
-            return;
+        }
+        default : {
+            // do nothing biotch
+            break;
+        }
     }
     
-    this->addChild(spriteRight);
-    this->addChild(spriteLeft);
+
     
 }

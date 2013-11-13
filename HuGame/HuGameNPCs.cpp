@@ -77,7 +77,10 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
             
             CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::explosionFinished));
-            CCSequence *actionSequence = CCSequence::create(scale, finished);
+            CCArray *actionArray = CCArray::create();
+            actionArray->addObject(scale);
+            actionArray->addObject(finished);
+            CCSequence *actionSequence = CCSequence::create(actionArray);
             sprite->setPosition(tempNPC->sprite->getPosition());
             this->addChild(sprite);
             sprite->runAction(actionSequence);

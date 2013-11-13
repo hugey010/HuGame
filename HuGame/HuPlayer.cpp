@@ -78,7 +78,8 @@ static void setupDatabase()
         "ATTACKWIDTH  REAL, " \
         "DAMAGEMODIFIER INT, " \
         "NUMBEROFSOLDIERS INT, " \
-        "NUMBEROFCANNONS INT)" \
+        "NUMBEROFCANNONS INT, " \
+        "DEFENSEUPGRADE INT)" \
         ";";
         
         rc = sqlite3_exec(db, sql,  sqlPrintCallback, 0, &zErrMsg);
@@ -112,7 +113,7 @@ void HuPlayer::save() {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
     }else{
-        std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS) VALUES (";
+        std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS, DEFENSEUPGRADE) VALUES (";
         std::stringstream ss;
         ss << playerID << ", ";
         ss << "\"" << name << "\", ";
@@ -124,7 +125,8 @@ void HuPlayer::save() {
         ss << attackWidth << ", ";
         ss << damageModifier << ", ";
         ss << numberOfSoldiers << ", ";
-        ss << numberOfCannons << ");";
+        ss << numberOfCannons << ", ";
+        ss << defenseUpgradeLevel << ");";
         sql.append(ss.str());
         
         
@@ -160,6 +162,7 @@ static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColNam
         player->damageModifier = atof(argv[8]);
         player->numberOfSoldiers = atoi(argv[9]);
         player->numberOfCannons = atoi(argv[10]);
+        player->defenseUpgradeLevel = (PlayerDefenseUpgrade)atoi(argv[11]);
         
     } else {
         fprintf(stdout, "Error: sqlite load callback incorrect number of arguments = %d\n", argc);

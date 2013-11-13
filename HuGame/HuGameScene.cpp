@@ -66,6 +66,7 @@ bool HuGameScene::init()
     
     HuGameFortress *fortress = HuGameFortress::create();
     this->addChild((CCLayer*)fortress, 5);
+    fortress->handleBaseUpgrades();
     
     HuGameBackground *background = HuGameBackground::create();
     this->addChild((CCLayer*)background, 1);

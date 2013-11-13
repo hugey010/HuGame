@@ -18,10 +18,12 @@ public:
     virtual bool init();
     CREATE_FUNC(HuGameFortress);
     
+    
+    void handleBaseUpgrades();
+
  
     
 private:
-
 
 };
 

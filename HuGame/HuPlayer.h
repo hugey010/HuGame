@@ -18,6 +18,12 @@ typedef enum  {
     DIFFICULTY_HARD
 } PlayerDifficulty;
 
+typedef enum {
+    DEFENSE_UPGRADE_1 = 0,
+    DEFENSE_UPGRADE_2 = 2,
+    DEFENSE_UPGRADE_3 = 3
+} PlayerDefenseUpgrade;
+
 
 class HuPlayer
 {
@@ -36,6 +42,7 @@ public:
     int damageModifier;
     //cocos2d::CCString *name;
     PlayerDifficulty difficulty;
+    PlayerDefenseUpgrade defenseUpgradeLevel;
     
     // fortress (base) info
     float baseWidth;

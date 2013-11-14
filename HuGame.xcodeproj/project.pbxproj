@@ -32,8 +32,8 @@
 		96BE8E8817C6E3AC00C5E9AE /* HuGameAttacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8E8617C6E3AC00C5E9AE /* HuGameAttacks.cpp */; };
 		96D0B67B17DE68DC006A2FA9 /* HuNPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96D0B67917DE68DC006A2FA9 /* HuNPC.cpp */; };
 		96DFCAF21833D80300488903 /* broken-fence.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DFCAF11833D80300488903 /* broken-fence.png */; };
-		96DFCAF4183421DB00488903 /* broken_fence_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DFCAF3183421DB00488903 /* broken_fence_left.png */; };
 		96DFCAF61834238700488903 /* broken_fence_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DFCAF51834238700488903 /* broken_fence_right.png */; };
+		96DFCAF818348A5100488903 /* broken_fence_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DFCAF718348A5100488903 /* broken_fence_left.png */; };
 		96EA7CD917BB2B21003EC8CF /* HuGameNPCs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */; };
 		96FCBABB17AD59C000A717DD /* HuGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FCBAB917AD59C000A717DD /* HuGameScene.cpp */; };
 		96FCBAC017ADBB8500A717DD /* HuGameHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FCBABE17ADBB8500A717DD /* HuGameHud.cpp */; };
@@ -351,8 +351,8 @@
 		96D0B67917DE68DC006A2FA9 /* HuNPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPC.cpp; sourceTree = "<group>"; };
 		96D0B67A17DE68DC006A2FA9 /* HuNPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPC.h; sourceTree = "<group>"; };
 		96DFCAF11833D80300488903 /* broken-fence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "broken-fence.png"; path = "../broken-fence.png"; sourceTree = "<group>"; };
-		96DFCAF3183421DB00488903 /* broken_fence_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = broken_fence_left.png; sourceTree = "<group>"; };
 		96DFCAF51834238700488903 /* broken_fence_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = broken_fence_right.png; sourceTree = "<group>"; };
+		96DFCAF718348A5100488903 /* broken_fence_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = broken_fence_left.png; sourceTree = "<group>"; };
 		96FCBAB717AD519C00A717DD /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		96FCBAB917AD59C000A717DD /* HuGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameScene.cpp; sourceTree = "<group>"; };
 		96FCBABA17AD59C000A717DD /* HuGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameScene.h; sourceTree = "<group>"; };
@@ -1077,8 +1077,8 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96DFCAF718348A5100488903 /* broken_fence_left.png */,
 				96DFCAF51834238700488903 /* broken_fence_right.png */,
-				96DFCAF3183421DB00488903 /* broken_fence_left.png */,
 				96DFCAF11833D80300488903 /* broken-fence.png */,
 				96569EA71830871A000B5045 /* adobe_wall.png */,
 				96569EA5183081E5000B5045 /* explosion_simple.png */,
@@ -2323,11 +2323,11 @@
 				968FF18E17AB4C78002BFF45 /* dot1.png in Resources */,
 				968FF18F17AB4C78002BFF45 /* dot2.png in Resources */,
 				968FF19017AB4C78002BFF45 /* Player.png in Resources */,
+				96DFCAF818348A5100488903 /* broken_fence_left.png in Resources */,
 				968FF19117AB4C78002BFF45 /* Projectile.png in Resources */,
 				968FF19217AB4C78002BFF45 /* Target.png in Resources */,
 				960893D217AEC21100A779E6 /* puppy.png in Resources */,
 				960893D717AEC64200A779E6 /* background_desert.jpg in Resources */,
-				96DFCAF4183421DB00488903 /* broken_fence_left.png in Resources */,
 				960893D917AECC3F00A779E6 /* Default-568h@2x.png in Resources */,
 				96569EA6183081E5000B5045 /* explosion_simple.png in Resources */,
 			);

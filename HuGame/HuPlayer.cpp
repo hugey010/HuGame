@@ -150,7 +150,7 @@ void HuPlayer::save() {
 }
 
 static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColName) {
-    if (argc == 11) {
+    if (argc == 12) {
         HuPlayer *player = HuPlayer::getInstance();
         player->playerID = atoi(argv[0]);
         player->name = argv[1];

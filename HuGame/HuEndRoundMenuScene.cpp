@@ -231,6 +231,7 @@ void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
             if (player->currency >= COST_FORTRESS_1) {
                 player->currency -= COST_FORTRESS_1;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_1;
+                player->baseWidth += 100;
             }
             
             break;

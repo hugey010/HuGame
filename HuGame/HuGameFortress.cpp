@@ -36,12 +36,14 @@ void HuGameFortress::handleBaseUpgrades() {
 
     switch (player->defenseUpgradeLevel) {
         case DEFENSE_UPGRADE_1 : {
-            CCSprite *spriteLeft = CCSprite::create("broken_fence_left.png");
+            CCSprite *spriteLeft = CCSprite::create("broken_fence_right.png");
             spriteLeft->setScale(0.7f);
+            spriteLeft->setRotation(-40.0f);
             spriteLeft->setPosition(ccp(SCREEN_WIDTH / 2 - player->baseWidth / 2, GROUND_END_Y / 2));
             
-            CCSprite *spriteRight = CCSprite::create("broken_fence_right.png");
+            CCSprite *spriteRight = CCSprite::create("broken_fence_left.png");
             spriteRight->setScale(0.7f);
+            spriteRight->setRotation(40.0f);
             spriteRight->setPosition(ccp(SCREEN_WIDTH / 2 + player->baseWidth / 2, GROUND_END_Y / 2));
             
             this->addChild(spriteRight);

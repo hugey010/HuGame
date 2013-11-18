@@ -9,6 +9,7 @@
 #include "HuGoodNPC.h"
 #include "HuPlayer.h"
 #include "Constants.h"
+#include "HuProjectile.h"
 
 using namespace cocos2d;
 
@@ -57,6 +58,9 @@ CCPoint HuGoodNPC::generateInitialPoint() {
 void HuGoodNPC::attack(CCNode *sender) {
     this->scheduleAttackInSeconds(1);
     CCLog("good npc ATTACK");
+    
+    HuProjectile *projectile = HuProjectile::initWithMandatories(MISSILE, sprite->getPosition(), )
+    
     
 }
 

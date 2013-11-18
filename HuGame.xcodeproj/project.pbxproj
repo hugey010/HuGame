@@ -24,6 +24,7 @@
 		9659873C1829E88000AD0F70 /* HuEndRoundMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9659873A1829E88000AD0F70 /* HuEndRoundMenuScene.cpp */; };
 		966437E61839D726001EC838 /* HuGoodNPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966437E41839D726001EC838 /* HuGoodNPC.cpp */; };
 		966437EC1839F152001EC838 /* HuProjectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966437EA1839F152001EC838 /* HuProjectile.cpp */; };
+		966437EE183AA2F1001EC838 /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 966437ED183AA2F1001EC838 /* missile.png */; };
 		968FF18C17AB4C78002BFF45 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18517AB4C78002BFF45 /* CloseNormal.png */; };
 		968FF18D17AB4C78002BFF45 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18617AB4C78002BFF45 /* CloseSelected.png */; };
 		968FF18E17AB4C78002BFF45 /* dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 968FF18717AB4C78002BFF45 /* dot1.png */; };
@@ -344,6 +345,7 @@
 		966437E51839D726001EC838 /* HuGoodNPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGoodNPC.h; sourceTree = "<group>"; };
 		966437EA1839F152001EC838 /* HuProjectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuProjectile.cpp; sourceTree = "<group>"; };
 		966437EB1839F152001EC838 /* HuProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuProjectile.h; sourceTree = "<group>"; };
+		966437ED183AA2F1001EC838 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameNPCs.cpp; sourceTree = "<group>"; };
 		9669B3F417B0B3F90065493F /* HuGameNPCs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HuGameNPCs.h; sourceTree = "<group>"; };
 		968FF18517AB4C78002BFF45 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CloseNormal.png; path = Resources/Sprites/CloseNormal.png; sourceTree = "<group>"; };
@@ -1088,6 +1090,7 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				966437ED183AA2F1001EC838 /* missile.png */,
 				96DFCAF718348A5100488903 /* broken_fence_left.png */,
 				96DFCAF51834238700488903 /* broken_fence_right.png */,
 				96DFCAF11833D80300488903 /* broken-fence.png */,
@@ -2322,6 +2325,7 @@
 				96FF9DE1178A658300CF6E9D /* Default.png in Resources */,
 				96569EA81830871A000B5045 /* adobe_wall.png in Resources */,
 				96FF9DE3178A658300CF6E9D /* HelloWorld.png in Resources */,
+				966437EE183AA2F1001EC838 /* missile.png in Resources */,
 				96FF9DE5178A658300CF6E9D /* Icon-72.png in Resources */,
 				96FF9DE7178A658300CF6E9D /* Icon-Small-50.png in Resources */,
 				96FF9DE9178A658300CF6E9D /* Icon-Small.png in Resources */,

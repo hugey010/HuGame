@@ -15,6 +15,7 @@
 #include "HuGameAttacks.h"
 #include "HuEndRoundMenuScene.h"
 #include "HuLoserScene.h"
+#include "HuFriendlyNPCs.h"
 
 using namespace cocos2d;
 
@@ -104,9 +105,12 @@ bool HuGameScene::init()
     HuGameNPCs *npcs = HuGameNPCs::create();
     this->addChild((CCLayer*)npcs, 6);
     
+    HuFriendlyNPCs *friendlies = HuFriendlyNPCs::create();
+    this->addChild((CCLayer*)friendlies, 7);
+    
     HuGameAttacks *attacks = HuGameAttacks::create();
     attacks->npcs = npcs;
-    this->addChild((CCLayer*)attacks, 7);
+    this->addChild((CCLayer*)attacks, 8);
     
     
     return true;

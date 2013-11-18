@@ -12,8 +12,12 @@
 using namespace cocos2d;
 
 
-
-void HuNPC::initialize() {
+bool HuNPC::initialize() {
+    
+    if (!CCNode::init()) {
+        return false;
+    }
+    
     health = 100;
     givesCurrency = 1;
     dealsDamage = 1;
@@ -47,6 +51,8 @@ void HuNPC::initialize() {
     sprite->runAction(actionSequence);
     //sprite->runAction(scale);
     //sprite->runAction(rotate);
+    
+    return true;
 }
 
 void HuNPC::initWithLayer(cocos2d::CCLayer *layer) {

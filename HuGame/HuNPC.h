@@ -15,16 +15,12 @@
 class HuNPC : cocos2d::CCNode {
 public:
     
-    //virtual bool init();
-    //CREATE_FUNC(HuNPC);
-    
     cocos2d::CCSprite *sprite;
     int health;
     int givesCurrency;
     int dealsDamage;
    
-    // override init to change some of the base values the npc has
-    void initialize();
+
     // this method should be overridden by subclass. do something useful with killin the ncp!
     void killNPC();
     
@@ -36,6 +32,9 @@ public:
     // randomly makes a point on the ground on either the left or right side of screen
     static cocos2d::CCPoint generateEnemyInitialPoint();
     
+protected:
+    // override init to change some of the base values the npc has
+    bool initialize();
     
 private:
     void getKilled();

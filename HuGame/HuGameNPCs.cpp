@@ -26,7 +26,7 @@ bool HuGameNPCs::init()
     
     //npcs = CCArray::createWithCapacity(1000);
     this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
-    
+        
     return true;
 }
 
@@ -45,7 +45,15 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 {
     CCObject *object = NULL;
     CCARRAY_FOREACH(npcs, object) {
+        
         HuNPC *tempNPC = (HuNPC*)object;
+        
+        if (tempNPC == NULL) {
+            CCLog("null tempnpc");
+        }
+        if (tempNPC->sprite == NULL) {
+            CCLog("null tmepsprite");
+        }
         
 
         // first test, just checks for obvious miss
@@ -62,10 +70,7 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             maxY = fmaxf(vertices[i].y, maxY);
         }
         
-
-        
         CCPoint p = tempNPC->sprite->getPosition();
-        
 
         
         if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
@@ -299,6 +304,10 @@ void HuGameNPCs::removeAllEnemies() {
 void HuGameNPCs::explosionFinished(cocos2d::CCNode *node) {
     CCSprite *sprite = (CCSprite *)node;
     sprite->removeFromParent();
+}
+
+CCArray *HuGameNPCs::getNPCs() {
+    return npcs;
 }
 
 

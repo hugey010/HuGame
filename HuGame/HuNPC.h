@@ -29,6 +29,8 @@ public:
     // return true if it kills the npc
     bool takeDamageFromPlayer(ElementalDamageTypes damageType);
     
+    bool takeDamageFromNPC(int damage);
+    
     // randomly makes a point on the ground on either the left or right side of screen
     static cocos2d::CCPoint generateEnemyInitialPoint();
     

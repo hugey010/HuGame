@@ -32,8 +32,6 @@ private:
     void animateAttack(cocos2d::CCPoint *swipeVerts, int swipeVerticesCount, ElementalDamageTypes PhysicalDamage, CCSwipeGestureRecognizerDirection direction);
     void explosionFinished(cocos2d::CCNode *sender);
 
-    
-    void draw();
 };
 
 #endif /* defined(__HuGame__HuGameAttacks__) */

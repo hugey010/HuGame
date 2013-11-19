@@ -33,7 +33,6 @@ public:
     static void loadLastPlayer();
     static int currentPlayerID();
     static void loadPlayerWithID(int playerID);
-    //static void setupDatabase();
    
     int playerID;
     int health;

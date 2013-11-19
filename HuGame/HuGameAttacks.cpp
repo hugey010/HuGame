@@ -194,7 +194,3 @@ void HuGameAttacks::explosionFinished(CCNode *sender) {
     CCSprite *sprite = (CCSprite*)sender;
     sprite->removeFromParent();
 }
-
-void HuGameAttacks::draw() {
-    
-}

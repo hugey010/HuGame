@@ -19,7 +19,7 @@ typedef enum {
 
 class HuProjectile : cocos2d::CCNode {
 public:
-    bool initWithMandatories(ProjectileType type, cocos2d::CCPoint startingPosition, HuNPC *npc);
+    bool initWithMandatories(ProjectileType type, cocos2d::CCPoint startingPosition, HuNPC *npc, cocos2d::CCLayer *layer);
     
 protected:
     bool initialize();
@@ -27,9 +27,12 @@ protected:
 private:
     cocos2d::CCSprite *sprite;
     ProjectileType projectileType;
-    cocos2d::CCPoint enemyPosition;
     cocos2d::CCPoint startingPosition;
+    cocos2d::CCLayer *layer;
     HuNPC *npc;
+    
+    void projectileMoveFinished(CCNode *sender);
+    void explosionFinished(CCNode *sender);
     
     
 };

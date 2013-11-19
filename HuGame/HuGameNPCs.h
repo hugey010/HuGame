@@ -16,6 +16,9 @@
 class HuGameNPCs : cocos2d::CCLayer
 {
 public:
+    
+    //static cocos2d::CCArray *npcs;
+    
     virtual bool init();
     CREATE_FUNC(HuGameNPCs);
     
@@ -40,6 +43,8 @@ public:
     
     void removeAllEnemies();
     void explosionFinished(CCNode *node);
+    
+    static cocos2d::CCArray* getNPCs();
 
 
 private:

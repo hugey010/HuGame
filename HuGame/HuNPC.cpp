@@ -90,6 +90,21 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
 
 }
 
+bool HuNPC::takeDamageFromNPC(int damage) {
+    this->health -= damage;
+    if (health <= 0) {
+        layer->removeChild(sprite);
+        HuPlayer::getInstance()->currency += givesCurrency;
+        
+        killNPC();
+        
+        return true;
+    }
+    
+    return false;
+}
+
+
 void HuNPC::killNPC() {
     // supposed to be empty, meant to be overridden
     

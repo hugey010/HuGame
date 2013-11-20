@@ -41,8 +41,9 @@ private:
     void attack(cocos2d::CCNode *sender);
     
     int scheduleID;
+    float attackTime;
     
-    void scheduleAttackInSeconds(int seconds);
+    void scheduleAttackInSeconds(float seconds);
 };
 
 #endif /* defined(__HuGame__HuGoodNPC__) */

@@ -9,6 +9,8 @@
 #ifndef HuGame_Constants_h
 #define HuGame_Constants_h
 
+#define ARC4RANDOM_MAX 0x100000000
+
 #define CC_SHARED_DIRECTOR CCDirector::sharedDirector()
 
 // Screen size

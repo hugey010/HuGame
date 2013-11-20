@@ -8,6 +8,7 @@
 
 #include "HuProjectile.h"
 #include "HuGameNPCs.h"
+#include <math.h>
 
 using namespace cocos2d;
 
@@ -28,7 +29,7 @@ bool HuProjectile::initialize() {
     
     sprite->setPosition(this->startingPosition);
     
-    float angle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
+    //float angle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
     
 
     /*
@@ -38,6 +39,24 @@ bool HuProjectile::initialize() {
         angle -= 45.0;
     }
      */
+    CCPoint endingPosition = npc->sprite->getPosition();
+    
+    float deltax = startingPosition.x - endingPosition.x;
+    float deltay = startingPosition.y - endingPosition.y;
+    float angleInDegrees = atan2(deltay, deltax) * 180.0 / M_PI;
+    
+    CCLog("angle = %f", angleInDegrees);
+    if (angleInDegrees > 0) {
+        angleInDegrees -= 180;
+    }
+    /*
+    if (angleInDegrees < 0) {
+        angleInDegrees -= 80;
+    } else {
+        angleInDegrees += 80;
+    }
+     */
+    
     
  
     
@@ -50,7 +69,7 @@ bool HuProjectile::initialize() {
     }
      */
     
-    sprite->setRotation(sprite->getRotation() + angle + 160);
+    sprite->setRotation(angleInDegrees + -180);
     
     float time = npc->sprite->getPosition().getDistance(startingPosition) * 0.002;
     CCFiniteTimeAction *move = CCMoveTo::create(time, npc->sprite->getPosition());

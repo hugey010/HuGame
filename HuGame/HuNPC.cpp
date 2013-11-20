@@ -22,7 +22,7 @@ bool HuNPC::initialize() {
     givesCurrency = 1;
     dealsDamage = 1;
     
-    
+
     sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 20, 20)));
     sprite->setPosition(this->generateEnemyInitialPoint());
     layer->addChild(sprite);
@@ -64,7 +64,9 @@ void HuNPC::initWithLayer(cocos2d::CCLayer *layer) {
 void HuNPC::enemyMoveFinished(CCNode *sender)
 {
     // begin basic attack
-    HuPlayer::getInstance()->health -= dealsDamage;
+    if (sprite->isVisible()) {
+        HuPlayer::getInstance()->health -= dealsDamage;
+    }
     //CCLog("attacked player for %d damage", dealsDamage);
    // layer->removeChild(this->sprite);
 }
@@ -72,7 +74,8 @@ void HuNPC::enemyMoveFinished(CCNode *sender)
 bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
     this->health -= HuPlayer::getInstance()->damageModifier;
     if (this->health <= 0) {
-        layer->removeChild(sprite);
+        sprite->setVisible(false);
+        //layer->removeChild(sprite);
         HuPlayer::getInstance()->currency += givesCurrency;
         
         
@@ -93,7 +96,8 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
 bool HuNPC::takeDamageFromNPC(int damage) {
     this->health -= damage;
     if (health <= 0) {
-        layer->removeChild(sprite);
+        sprite->setVisible(false);
+        //layer->removeChild(sprite);
         HuPlayer::getInstance()->currency += givesCurrency;
         
         killNPC();

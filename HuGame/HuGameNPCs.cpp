@@ -55,6 +55,11 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             CCLog("null tmepsprite");
         }
         
+        if (!tempNPC->sprite->isVisible()) {
+            npcs->fastRemoveObject((CCNode*)tempNPC);
+            continue;
+        }
+        
 
         // first test, just checks for obvious miss
         float minX = vertices[3].x;

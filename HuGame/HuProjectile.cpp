@@ -29,7 +29,6 @@ bool HuProjectile::initialize() {
     sprite->setPosition(this->startingPosition);
     
     float angle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
-    CCLog("angle = %f", angle);
     
 
     /*
@@ -129,6 +128,7 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     explosion->setPosition(sprite->getPosition());
     layer->addChild(explosion);
     explosion->runAction(actionSequence);
+    
     
     
     layer->removeChild(sprite);

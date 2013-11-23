@@ -23,8 +23,6 @@ bool HuGameNPCs::init()
     }
     
     npcs = new CCArray;
-    
-    //npcs = CCArray::createWithCapacity(1000);
     this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
         
     return true;

@@ -29,53 +29,26 @@ bool HuProjectile::initialize() {
     
     sprite->setPosition(this->startingPosition);
     
-    //float angle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
     
-
-    /*
-    if (npc->sprite->getPositionX() < startingPosition.x) {
-        angle += 45.0;
-    } else {
-        angle -= 45.0;
-    }
-     */
+    float ccangle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
     CCPoint endingPosition = npc->sprite->getPosition();
     
     float deltax = startingPosition.x - endingPosition.x;
     float deltay = startingPosition.y - endingPosition.y;
     float angleInDegrees = atan2(deltay, deltax) * 180.0 / M_PI;
+    float angle = 0;
     
-    CCLog("angle = %f", angleInDegrees);
-    if (angleInDegrees > 0) {
-        angleInDegrees -= 180;
-    }
-    /*
-    if (angleInDegrees < 0) {
-        angleInDegrees -= 80;
+    if (npc->sprite->getPositionX() < SCREEN_WIDTH / 2) {
+        angle = angleInDegrees + ccangle + 200;
     } else {
-        angleInDegrees += 80;
+        angle = -1 * angleInDegrees - ccangle + 230;
+
     }
-     */
-    
-    
- 
-    
-    //angle = angle + 90.0;
-    /*
-    if (angle < 0) {
-        angle += 270;
-    } else {
-        angle -= 270;
-    }
-     */
-    
-    sprite->setRotation(angleInDegrees + -180);
+    //CCLog("initialAngle = %f, cocos2dAngle = %f, angleInDegrees = %f", sprite->getRotation(), otherAngle, angleInDegrees);
+    sprite->setRotation(angle);
     
     float time = npc->sprite->getPosition().getDistance(startingPosition) * 0.002;
     CCFiniteTimeAction *move = CCMoveTo::create(time, npc->sprite->getPosition());
-    //CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
-    //CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
-    //CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::projectileMoveFinished));
     
     CCArray *actionArray = CCArray::create();

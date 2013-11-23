@@ -111,6 +111,8 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
 }
 
 void HuProjectile::projectileMoveFinished(CCNode *sender) {
+    
+    
     CCSprite *sprite = (CCSprite*)sender;
     
     int damage = 1;
@@ -129,16 +131,16 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
             break;
     }
     
-    npc->takeDamageFromNPC(damage);
-    if (npc->health <= 0) {
+    if (npc->takeDamageFromNPC(damage)) {
         CCArray *npcs = HuGameNPCs::getNPCs();
         npcs->fastRemoveObject((CCNode*)npc);
         
     }
     
+    
+    // clean up the projectile and do explosion
     CCSprite *explosion = CCSprite::create("explosion_simple.png");
     CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
-    
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::explosionFinished));
     CCArray *actionArray = CCArray::create();
     actionArray->addObject(scale);
@@ -148,9 +150,9 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     layer->addChild(explosion);
     explosion->runAction(actionSequence);
     
-    
-    
     layer->removeChild(sprite);
+    
+
 }
 
 void HuProjectile::explosionFinished(CCNode *sender) {

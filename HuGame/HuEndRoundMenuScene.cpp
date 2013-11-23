@@ -65,17 +65,17 @@ bool HuEndRoundMenuScene::init()
     this->addChild(currencyLabel);
     
     CCLabelTTF *offenseLabel = CCLabelTTF::create("Offensive Upgrades", MENU_FONT, MENU_FONT_HEADER_SIZE);
-    offenseLabel->setPosition(ccp(280, 500));
+    offenseLabel->setPosition(ccp(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.75));
     this->addChild(offenseLabel);
     
     CCLabelTTF *defenseLabel = CCLabelTTF::create("Defensive Upgrades", MENU_FONT, MENU_FONT_HEADER_SIZE);
-    defenseLabel->setPosition(ccp(880, 500));
+    defenseLabel->setPosition(ccp(SCREEN_WIDTH * 0.75, SCREEN_HEIGHT * 0.75));
     this->addChild(defenseLabel);
     
     // SOLDIER ITEM
     CCString *soldiers = CCString::createWithFormat("Soldiers: %d", player->numberOfSoldiers);
     soldierLabel = CCLabelTTF::create(soldiers->getCString(), MENU_FONT, MENU_FONT_SIZE);
-    soldierLabel->setPosition(ccp(280, 340));
+    soldierLabel->setPosition(ccp(offenseLabel->getPositionX(), SCREEN_HEIGHT * 0.6));
     this->addChild(soldierLabel);
     
     CCLabelTTF *plusLabel = CCLabelTTF::create("+", MENU_FONT, MENU_FONT_SIZE + 50);
@@ -90,7 +90,7 @@ bool HuEndRoundMenuScene::init()
     // CANNON ITEM
     CCString *cannons = CCString::createWithFormat("Cannons: %d", player->numberOfCannons);
     cannonLabel = CCLabelTTF::create(cannons->getCString(), MENU_FONT, MENU_FONT_SIZE);
-    cannonLabel->setPosition(ccp(280, 260));
+    cannonLabel->setPosition(ccp(offenseLabel->getPositionX(), SCREEN_HEIGHT * 0.45));
     this->addChild(cannonLabel);
     
     CCLabelTTF *plusLabel2 = CCLabelTTF::create("+", MENU_FONT, MENU_FONT_SIZE + 50);
@@ -166,7 +166,7 @@ void HuEndRoundMenuScene::sellAllPressed(cocos2d::CCObject *psender)
     refreshLabels();
 }
 
-    // upgrades for defense
+// upgrades for defense
 void HuEndRoundMenuScene::addSoldierPressed(CCObject* sender)
 {
     if (player->currency >= COST_SOLDIER)

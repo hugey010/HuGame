@@ -72,6 +72,10 @@ void HuNPC::enemyMoveFinished(CCNode *sender)
 }
 
 bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
+    if (!sprite->isVisible()) {
+        return false;
+    }
+    
     this->health -= HuPlayer::getInstance()->damageModifier;
     if (this->health <= 0) {
         sprite->setVisible(false);
@@ -94,6 +98,10 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
 }
 
 bool HuNPC::takeDamageFromNPC(int damage) {
+    // don't do anything if the npc is already dead / invisible
+    if (!sprite->isVisible()) {
+        return false;
+    }
     this->health -= damage;
     if (health <= 0) {
         sprite->setVisible(false);

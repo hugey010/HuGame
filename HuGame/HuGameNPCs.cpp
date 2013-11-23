@@ -96,11 +96,10 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             sprite->runAction(actionSequence);
             
             // have to remove npc after using its position
-            tempNPC->takeDamageFromPlayer(damageType);
             
 
 
-            if (tempNPC->health <= 0) {
+            if (tempNPC->takeDamageFromPlayer(damageType)) {
                 npcs->fastRemoveObject((CCNode*)tempNPC);
 
             }

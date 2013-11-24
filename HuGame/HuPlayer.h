@@ -25,7 +25,6 @@ typedef enum {
     DEFENSE_UPGRADE_3 = 3
 } PlayerDefenseUpgrade;
 
-
 class HuPlayer
 {
 public:

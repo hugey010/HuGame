@@ -14,21 +14,26 @@ using namespace cocos2d;
 
 
 bool HuProjectile::initialize() {
+    float time = 0;
+    
     switch (this->projectileType) {
         case MISSILE : {
             this->sprite = CCSprite::create("missile.png");
             sprite->setScale(0.2);
-         
+            sprite->setPosition(ccp(startingPosition.x - 40, startingPosition.y));
+
+            time = npc->sprite->getPosition().getDistance(startingPosition) * 0.002;
             break;
         }
         case BULLET : {
-            
+            this->sprite = CCSprite::create("bullet.png");
+            sprite->setScale(0.4);
+            sprite->setPosition(this->startingPosition);
+
+            time = npc->sprite->getPosition().getDistance(startingPosition) * 0.001;
             break;
         }
     }
-    
-    sprite->setPosition(this->startingPosition);
-    
     
     float ccangle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
     CCPoint endingPosition = npc->sprite->getPosition();
@@ -39,15 +44,14 @@ bool HuProjectile::initialize() {
     float angle = 0;
     
     if (npc->sprite->getPositionX() < SCREEN_WIDTH / 2) {
-        angle = angleInDegrees + ccangle + 200;
+        angle = angleInDegrees + ccangle + 190;
     } else {
         angle = -1 * angleInDegrees - ccangle + 230;
 
     }
-    //CCLog("initialAngle = %f, cocos2dAngle = %f, angleInDegrees = %f", sprite->getRotation(), otherAngle, angleInDegrees);
+
     sprite->setRotation(angle);
     
-    float time = npc->sprite->getPosition().getDistance(startingPosition) * 0.002;
     CCFiniteTimeAction *move = CCMoveTo::create(time, npc->sprite->getPosition());
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::projectileMoveFinished));
     
@@ -55,12 +59,8 @@ bool HuProjectile::initialize() {
     actionArray->addObject(move);
     actionArray->addObject(finished);
     
-    
     CCSequence *actionSequence = CCSequence::create(actionArray);
-    
     sprite->runAction(actionSequence);
-    
-    
     layer->addChild(sprite);
 
     return true;
@@ -75,16 +75,13 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
     this->startingPosition = startingPosition;
     this->npc = npc;
     this->layer = layer;
-    
-    // TODO: remove the debug
-    this->projectileType = MISSILE;
+    this->projectileType = type;
     
     return initialize();
     
 }
 
 void HuProjectile::projectileMoveFinished(CCNode *sender) {
-    
     
     CCSprite *sprite = (CCSprite*)sender;
     
@@ -97,6 +94,7 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
         }
         
         case BULLET : {
+            damage = 20;
             
             break;
         }
@@ -107,9 +105,7 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     if (npc->takeDamageFromNPC(damage)) {
         CCArray *npcs = HuGameNPCs::getNPCs();
         npcs->fastRemoveObject((CCNode*)npc);
-        
     }
-    
     
     // clean up the projectile and do explosion
     CCSprite *explosion = CCSprite::create("explosion_simple.png");

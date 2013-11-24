@@ -35,7 +35,12 @@ void HuFriendlyNPCs::addSoldiers() {
     
     for (int i = 0; i < player->numberOfSoldiers; i++) {
         HuGoodNPC *friendly = new HuGoodNPC;
-        friendly->initWithLayerAndNumber(this, i);
+        friendly->initWithLayerAndNumberAndType(this, i, SOLDIER_TYPE_SOLDIER);
+    }
+    
+    for (int i = 0; i < player->numberOfCannons; i++) {
+        HuGoodNPC *friendly = new HuGoodNPC;
+        friendly->initWithLayerAndNumberAndType(this, i, SOLDIER_TYPE_CANNON);
     }
     
 }

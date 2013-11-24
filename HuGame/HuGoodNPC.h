@@ -14,12 +14,17 @@
 
 #define PLACEMENT_SPOTS 6
 
+typedef enum {
+    SOLDIER_TYPE_SOLDIER,
+    SOLDIER_TYPE_CANNON
+} SoldierType;
+
 class HuGoodNPC : cocos2d::CCNode {
 public:
     cocos2d::CCSprite *sprite;
     int playerNumber;
 
-    void initWithLayerAndNumber(cocos2d::CCLayer *layer, int number);
+    void initWithLayerAndNumberAndType(cocos2d::CCLayer *layer, int number, SoldierType type);
     
 protected:
     bool initialize();
@@ -42,6 +47,7 @@ private:
     
     int scheduleID;
     float attackTime;
+    SoldierType soldierType;
     
     void scheduleAttackInSeconds(float seconds);
 };

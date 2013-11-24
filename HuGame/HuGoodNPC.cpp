@@ -20,26 +20,43 @@ bool HuGoodNPC::initialize() {
         return false;
     }
     
-    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Target.png", CCRectMake(0, 0, 20, 20)));
+    float max = 5.0;
+    float min = 1.0;
+    
+    switch (soldierType) {
+        case SOLDIER_TYPE_SOLDIER : {
+            sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Target.png", CCRectMake(0, 0, 27, 40)));
+            max = SOLDIER_MAX_FIRING_INTERVAL;
+            min = SOLDIER_MIN_FIRING_INTERVAL;
+            break;
+        }
+            
+        case SOLDIER_TYPE_CANNON : {
+            sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("missile_launcher.png", CCRectMake(0, 0, 144, 74)));
+            sprite->setScale(0.5);
+            max = CANNON_MAX_FIRING_INTERVAL;
+            min = CANNON_MIN_FIRING_INTERVAL;
+            break;
+        }
+    }
+    
     sprite->setPosition(this->generateInitialPoint());
     layer->addChild(sprite);
     
     player = HuPlayer::getInstance();
     
-    float max = 5.0;
-    float min = 1.0;
+
     float range = max - min;
     attackTime = ((float)arc4random() / ARC4RANDOM_MAX) * range + min;
-    //attackTime = arc4random() % 10 + 1;
-    CCLog("attack time = %f", attackTime);
     this->scheduleAttackInSeconds(attackTime);
     
     return true;
 }
 
-void HuGoodNPC::initWithLayerAndNumber(cocos2d::CCLayer *layer, int number) {
+void HuGoodNPC::initWithLayerAndNumberAndType(cocos2d::CCLayer *layer, int number, SoldierType type) {
     this->layer = layer;
     this->playerNumber = number;
+    this->soldierType = type;
     this->initialize();
     
 }
@@ -62,7 +79,26 @@ void HuGoodNPC::attack(CCNode *sender) {
    // HuGameNPCs::getNPCs();
     HuNPC *targetNPC = (HuNPC*)HuGameNPCs::getNPCs()->randomObject();
     HuProjectile *projectile = new HuProjectile;
-    projectile->initWithMandatories(MISSILE, sprite->getPosition(), targetNPC, layer);
+    
+    ProjectileType projectileType;
+    switch (soldierType) {
+        case SOLDIER_TYPE_CANNON : {
+            
+            projectileType = MISSILE;
+            break;
+        }
+            
+        case SOLDIER_TYPE_SOLDIER : {
+            projectileType = BULLET;
+            break;
+        }
+            
+        default:
+            projectileType = BULLET;
+            break;
+    }
+    
+    projectile->initWithMandatories(projectileType, sprite->getPosition(), targetNPC, layer);
     
 }
 

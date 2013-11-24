@@ -23,7 +23,7 @@ bool HuNPC::initialize() {
     dealsDamage = 1;
     
 
-    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 20, 20)));
+    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 27, 40)));
     sprite->setPosition(this->generateEnemyInitialPoint());
     layer->addChild(sprite);
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F28E2411841C76B00AF86AD /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2401841C76B00AF86AD /* bullet.png */; };
+		2F28E2431841CBF300AF86AD /* missile_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2421841CBF300AF86AD /* missile_launcher.png */; };
 		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
 		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
 		960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893D317AEC30C00A779E6 /* HuGameBackground.cpp */; };
@@ -316,6 +318,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F28E2401841C76B00AF86AD /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		2F28E2421841CBF300AF86AD /* missile_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_launcher.png; sourceTree = "<group>"; };
 		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
 		960893CF17AEBC4D00A779E6 /* HuGameFortress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameFortress.h; sourceTree = "<group>"; };
 		960893D117AEC21100A779E6 /* puppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puppy.png; path = Resources/Sprites/puppy.png; sourceTree = "<group>"; };
@@ -1090,6 +1094,8 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F28E2421841CBF300AF86AD /* missile_launcher.png */,
+				2F28E2401841C76B00AF86AD /* bullet.png */,
 				960C5BEF183B36EC008692BE /* missile.png */,
 				96DFCAF718348A5100488903 /* broken_fence_left.png */,
 				96DFCAF51834238700488903 /* broken_fence_right.png */,
@@ -2323,6 +2329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FF9DE1178A658300CF6E9D /* Default.png in Resources */,
+				2F28E2411841C76B00AF86AD /* bullet.png in Resources */,
 				96569EA81830871A000B5045 /* adobe_wall.png in Resources */,
 				96FF9DE3178A658300CF6E9D /* HelloWorld.png in Resources */,
 				960C5BF0183B36EC008692BE /* missile.png in Resources */,
@@ -2343,6 +2350,7 @@
 				968FF18F17AB4C78002BFF45 /* dot2.png in Resources */,
 				968FF19017AB4C78002BFF45 /* Player.png in Resources */,
 				96DFCAF818348A5100488903 /* broken_fence_left.png in Resources */,
+				2F28E2431841CBF300AF86AD /* missile_launcher.png in Resources */,
 				968FF19117AB4C78002BFF45 /* Projectile.png in Resources */,
 				968FF19217AB4C78002BFF45 /* Target.png in Resources */,
 				960893D217AEC21100A779E6 /* puppy.png in Resources */,

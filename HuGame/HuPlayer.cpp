@@ -20,7 +20,8 @@ HuPlayer* HuPlayer::mPInstance = NULL;
 
 void HuPlayer::create()
 {
-    this->health = 100;
+    this->maxHealth = 100;
+    this->health = this->maxHealth;
     this->currency = 50;
     // possibly start at level 0 as a demo or tutorial
     this->level = 1;
@@ -72,6 +73,7 @@ static void setupDatabase()
         "ID INT PRIMARY KEY NOT NULL, "\
         "NAME TEXT, " \
         "HEALTH INT, " \
+        "MAXHEALTH INT, "\
         "CURRENCY INT, " \
         "LEVEL INT, " \
         "BASEWIDTH REAL, " \
@@ -114,11 +116,12 @@ void HuPlayer::save() {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
     }else{
-        std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS, DEFENSEUPGRADE) VALUES (";
+        std::string sql = "INSERT OR REPLACE INTO PLAYERS (ID, NAME, HEALTH, MAXHEALTH, CURRENCY, LEVEL, BASEWIDTH, BASEHEIGHT, ATTACKWIDTH, DAMAGEMODIFIER, NUMBEROFSOLDIERS, NUMBEROFCANNONS, DEFENSEUPGRADE) VALUES (";
         std::stringstream ss;
         ss << playerID << ", ";
         ss << "\"" << name << "\", ";
         ss << health << ", ";
+        ss << maxHealth << " ,";
         ss << currency << ", ";
         ss << level << ", ";
         ss << baseWidth << ", ";
@@ -150,20 +153,24 @@ void HuPlayer::save() {
 }
 
 static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColName) {
-    if (argc == 12) {
+    if (argc == 13) {
         HuPlayer *player = HuPlayer::getInstance();
         player->playerID = atoi(argv[0]);
         player->name = argv[1];
         player->health = atoi(argv[2]);
-        player->currency = atoi(argv[3]);
-        player->level = atoi(argv[4]);
-        player->baseWidth = atof(argv[5]);
-        player->baseHeight = atof(argv[6]);
-        player->attackWidth = atof(argv[7]);
-        player->damageModifier = atof(argv[8]);
-        player->numberOfSoldiers = atoi(argv[9]);
-        player->numberOfCannons = atoi(argv[10]);
-        player->defenseUpgradeLevel = (PlayerDefenseUpgrade)atoi(argv[11]);
+        player->maxHealth = atoi(argv[3]);
+        player->currency = atoi(argv[4]);
+        player->level = atoi(argv[5]);
+        player->baseWidth = atof(argv[6]);
+        player->baseHeight = atof(argv[7]);
+        player->attackWidth = atof(argv[8]);
+        player->damageModifier = atof(argv[9]);
+        player->numberOfSoldiers = atoi(argv[10]);
+        player->numberOfCannons = atoi(argv[11]);
+        player->defenseUpgradeLevel = (PlayerDefenseUpgrade)atoi(argv[12]);
+        
+        // just always set health to maxhealth on load
+        player->health = player->maxHealth;
         
     } else {
         fprintf(stdout, "Error: sqlite load callback incorrect number of arguments = %d\n", argc);

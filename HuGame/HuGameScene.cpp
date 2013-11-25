@@ -123,6 +123,7 @@ void HuGameScene::endRoundCallback(CCObject *pSender)
     HuPlayer *player = HuPlayer::getInstance();
     if (player->health > 0) {
         player->level++;
+        player->health = player->maxHealth;
         player->save();
         CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
         

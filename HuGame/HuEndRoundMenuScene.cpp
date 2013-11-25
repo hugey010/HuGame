@@ -232,6 +232,8 @@ void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
                 player->currency -= COST_FORTRESS_1;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_1;
                 player->baseWidth += 100;
+                player->maxHealth += 50;
+                player->health = player->maxHealth;
             }
             
             break;
@@ -241,6 +243,8 @@ void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
             if (player->currency >= COST_FORTRESS_2) {
                 player->currency -= COST_FORTRESS_2;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
+                player->maxHealth += 50;
+                player->health = player->maxHealth;
             }
             
             break;
@@ -250,6 +254,9 @@ void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
             if (player->currency >= COST_FORTRESS_3) {
                 player->currency -= COST_FORTRESS_3;
                 player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
+                player->maxHealth += 50;
+                player->health = player->maxHealth;
+                
             }
             
             break;

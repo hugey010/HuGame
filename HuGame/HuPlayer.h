@@ -35,6 +35,7 @@ public:
    
     int playerID;
     int health;
+    int maxHealth;
     int level;
     int currency;
     std::string name;

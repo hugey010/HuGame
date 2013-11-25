@@ -72,6 +72,7 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     
     // drawing dots for help
    
+    /*
     CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
     dot1->setPosition(point1);
     this->addChild(dot1);
@@ -87,19 +88,15 @@ void HuGameAttacks::didSwipe(CCObject *sender)
     CCSprite *dot4 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot2.png", CCRectMake(0, 0, 20, 20)));
     dot4->setPosition(point4);
     this->addChild(dot4);
+     */
      
    
     // weird issue with ccdrawpoly, but fuck it. its probably not how im going to be drawing my attacks anyways
     int swipeVerticesCount = 4;
     CCPoint swipeVerts[] = {point1, point2, point3, point4};
-    //CCDrawNode *drawNode = CCDrawNode::create();
-    //drawNode->drawPolygon(swipeVerts, swipeVerticesCount, ccc4f(1,0,0,1), 3, ccc4f(1,1,1,1));
-    //this->addChild(drawNode);
-    
     
     // send this rect to npc controller to determine if there is a collision
     this->animateAttack(swipeVerts, swipeVerticesCount, PhysicalDamage, swipe->direction);
-    
     
     // TODO: hard coding a damage type
     this->npcs->handleAttack(swipeVerts, swipeVerticesCount, PhysicalDamage);

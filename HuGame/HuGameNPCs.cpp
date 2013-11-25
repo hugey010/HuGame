@@ -46,13 +46,6 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
         
         HuNPC *tempNPC = (HuNPC*)object;
         
-        if (tempNPC == NULL) {
-            CCLog("null tempnpc");
-        }
-        if (tempNPC->sprite == NULL) {
-            CCLog("null tmepsprite");
-        }
-        
         if (!tempNPC->sprite->isVisible()) {
             npcs->fastRemoveObject((CCNode*)tempNPC);
             continue;
@@ -79,29 +72,33 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
         if (p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
             continue;
         } else {
-            // TODO: need to take damage properly.
             
-            CCSprite *sprite = CCSprite::create("explosion_simple.png");
-            CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
-            
-            CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::explosionFinished));
-            CCArray *actionArray = CCArray::create();
-            actionArray->addObject(scale);
-            actionArray->addObject(finished);
-            CCSequence *actionSequence = CCSequence::create(actionArray);
-            sprite->setPosition(tempNPC->sprite->getPosition());
-            this->addChild(sprite);
-            sprite->runAction(actionSequence);
-            
-            // have to remove npc after using its position
-            
-
-
-            if (tempNPC->takeDamageFromPlayer(damageType)) {
-                npcs->fastRemoveObject((CCNode*)tempNPC);
-
+            // TODO: this is only in the case its in the bounding box.
+            // lets ray cast and check how many times it passes through polygon
+            if (pointCollision(vertices, p)) {
+                
+                // animate that the attack hit that enemy
+                CCSprite *sprite = CCSprite::create("explosion_simple.png");
+                CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
+                
+                CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameNPCs::explosionFinished));
+                CCArray *actionArray = CCArray::create();
+                actionArray->addObject(scale);
+                actionArray->addObject(finished);
+                CCSequence *actionSequence = CCSequence::create(actionArray);
+                sprite->setPosition(tempNPC->sprite->getPosition());
+                this->addChild(sprite);
+                sprite->runAction(actionSequence);
+                
+                
+                if (tempNPC->takeDamageFromPlayer(damageType)) {
+                    npcs->fastRemoveObject((CCNode*)tempNPC);
+                }
+                
             }
             
+            
+
             
             
             /*
@@ -130,7 +127,34 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 }
 
 bool HuGameNPCs::pointCollision(CCPoint polygonVertices[], CCPoint point) {
-    return true;
+    
+    //CCLog("point.x = %f, point.y = %f", point.x, point.y);
+    
+    float *T;
+    int intersectionCount = 0;
+    for (int i = 0; i < 4; i++) {
+        int j = (i + 1) % 4;
+        float polyX1 = polygonVertices[i].x;
+        float polyY1 = polygonVertices[i].y;
+        float polyX2 = polygonVertices[j].x;
+        float polyY2 = polygonVertices[j].y;
+
+        if (ccVertexLineIntersect(polyX1, polyY1, polyX2, polyY2, -1.0, -1.0, point.x, point.y, T)) {
+            // need to check if t value is on line
+            // TODO: this is probs not correct
+            
+            if (*T > 0) {
+                intersectionCount++;
+            }
+            //CCLog("TTT = %f", *T);
+            //CCLog("polyX1 = %f, polyY1 = %f, polyX2 = %f, polyY2 = %f, point.x = %f, point.y = %f", polyX1, polyY1, polyX2, polyY2, point.x, point.y);
+        }
+    }
+    
+    CCLog("intersection count = %d", intersectionCount);
+    
+    // if odd number of intersections then collision!
+    return (intersectionCount % 2 == 1);
 }
 
 // detects collision between 4 sided polygon and sprite bounding box

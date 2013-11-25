@@ -37,8 +37,7 @@ void HuPlayer::create()
     // TODO: this probably should be 100 to start out with
     this->damageModifier = 50;
     
-    // TODO: don't start with 50 cannons! this is debug
-    this->numberOfCannons = 50;
+    this->numberOfCannons = 0;
     this->numberOfSoldiers = 0;
     
     this->save();

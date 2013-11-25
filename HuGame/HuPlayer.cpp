@@ -33,11 +33,12 @@ void HuPlayer::create()
     this->defenseUpgradeLevel = DEFENSE_UPGRADE_0;
     
     // attack stuff
-    this->attackWidth = 50;
+    this->attackWidth = 100;
     // TODO: this probably should be 100 to start out with
     this->damageModifier = 50;
     
-    this->numberOfCannons = 0;
+    // TODO: don't start with 50 cannons! this is debug
+    this->numberOfCannons = 50;
     this->numberOfSoldiers = 0;
     
     this->save();
@@ -183,7 +184,7 @@ static int sqlLoadCallback(void *NotUsed, int argc, char **argv, char **azColNam
     return 0;
 }
 
-void HuPlayer::loadPlayerWithID(int playerID)
+bool HuPlayer::loadPlayerWithID(int playerID)
 {
     
     sqlite3 *db;
@@ -198,13 +199,14 @@ void HuPlayer::loadPlayerWithID(int playerID)
     if( rc ){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         exit(0);
+        return false;
     }else{
         fprintf(stderr, "Opened database successfully\n");
         char sqlbuffer[200];
         int n = sprintf(sqlbuffer, "SELECT * FROM PLAYERS WHERE ID = %d;", playerID);
         if (n > 200) {
             fprintf(stdout, "SQL: save player sqlbuffer overflow\n");
-            return;
+            return false;;
         }
         
         
@@ -213,6 +215,7 @@ void HuPlayer::loadPlayerWithID(int playerID)
         if (rc != SQLITE_OK) {
             fprintf(stdout, "SQL Error: saving player %s\n", zErrMsg);
             sqlite3_free(zErrMsg);
+            return false;
         } else {
             fprintf(stdout, "SQL: saving player successful.\n");
         }
@@ -223,7 +226,7 @@ void HuPlayer::loadPlayerWithID(int playerID)
     }
     sqlite3_close(db);
 
-    
+    return true;
 }
 
 int HuPlayer::currentPlayerID()
@@ -231,9 +234,9 @@ int HuPlayer::currentPlayerID()
     return CCUserDefault::sharedUserDefault()->getIntegerForKey(kCurrentPlayerIdKey);
 }
 
-void HuPlayer::loadLastPlayer() {
+bool HuPlayer::loadLastPlayer() {
     
-    HuPlayer::loadPlayerWithID(currentPlayerID());
+    return HuPlayer::loadPlayerWithID(currentPlayerID());
     
 }
 

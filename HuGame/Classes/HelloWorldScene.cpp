@@ -58,23 +58,23 @@ bool HelloWorld::init()
 }
 
 void HelloWorld::newGameCallback(CCObject* pSender)
-{
-    CCLog("Make that new game");
-    
+{    
     // create a new player instance
     HuPlayer::getInstance()->create();
     
     CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
-    
-    
-    
 }
 
 void HelloWorld::continueGameCallback(CCObject* pSender)
 {
-    CCLog("Continue a game");
-    HuPlayer::loadLastPlayer();
-    CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
+    if (HuPlayer::loadLastPlayer()) {
+        CC_SHARED_DIRECTOR->replaceScene(HuEndRoundMenuScene::scene());
+
+    } else {
+        HuPlayer::getInstance()->create();
+        CC_SHARED_DIRECTOR->replaceScene(HuGameScene::scene());
+
+    }
 }
 
 void HelloWorld::endGameCallback(CCObject* pSender)

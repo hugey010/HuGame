@@ -29,9 +29,9 @@ class HuPlayer
 {
 public:
     static HuPlayer* getInstance();
-    static void loadLastPlayer();
+    static bool loadLastPlayer();
     static int currentPlayerID();
-    static void loadPlayerWithID(int playerID);
+    static bool loadPlayerWithID(int playerID);
    
     int playerID;
     int health;

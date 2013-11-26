@@ -116,7 +116,6 @@ bool HuNPC::takeDamageFromNPC(int damage) {
     return false;
 }
 
-
 void HuNPC::killNPC() {
     // supposed to be empty, meant to be overridden
     
@@ -132,7 +131,7 @@ CCPoint HuNPC::generateEnemyInitialPoint()
     x = SCREEN_WIDTH * leftRight;
     
     y = random() % (int)GROUND_END_Y;
-    y = MAX(y, 10);
+    y = MAX(y, 30);
     
     return ccp(x, y);
 }

@@ -152,16 +152,7 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         x = x + arc4random() % randomness;
         
         
-        CCFiniteTimeAction *scale = CCScaleBy::create(0.4, 10);
-        CCFiniteTimeAction *rotate = CCRotateBy::create(0.4, 360);
-                CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
 
-        CCArray *actionArray = CCArray::create();
-        //actionArray->addObject(scale);
-        actionArray->addObject(rotate);
-        actionArray->addObject(finished);
-       
-        CCSequence *actionSequence = CCSequence::create(actionArray);
 
         
         CCSprite *sprite;
@@ -171,8 +162,20 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
            sprite = CCSprite::create("dot2.png", CCRectMake(0, 0, 2, 2));
  
         }
-        
+        sprite->setScale(4.0);
         sprite->setPosition(ccp(x, y));
+
+        
+        CCFiniteTimeAction *scale = CCScaleBy::create(0.01, 10);
+        CCFiniteTimeAction *rotate = CCRotateBy::create(0.4, 360);
+        CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuGameAttacks::explosionFinished));
+        
+        CCArray *actionArray = CCArray::create();
+        actionArray->addObject(rotate);
+        actionArray->addObject(finished);
+        
+        CCSequence *actionSequence = CCSequence::create(actionArray);
+        
         sprite->runAction(actionSequence);
         sprite->runAction(scale);
         sprite->runAction(rotate);

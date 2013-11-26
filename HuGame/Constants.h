@@ -36,7 +36,7 @@
 #define HUD_FONT_SIZE (float)30.0
 
 // GAME DEFINITIONS
-#define ROUND_INTERVAL 15.0 // seconds, 2 minutes
+#define ROUND_INTERVAL 55.0 // seconds, 2 minutes
 #define GROUND_END_Y SCREEN_HEIGHT / 3
 
 #define ENEMY_SPEED 300

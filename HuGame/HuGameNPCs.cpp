@@ -24,7 +24,10 @@ bool HuGameNPCs::init()
     
     npcs = new CCArray;
     this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, kCCRepeatForever, 0);
-        
+    
+    // DEBUG: just for creating one enemy per round
+    //this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, 0, 0);
+
     return true;
 }
 
@@ -118,12 +121,7 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
 
 
         }
-        
-
     }
-
-
-    
 }
 
 bool HuGameNPCs::pointCollision(CCPoint polygonVertices[], CCPoint point) {
@@ -139,17 +137,45 @@ bool HuGameNPCs::pointCollision(CCPoint polygonVertices[], CCPoint point) {
         float polyX2 = polygonVertices[j].x;
         float polyY2 = polygonVertices[j].y;
 
-        if (ccVertexLineIntersect(polyX1, polyY1, polyX2, polyY2, -1.0, -1.0, point.x, point.y, T)) {
-            // need to check if t value is on line
-            // TODO: this is probs not correct
+        if (ccVertexLineIntersect(polyX1, polyY1, polyX2, polyY2, 1.0, 1.0, point.x, point.y, T)) {
             
-            if (*T > 0) {
-                intersectionCount++;
-            }
-            //CCLog("TTT = %f", *T);
-            //CCLog("polyX1 = %f, polyY1 = %f, polyX2 = %f, polyY2 = %f, point.x = %f, point.y = %f", polyX1, polyY1, polyX2, polyY2, point.x, point.y);
+            CCSprite *dot1 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+            dot1->setPosition(ccp(-1, -1));
+            this->addChild(dot1);
+            /*
+            CCSprite *dot2 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+            dot2->setPosition(ccp(polyX2, polyY2));
+            this->addChild(dot2);
+            CCSprite *dot3 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+            dot3->setPosition(ccp(1, 1));
+            this->addChild(dot3);
+            CCSprite *dot4 = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("dot1.png", CCRectMake(0, 0, 20, 20)));
+            dot4->setPosition(point);
+            this->addChild(dot4);
+            */
+            //intersectionCount++;
+             
+            return true;
         }
+         /*
+        // need to check if t value is on line
+        // TODO: this is probs not correct
+        
+        
+
+        
+        if (*T > 0) {
+            intersectionCount++;
+        }
+        intersectionCount = 3;
+        //CCLog("TTT = %f", *T);
+        //CCLog("polyX1 = %f, polyY1 = %f, polyX2 = %f, polyY2 = %f, point.x = %f, point.y = %f", polyX1, polyY1, polyX2, polyY2, point.x, point.y);
+          
+        }
+          */
     }
+    
+    return false;
     
     CCLog("intersection count = %d", intersectionCount);
     

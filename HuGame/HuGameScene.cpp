@@ -112,7 +112,6 @@ bool HuGameScene::init()
     attacks->npcs = npcs;
     this->addChild((CCLayer*)attacks, 8);
     
-    
     return true;
 }
 

@@ -33,7 +33,7 @@ void HuPlayer::create()
     this->defenseUpgradeLevel = DEFENSE_UPGRADE_0;
     
     // attack stuff
-    this->attackWidth = 100;
+    this->attackWidth = 10;
     // TODO: this probably should be 100 to start out with
     this->damageModifier = 50;
     

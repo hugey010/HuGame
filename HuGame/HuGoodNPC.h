@@ -49,7 +49,6 @@ private:
     float attackTime;
     SoldierType soldierType;
     
-    void scheduleAttackInSeconds(float seconds);
 };
 
 #endif /* defined(__HuGame__HuGoodNPC__) */

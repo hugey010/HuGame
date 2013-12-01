@@ -13,10 +13,10 @@
 
 class HuNPCEnemySoldier : HuNPC {
 public:
-    
+    static cocos2d::CCPoint generateEnemyInitialPoint();
+    void attack();
+
 private:
-    
-    
 };
 
 #endif /* defined(__HuGame__HuNPCEnemySoldier__) */

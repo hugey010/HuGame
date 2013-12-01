@@ -42,13 +42,15 @@ bool HuGoodNPC::initialize() {
     
     sprite->setPosition(this->generateInitialPoint());
     layer->addChild(sprite);
+    layer->addChild((CCNode*)this);
     
     player = HuPlayer::getInstance();
     
 
     float range = max - min;
     attackTime = ((float)arc4random() / ARC4RANDOM_MAX) * range + min;
-    this->scheduleAttackInSeconds(attackTime);
+    
+    this->schedule(schedule_selector(HuGoodNPC::attack), attackTime, kCCRepeatForever, attackTime);
     
     return true;
 }
@@ -73,10 +75,7 @@ CCPoint HuGoodNPC::generateInitialPoint() {
 }
 
 void HuGoodNPC::attack(CCNode *sender) {
-    //int attackTime = arc4random() % 10 + 1;
-    this->scheduleAttackInSeconds(attackTime);
-    
-   // HuGameNPCs::getNPCs();
+
     HuNPC *targetNPC = (HuNPC*)HuGameNPCs::getNPCs()->randomObject();
     HuProjectile *projectile = new HuProjectile;
     
@@ -100,20 +99,4 @@ void HuGoodNPC::attack(CCNode *sender) {
     
     projectile->initWithMandatories(projectileType, sprite->getPosition(), targetNPC, layer);
     
-}
-
-void HuGoodNPC::scheduleAttackInSeconds(float seconds) {
-    // TODO: this is pretty bad. Instead of just scheduleing a selector I'm moving a sprite to its current point for the amount of time
-    
-    CCFiniteTimeAction *attackFake = CCMoveTo::create(seconds, sprite->getPosition());
-    CCFiniteTimeAction *attack = CCCallFuncN::create(this, callfuncN_selector(HuGoodNPC::attack));
-    
-    
-    CCArray *actionArray = CCArray::create();
-    actionArray->addObject(attackFake);
-    actionArray->addObject(attack);
-    
-    
-    CCSequence *actionSequence = CCSequence::create(actionArray);
-    sprite->runAction(actionSequence);
 }

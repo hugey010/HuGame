@@ -25,10 +25,10 @@ bool HuGameNPCs::init()
     
     npcs = new CCArray;
     this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, kCCRepeatForever, 0);
-    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.5, kCCRepeatForever, 0);
+    //this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.5, kCCRepeatForever, 0);
     
     // DEBUG: just for creating one enemy per round
-    //this->schedule(schedule_selector(HuGameNPCs::makeEnemy), 0.1, 0, 0);
+    //this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, 0, 0);
 
     return true;
 }
@@ -45,16 +45,6 @@ void HuGameNPCs::makeSoldierEnemy()
     npcs->addObject((CCNode*)npc);
     
 }
-
-/*
-void HuGameNPCs::makeEnemy()
-{
-    HuNPC *npc = new HuNPC;
-    
-    npc->initWithLayer(this);
-    npcs->addObject((CCNode*)npc);
-}
- */
 
 void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, ElementalDamageTypes damageType)
 {

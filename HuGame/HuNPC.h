@@ -21,6 +21,7 @@ public:
     int health;
     int givesCurrency;
     int dealsDamage;
+    int attackSpeed;
   
     void initWithLayer(cocos2d::CCLayer *layer);
     
@@ -35,9 +36,6 @@ protected:
 private:
     std::set<ElementalDamageTypes> currentElementalDamage;
     cocos2d::CCLayer *layer;
-    
-    // randomly makes a point on the ground on either the left or right side of screen
-    static cocos2d::CCPoint generateEnemyInitialPoint();
     
     // REQUIRED: methods must be implemented by subclass
     void setupSprite();

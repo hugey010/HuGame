@@ -41,6 +41,7 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
         sprite->setVisible(false);
         HuPlayer::getInstance()->currency += givesCurrency;
         
+        unscheduleAllSelectors();
         
         // kill it and clean up npc
         killNPC();
@@ -70,19 +71,4 @@ bool HuNPC::takeDamageFromNPC(int damage) {
     }
     
     return false;
-}
-
-CCPoint HuNPC::generateEnemyInitialPoint()
-{
-    float x = 0;
-    float y = 0;
-    
-    // decide if starting on left side or right side
-    int leftRight = random() % 2;
-    x = SCREEN_WIDTH * leftRight;
-    
-    y = random() % (int)GROUND_END_Y;
-    y = MAX(y, 30);
-    
-    return ccp(x, y);
 }

@@ -80,7 +80,6 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
             continue;
         } else {
             
-            // TODO: this is only in the case its in the bounding box.
             // lets ray cast and check how many times it passes through polygon
             if (pointCollision(vertices, p)) {
                 

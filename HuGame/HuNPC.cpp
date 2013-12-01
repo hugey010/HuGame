@@ -18,40 +18,10 @@ bool HuNPC::initialize() {
         return false;
     }
     
-    health = 100;
-    givesCurrency = 1;
-    dealsDamage = 1;
-    
+    setupStats();
+    setupSprite();
+    setupActions();
 
-    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 27, 40)));
-    sprite->setPosition(this->generateEnemyInitialPoint());
-    layer->addChild(sprite);
-    
-    HuPlayer *player = HuPlayer::getInstance();
-    
-    
-    int leftRight = (sprite->getPositionX() < (SCREEN_WIDTH / 2)) ? 1 : -1;
-    float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (player->baseWidth / 2);
-    float realFinalY = sprite->getPositionY();
-    CCPoint realDestination = ccp(realFinalX, realFinalY);
-    
-    CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
-    //CCFiniteTimeAction *scale = CCScaleBy::create(5.0, 5);
-    //CCFiniteTimeAction *rotate = CCRotateBy::create(5.0, 10000);
-    //CCFiniteTimeAction *moveBack = CCMoveTo::create(2.0, ccp(0, SCREEN_HEIGHT - 10));
-    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPC::enemyMoveFinished));
-    
-    CCArray *actionArray = CCArray::create();
-    actionArray->addObject(move);
-    actionArray->addObject(finished);
-    
-    
-    CCSequence *actionSequence = CCSequence::create(actionArray);
-    
-    sprite->runAction(actionSequence);
-    //sprite->runAction(scale);
-    //sprite->runAction(rotate);
-    
     return true;
 }
 
@@ -59,16 +29,6 @@ void HuNPC::initWithLayer(cocos2d::CCLayer *layer) {
     this->layer = layer;
     this->initialize();
 
-}
-
-void HuNPC::enemyMoveFinished(CCNode *sender)
-{
-    // begin basic attack
-    if (sprite->isVisible()) {
-        HuPlayer::getInstance()->health -= dealsDamage;
-    }
-    //CCLog("attacked player for %d damage", dealsDamage);
-   // layer->removeChild(this->sprite);
 }
 
 bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
@@ -79,7 +39,6 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
     this->health -= HuPlayer::getInstance()->damageModifier;
     if (this->health <= 0) {
         sprite->setVisible(false);
-        //layer->removeChild(sprite);
         HuPlayer::getInstance()->currency += givesCurrency;
         
         
@@ -93,8 +52,6 @@ bool HuNPC::takeDamageFromPlayer(ElementalDamageTypes damageType) {
     this->currentElementalDamage.insert(damageType);
     
     return false;
-    
-
 }
 
 bool HuNPC::takeDamageFromNPC(int damage) {
@@ -105,7 +62,6 @@ bool HuNPC::takeDamageFromNPC(int damage) {
     this->health -= damage;
     if (health <= 0) {
         sprite->setVisible(false);
-        //layer->removeChild(sprite);
         HuPlayer::getInstance()->currency += givesCurrency;
         
         killNPC();
@@ -114,11 +70,6 @@ bool HuNPC::takeDamageFromNPC(int damage) {
     }
     
     return false;
-}
-
-void HuNPC::killNPC() {
-    // supposed to be empty, meant to be overridden
-    
 }
 
 CCPoint HuNPC::generateEnemyInitialPoint()

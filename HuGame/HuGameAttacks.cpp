@@ -124,7 +124,6 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
                 minX = fminf(point2.x, minX);
             }
         }
-        
     }
    
     //CCLog("minx = %f", minX);
@@ -150,11 +149,7 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         
         x = x - arc4random() % randomness;
         x = x + arc4random() % randomness;
-        
-        
-
-
-        
+      
         CCSprite *sprite;
         if (direction == kSwipeGestureRecognizerDirectionDown || direction == kSwipeGestureRecognizerDirectionUp) {
             sprite = CCSprite::create("dot1.png", CCRectMake(0, 0, 2, 2));
@@ -182,12 +177,6 @@ void HuGameAttacks::animateAttack(CCPoint *swipeVerts, int swipeVerticesCount, E
         this->addChild(sprite);
         
     }
-
-    
-
-
-    
-    
 }
 
 void HuGameAttacks::explosionFinished(CCNode *sender) {

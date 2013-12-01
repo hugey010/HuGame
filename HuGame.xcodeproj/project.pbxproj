@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F28E2411841C76B00AF86AD /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2401841C76B00AF86AD /* bullet.png */; };
 		2F28E2431841CBF300AF86AD /* missile_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2421841CBF300AF86AD /* missile_launcher.png */; };
+		2FB258591849B8D0008346CC /* HuNPCEnemySoldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */; };
 		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
 		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
 		960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893D317AEC30C00A779E6 /* HuGameBackground.cpp */; };
@@ -320,6 +321,8 @@
 /* Begin PBXFileReference section */
 		2F28E2401841C76B00AF86AD /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		2F28E2421841CBF300AF86AD /* missile_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_launcher.png; sourceTree = "<group>"; };
+		2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPCEnemySoldier.cpp; sourceTree = "<group>"; };
+		2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPCEnemySoldier.h; sourceTree = "<group>"; };
 		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
 		960893CF17AEBC4D00A779E6 /* HuGameFortress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameFortress.h; sourceTree = "<group>"; };
 		960893D117AEC21100A779E6 /* puppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puppy.png; path = Resources/Sprites/puppy.png; sourceTree = "<group>"; };
@@ -987,6 +990,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FB258561849B88A008346CC /* EnemyNPCs */ = {
+			isa = PBXGroup;
+			children = (
+				96D0B67A17DE68DC006A2FA9 /* HuNPC.h */,
+				96D0B67917DE68DC006A2FA9 /* HuNPC.cpp */,
+				2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */,
+				2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */,
+			);
+			name = EnemyNPCs;
+			sourceTree = "<group>";
+		};
 		9628398317C6792C003B49E9 /* CCGestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,14 +1044,14 @@
 		96FCBABD17ADA5B500A717DD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9669B3F417B0B3F90065493F /* HuGameNPCs.h */,
+				9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */,
 				960893CF17AEBC4D00A779E6 /* HuGameFortress.h */,
 				960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */,
 				96FCBABF17ADBB8500A717DD /* HuGameHud.h */,
 				96FCBABE17ADBB8500A717DD /* HuGameHud.cpp */,
 				960893D417AEC30C00A779E6 /* HuGameBackground.h */,
 				960893D317AEC30C00A779E6 /* HuGameBackground.cpp */,
-				9669B3F417B0B3F90065493F /* HuGameNPCs.h */,
-				9669B3F317B0B3F90065493F /* HuGameNPCs.cpp */,
 				96BE8E8717C6E3AC00C5E9AE /* HuGameAttacks.h */,
 				96BE8E8617C6E3AC00C5E9AE /* HuGameAttacks.cpp */,
 				96D514F81839D4200098FD7F /* HuFriendlyNPCs.h */,
@@ -2258,10 +2272,9 @@
 		96FFA16B178A658800CF6E9D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2FB258561849B88A008346CC /* EnemyNPCs */,
 				966437E51839D726001EC838 /* HuGoodNPC.h */,
 				966437E41839D726001EC838 /* HuGoodNPC.cpp */,
-				96D0B67A17DE68DC006A2FA9 /* HuNPC.h */,
-				96D0B67917DE68DC006A2FA9 /* HuNPC.cpp */,
 				96FCBAC217ADEAC700A717DD /* HuPlayer.h */,
 				96FCBAC117ADEAC700A717DD /* HuPlayer.cpp */,
 				966437EB1839F152001EC838 /* HuProjectile.h */,
@@ -2632,6 +2645,7 @@
 				96FCBAC317ADEAC700A717DD /* HuPlayer.cpp in Sources */,
 				960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */,
 				960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */,
+				2FB258591849B8D0008346CC /* HuNPCEnemySoldier.cpp in Sources */,
 				96EA7CD917BB2B21003EC8CF /* HuGameNPCs.cpp in Sources */,
 				9628399017C6792C003B49E9 /* CCGestureRecognizer.cpp in Sources */,
 				9628399117C6792C003B49E9 /* CCLongPressGestureRecognizer.cpp in Sources */,

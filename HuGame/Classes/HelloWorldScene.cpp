@@ -36,18 +36,18 @@ bool HelloWorld::init()
     // Create Opening Menu 
     CCSize size = CC_SHARED_DIRECTOR->getWinSize();
     
-    CCLabelTTF *mNewGameLabel = CCLabelTTF::create("New Game", MENU_FONT, MENU_FONT_SIZE);
+    CCLabelTTF *mNewGameLabel = CCLabelTTF::create("New Game", MENU_FONT, MENU_FONT_HEADER_SIZE);
     CCMenuItemLabel *mNewGameItem = CCMenuItemLabel::create(mNewGameLabel, this, menu_selector(HelloWorld::newGameCallback));
     mNewGameItem->setPosition(CCPointZero);
     
     
-    CCLabelTTF *mContinueGameLabel = CCLabelTTF::create("Continue Game", MENU_FONT, MENU_FONT_SIZE);
+    CCLabelTTF *mContinueGameLabel = CCLabelTTF::create("Continue Game", MENU_FONT, MENU_FONT_HEADER_SIZE);
     CCMenuItemLabel *mContinueGameItem = CCMenuItemLabel::create(mContinueGameLabel, this, menu_selector(HelloWorld::continueGameCallback));
-    mNewGameItem->setPosition(ccp(0, -2 * MENU_FONT_SIZE));
+    mNewGameItem->setPosition(ccp(0, -2 * MENU_FONT_HEADER_SIZE));
 
-    CCLabelTTF *mEndGameLabel = CCLabelTTF::create("End Game", MENU_FONT, MENU_FONT_SIZE);
+    CCLabelTTF *mEndGameLabel = CCLabelTTF::create("End Game", MENU_FONT, MENU_FONT_HEADER_SIZE);
     CCMenuItemLabel *mEndGameItem = CCMenuItemLabel::create(mEndGameLabel, this, menu_selector(HelloWorld::endGameCallback));
-    mEndGameItem->setPosition(ccp(0, -4 * MENU_FONT_SIZE));
+    mEndGameItem->setPosition(ccp(0, -4 * MENU_FONT_HEADER_SIZE));
     
     // create menu, it's an autorelease object
     CCMenu* pMenu = CCMenu::create(mNewGameItem, mContinueGameItem, mEndGameItem, NULL);

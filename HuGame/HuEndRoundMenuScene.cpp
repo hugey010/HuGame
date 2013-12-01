@@ -103,12 +103,12 @@ bool HuEndRoundMenuScene::init()
     cannonMinusItem->setPosition(ccp(cannonLabel->getPositionX() - 100, cannonLabel->getPositionY() + 10));
     
     // NEXT ROUND ITEM
-    CCLabelTTF *nextRoundLabel = CCLabelTTF::create("Next Round", MENU_FONT, MENU_FONT_SIZE);
+    CCLabelTTF *nextRoundLabel = CCLabelTTF::create("Next Round", MENU_FONT, MENU_FONT_HEADER_SIZE);
     CCMenuItemLabel *nextRoundItem = CCMenuItemLabel::create(nextRoundLabel, this, menu_selector(HuEndRoundMenuScene::nextRoundPressed));
     nextRoundItem->setPosition(ccp(SCREEN_WIDTH / 2, 50));
     
     // SELL ALL ITEM
-    CCLabelTTF *sellAllLabel = CCLabelTTF::create("Sell All", MENU_FONT, MENU_FONT_SIZE);
+    CCLabelTTF *sellAllLabel = CCLabelTTF::create("Sell All", MENU_FONT, MENU_FONT_HEADER_SIZE);
     CCMenuItemLabel *sellAllItem = CCMenuItemLabel::create(sellAllLabel, this, menu_selector(HuEndRoundMenuScene::sellAllPressed));
     sellAllItem->setPosition(ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50));
     

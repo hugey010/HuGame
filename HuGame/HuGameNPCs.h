@@ -50,6 +50,8 @@ public:
 private:
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void makeEnemy();
+    void makeSoldierEnemy();
+    void makeRangedEnemy();
     
     
 

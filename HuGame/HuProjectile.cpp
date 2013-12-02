@@ -18,9 +18,6 @@ bool HuProjectile::initialize() {
     if (!CCNode::init()) {
         return false;
     }
-    
-
-    
     float time = 0;
     
     switch (this->projectileType) {
@@ -42,25 +39,12 @@ bool HuProjectile::initialize() {
         }
     }
     
-    float ccangle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(endingPosition));
-    
-    
-    //float deltax = startingPosition.x - endingPosition.x;
-    //float deltay = startingPosition.y - endingPosition.y;
-    //float angleInDegrees = atan2(deltay, deltax) * 180.0 / M_PI;
-    //float angle = 0;
-    
-    
-    if (endingPosition.x < startingPosition.x) {
-        //angle = angleInDegrees + ccangle + 190;
-        ccangle -= 90;
-        
-    } else {
-        //angle = -1 * angleInDegrees - ccangle + 230;
-        ccangle += 90;
+    float angle = CC_RADIANS_TO_DEGREES(atan2(endingPosition.x - startingPosition.x, endingPosition.y - startingPosition.y));
+    if(angle < 0){
+        angle += 360;
     }
 
-    sprite->setRotation(ccangle);
+    sprite->setRotation(angle);
     
     CCFiniteTimeAction *move = CCMoveTo::create(time, endingPosition);
     

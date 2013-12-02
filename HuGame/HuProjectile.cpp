@@ -80,7 +80,7 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
         }
             
         case BULLET : {
-            damage = 20;
+            damage = 5;
             
             break;
         }

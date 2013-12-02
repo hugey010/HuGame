@@ -50,7 +50,7 @@ bool HuGoodNPC::initialize() {
     float range = max - min;
     attackTime = ((float)arc4random() / ARC4RANDOM_MAX) * range + min;
     
-    this->schedule(schedule_selector(HuGoodNPC::attack), attackTime, kCCRepeatForever, attackTime);
+    this->schedule(schedule_selector(HuGoodNPC::attack), attackTime, kCCRepeatForever, 1);
     
     return true;
 }

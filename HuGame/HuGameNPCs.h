@@ -53,6 +53,9 @@ private:
     void makeSoldierEnemy();
     void makeRangedEnemy();
     
+    float rateOfSoldiers();
+    float rateOfRanged();
+    
     
 
 

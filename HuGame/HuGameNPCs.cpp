@@ -25,8 +25,9 @@ bool HuGameNPCs::init()
     }
     
     npcs = new CCArray;
-    this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.3, kCCRepeatForever, 0);
-    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.6, kCCRepeatForever, 0);
+    
+    this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), rateOfRanged(), kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), rateOfSoldiers(), kCCRepeatForever, 0);
     
     // DEBUG: just for creating one enemy per round
     //this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, 0, 0);
@@ -49,6 +50,19 @@ void HuGameNPCs::makeSoldierEnemy()
     
 }
 
+float HuGameNPCs::rateOfSoldiers() {
+    int level = HuPlayer::getInstance()->level;
+    
+    return 1.0 / (float)level;
+}
+
+float HuGameNPCs::rateOfRanged() {
+    int level = HuPlayer::getInstance()->level;
+    
+    return 2.0 / (float)level;
+
+}
+
 void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, ElementalDamageTypes damageType)
 {
     CCObject *object = NULL;
@@ -57,6 +71,7 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
         HuNPC *tempNPC = (HuNPC*)object;
         
         if (!tempNPC->sprite->isVisible()) {
+            tempNPC->unscheduleAllSelectors();
             npcs->fastRemoveObject((CCNode*)tempNPC);
             continue;
         }
@@ -101,6 +116,7 @@ void HuGameNPCs::handleAttack(CCPoint vertices[], int numberOfVertices, Elementa
                 
                 
                 if (tempNPC->takeDamageFromPlayer(damageType)) {
+                    tempNPC->unscheduleAllSelectors();
                     npcs->fastRemoveObject((CCNode*)tempNPC);
                 }
                 

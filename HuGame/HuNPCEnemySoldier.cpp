@@ -12,7 +12,7 @@
 using namespace cocos2d;
 
 void HuNPCEnemySoldier::setupSprite() {
-    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 27, 40)));
+    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("kitten_2.png", CCRectMake(0, 0, 40, 30)));
     sprite->setPosition(HuNPCEnemySoldier::generateEnemyInitialPoint());
     layer->addChild(sprite);
     layer->addChild(this);

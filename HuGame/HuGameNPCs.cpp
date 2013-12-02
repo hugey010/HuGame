@@ -59,6 +59,7 @@ float HuGameNPCs::rateOfSoldiers() {
 float HuGameNPCs::rateOfRanged() {
     int level = HuPlayer::getInstance()->level;
     
+    
     return 2.0 / (float)level;
 
 }

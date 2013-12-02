@@ -123,6 +123,8 @@ bool HuEndRoundMenuScene::init()
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
     
+    refreshLabels();
+    
     return true;
 }
                                                  
@@ -141,7 +143,10 @@ void HuEndRoundMenuScene::refreshLabels()
     CCString *cannons = CCString::createWithFormat("Cannons: %d", player->numberOfCannons);
     cannonLabel->setString(cannons->getCString());
     
-    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel + 1);
+    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel);
+    if (player->defenseUpgradeLevel == DEFENSE_UPGRADE_3) {
+        fortressLevelString = CCString::createWithFormat("Fortress Level Max");
+    }
     defenseUpgradeItemLabel->setString(fortressLevelString->getCString());
 }
 

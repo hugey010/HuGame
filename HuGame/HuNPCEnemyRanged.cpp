@@ -64,6 +64,7 @@ void HuNPCEnemyRanged::attack() {
 }
 
 void HuNPCEnemyRanged::killNPC() {
+    this->unscheduleAllSelectors();
 }
 
 CCPoint HuNPCEnemyRanged::generateEnemyInitialPoint() {

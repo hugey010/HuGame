@@ -52,9 +52,33 @@ void HuGameFortress::handleBaseUpgrades() {
             break;
         }
         case DEFENSE_UPGRADE_2 : {
+            CCSprite *spriteLeft = CCSprite::create("adobe_wall_flipped.png");
+            //spriteLeft->setScale(0.7f);
+            spriteLeft->setRotation(40.0f);
+            spriteLeft->setPosition(ccp(SCREEN_WIDTH / 2 - player->baseWidth / 2, GROUND_END_Y / 2 + 100));
+            
+            CCSprite *spriteRight = CCSprite::create("adobe_wall.png");
+            //spriteRight->setScale(0.7f);
+            spriteRight->setRotation(-40.0f);
+            spriteRight->setPosition(ccp(SCREEN_WIDTH / 2 + player->baseWidth / 2, GROUND_END_Y / 2 + 100));
+            
+            this->addChild(spriteRight);
+            this->addChild(spriteLeft);
             break;
         }
         case DEFENSE_UPGRADE_3 : {
+            CCSprite *spriteLeft = CCSprite::create("green_fence_right.png");
+            spriteLeft->setScale(0.7f);
+            spriteLeft->setRotation(-40.0f);
+            spriteLeft->setPosition(ccp(SCREEN_WIDTH / 2 - player->baseWidth / 2, GROUND_END_Y / 2));
+            
+            CCSprite *spriteRight = CCSprite::create("green_fence_left.png");
+            spriteRight->setScale(0.7f);
+            spriteRight->setRotation(40.0f);
+            spriteRight->setPosition(ccp(SCREEN_WIDTH / 2 + player->baseWidth / 2, GROUND_END_Y / 2));
+            
+            this->addChild(spriteRight);
+            this->addChild(spriteLeft);
             break;
         }
         default : {

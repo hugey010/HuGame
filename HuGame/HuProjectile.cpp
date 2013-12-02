@@ -74,13 +74,13 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
     
     switch (projectileType) {
         case MISSILE : {
-            damage = 50;
+            damage = 200;
             
             break;
         }
             
         case BULLET : {
-            damage = 5;
+            damage = 1;
             
             break;
         }
@@ -139,7 +139,13 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     }
     
     // clean up the projectile and do explosion
-    CCSprite *explosion = CCSprite::create("explosion_simple.png");
+    CCSprite *explosion;
+    if (projectileType == MISSILE) {
+        explosion = CCSprite::create("explosion_simple_yellow.png");
+        explosion->setScale(1.5);
+    } else {
+        explosion = CCSprite::create("explosion_simple.png");
+    }
     CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::explosionFinished));
     CCArray *actionArray = CCArray::create();
@@ -151,8 +157,6 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     explosion->runAction(actionSequence);
     
     layer->removeChild(sprite);
-    
-
 }
 
 void HuProjectile::projectileToPlayerMoveFinished(cocos2d::CCNode *sender) {
@@ -161,7 +165,14 @@ void HuProjectile::projectileToPlayerMoveFinished(cocos2d::CCNode *sender) {
     HuPlayer::getInstance()->health -= damage;
     
     // clean up the projectile and do explosion
-    CCSprite *explosion = CCSprite::create("explosion_simple.png");
+    CCSprite *explosion;
+    if (projectileType == MISSILE) {
+        explosion = CCSprite::create("explosion_simple_yellow.png");
+        explosion->setScale(1.5);
+    } else {
+        explosion = CCSprite::create("explosion_simple.png");
+    }
+    
     CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::explosionFinished));
     CCArray *actionArray = CCArray::create();

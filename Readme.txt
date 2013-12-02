@@ -1,15 +1,16 @@
 11/13/2013
 
-Against Professor Boggus' recommendation, I decided to make  my lab 6 an iPhone game based made with the cocos2d-x framework. The main algorithms involve I am expecting to be graded on are mainly involving the generation of enemy npc units and collision detection. There are also algorithms for projectile positioning and rotation as well as the culling and memory management involved in destroying enemy npcs. The swipe functionality is something to behold as it works actually very well. Here's the rundown:
+Against Professor Boggus' recommendation, I decided to make  my lab 6 an iPhone game based made with the cocos2d-x framework. The main algorithms involved that I'm expecting to be graded on are the generation of enemy npc units and collision detection. There are also algorithms for projectile positioning and rotation as well as the culling and memory management involved in destroying enemy npcs. The swipe functionality is something to behold as it works actually very well. Here's the rundown:
 
 As far as programming practices, I tried to make each functional group on the screen its own CCLayer. The HUD, enemy npcs, friendly npcs, fortress, and swipe attacks are all their own layers.
 
-In general, I tried to follow the rule of threes, three enemy unit types, three friendly unit types, three health upgrades...
-Each enemy unit type extends from a virtual class HuEnemyNPC. This allowed some base functionaliy and each sublcass to implement its special characteristics (ie ranged attacks, suicide). My friendly npcs are all the same class because there functionality is very similar. Just the damage and type of projectiles they fire differ.
+In general, I tried to follow the rule of threes, but in some cases I only had time to follow the rule of twos. Two enemy unit types, two friendly unit types, two projectile types, three health upgrades...
+
+Each enemy unit type extends from a virtual class HuEnemyNPC. This allowed some base functionaliy and each sublcass to implement its special characteristics (ie ranged attacks, suicide). My friendly npcs are all the same class because their functionality is very similar. Just the damage and type of projectiles they fire differ.
 
 Friendly units are purchasable at the end round menu. These fire projectiles at enemy units. There is no collision detection here (friendlies never miss enemies and enemies).
 
-My projectiles class is flexible enough to be used by both friendlies and enemies alike. It is able to determine the proper angle of the projectile from its destination and starting point.
+My projectiles class is flexible enough to be used by both friendlies and enemies alike. It is able to determine the proper angle of the projectile from its destination and starting point. The speed and sprite depends on the type of projectile.
 
 The only human attack is swipe based. I generate a polygon from the initial and end points and then detect if any of the npc sprite positions are within the bounding box. If they are I do raycasting to check if the point is actually contained in the polygon. 
 

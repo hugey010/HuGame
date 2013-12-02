@@ -62,10 +62,28 @@ void HuNPCEnemySoldier::attack() {
     // do basic attack
     if (sprite->isVisible()) {
         HuPlayer::getInstance()->health -= dealsDamage;
+        
+        // animate attack
+        CCSprite *explosion = CCSprite::create("explosion_blue.png");
+        CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
+        CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemySoldier::attackActionFinished));
+        CCArray *actionArray = CCArray::create();
+        actionArray->addObject(scale);
+        actionArray->addObject(finished);
+        CCSequence *actionSequence = CCSequence::create(actionArray);
+        explosion->setPosition(sprite->getPosition());
+        layer->addChild(explosion);
+        explosion->runAction(actionSequence);
     }
 }
 
+void HuNPCEnemySoldier::attackActionFinished(CCNode *sender) {
+    CCSprite *sprite = (CCSprite*)sender;
+    layer->removeChild(sprite);
+}
+
 void HuNPCEnemySoldier::killNPC() {
+    this->unscheduleAllSelectors();
 }
 
 CCPoint HuNPCEnemySoldier::generateEnemyInitialPoint() {

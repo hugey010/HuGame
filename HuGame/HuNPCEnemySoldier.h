@@ -22,6 +22,8 @@ private:
     void setupActions();
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void killNPC();
+    
+    void attackActionFinished(cocos2d::CCNode *sender);
 };
 
 #endif /* defined(__HuGame__HuNPCEnemySoldier__) */

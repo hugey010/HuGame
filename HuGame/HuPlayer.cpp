@@ -204,7 +204,7 @@ bool HuPlayer::loadPlayerWithID(int playerID)
         char sqlbuffer[200];
         int n = sprintf(sqlbuffer, "SELECT * FROM PLAYERS WHERE ID = %d;", playerID);
         if (n > 200) {
-            fprintf(stdout, "SQL: save player sqlbuffer overflow\n");
+            fprintf(stdout, "SQL: load player sqlbuffer overflow\n");
             return false;;
         }
         
@@ -212,11 +212,11 @@ bool HuPlayer::loadPlayerWithID(int playerID)
         rc = sqlite3_exec(db, sqlbuffer,  sqlLoadCallback, 0, &zErrMsg);
         
         if (rc != SQLITE_OK) {
-            fprintf(stdout, "SQL Error: saving player %s\n", zErrMsg);
+            fprintf(stdout, "SQL Error: load player %s\n", zErrMsg);
             sqlite3_free(zErrMsg);
             return false;
         } else {
-            fprintf(stdout, "SQL: saving player successful.\n");
+            fprintf(stdout, "SQL: load player successful.\n");
         }
         
         sqlite3_close(db);

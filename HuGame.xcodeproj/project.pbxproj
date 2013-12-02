@@ -17,6 +17,7 @@
 		2F3FFD6D184D3E890062D998 /* green_fence_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD6C184D3E890062D998 /* green_fence_right.png */; };
 		2F3FFD6F184D3E900062D998 /* green_fence_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD6E184D3E900062D998 /* green_fence_left.png */; };
 		2F3FFD72184D3F2C0062D998 /* adobe_wall_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD71184D3F2C0062D998 /* adobe_wall_flipped.png */; };
+		2F3FFD74184D44D40062D998 /* explosion_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD73184D44D40062D998 /* explosion_blue.png */; };
 		2FB258591849B8D0008346CC /* HuNPCEnemySoldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */; };
 		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
 		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
@@ -338,6 +339,7 @@
 		2F3FFD6C184D3E890062D998 /* green_fence_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_fence_right.png; sourceTree = "<group>"; };
 		2F3FFD6E184D3E900062D998 /* green_fence_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_fence_left.png; sourceTree = "<group>"; };
 		2F3FFD71184D3F2C0062D998 /* adobe_wall_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adobe_wall_flipped.png; sourceTree = "<group>"; };
+		2F3FFD73184D44D40062D998 /* explosion_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_blue.png; sourceTree = "<group>"; };
 		2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPCEnemySoldier.cpp; sourceTree = "<group>"; };
 		2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPCEnemySoldier.h; sourceTree = "<group>"; };
 		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
@@ -1142,6 +1144,7 @@
 			children = (
 				2F3FFD70184D3E930062D998 /* Fortress */,
 				2F3FFD6A184D3AC00062D998 /* explosion_simple_yellow.png */,
+				2F3FFD73184D44D40062D998 /* explosion_blue.png */,
 				2F3FFD68184C262C0062D998 /* kitten_2.png */,
 				2F3FFD66184C258A0062D998 /* kitten.png */,
 				2F3FFD62184C0EB60062D998 /* turtle_tank.png */,
@@ -2408,6 +2411,7 @@
 				96DFCAF818348A5100488903 /* broken_fence_left.png in Resources */,
 				2F28E2431841CBF300AF86AD /* missile_launcher.png in Resources */,
 				968FF19117AB4C78002BFF45 /* Projectile.png in Resources */,
+				2F3FFD74184D44D40062D998 /* explosion_blue.png in Resources */,
 				968FF19217AB4C78002BFF45 /* Target.png in Resources */,
 				960893D217AEC21100A779E6 /* puppy.png in Resources */,
 				960893D717AEC64200A779E6 /* background_desert.jpg in Resources */,

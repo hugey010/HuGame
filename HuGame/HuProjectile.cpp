@@ -14,6 +14,13 @@ using namespace cocos2d;
 
 
 bool HuProjectile::initialize() {
+    
+    if (!CCNode::init()) {
+        return false;
+    }
+    
+
+    
     float time = 0;
     
     switch (this->projectileType) {
@@ -22,7 +29,7 @@ bool HuProjectile::initialize() {
             sprite->setScale(0.2);
             sprite->setPosition(ccp(startingPosition.x - 40, startingPosition.y));
 
-            time = npc->sprite->getPosition().getDistance(startingPosition) * 0.002;
+            time = endingPosition.getDistance(startingPosition) * 0.002;
             break;
         }
         case BULLET : {
@@ -30,30 +37,43 @@ bool HuProjectile::initialize() {
             sprite->setScale(0.4);
             sprite->setPosition(this->startingPosition);
 
-            time = npc->sprite->getPosition().getDistance(startingPosition) * 0.001;
+            time = endingPosition.getDistance(startingPosition) * 0.001;
             break;
         }
     }
     
-    float ccangle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(npc->sprite->getPosition()));
-    CCPoint endingPosition = npc->sprite->getPosition();
+    float ccangle = CC_RADIANS_TO_DEGREES(startingPosition.getAngle(endingPosition));
     
-    float deltax = startingPosition.x - endingPosition.x;
-    float deltay = startingPosition.y - endingPosition.y;
-    float angleInDegrees = atan2(deltay, deltax) * 180.0 / M_PI;
-    float angle = 0;
     
-    if (npc->sprite->getPositionX() < SCREEN_WIDTH / 2) {
-        angle = angleInDegrees + ccangle + 190;
+    //float deltax = startingPosition.x - endingPosition.x;
+    //float deltay = startingPosition.y - endingPosition.y;
+    //float angleInDegrees = atan2(deltay, deltax) * 180.0 / M_PI;
+    //float angle = 0;
+    
+    
+    if (endingPosition.x < startingPosition.x) {
+        //angle = angleInDegrees + ccangle + 190;
+        ccangle -= 90;
+        
     } else {
-        angle = -1 * angleInDegrees - ccangle + 230;
-
+        //angle = -1 * angleInDegrees - ccangle + 230;
+        ccangle += 90;
     }
 
-    sprite->setRotation(angle);
+    sprite->setRotation(ccangle);
     
-    CCFiniteTimeAction *move = CCMoveTo::create(time, npc->sprite->getPosition());
-    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::projectileMoveFinished));
+    CCFiniteTimeAction *move = CCMoveTo::create(time, endingPosition);
+    
+    
+    // the ending selector depends on if this class is given an npc to attack
+    SEL_CallFuncN func;
+    if (npc != NULL) {
+        func = callfuncN_selector(HuProjectile::projectileMoveFinished);
+    } else {
+        func = callfuncN_selector(HuProjectile::projectileToPlayerMoveFinished);
+    }
+    
+    CCFiniteTimeAction *finished = CCCallFuncN::create(this, func);
     
     CCArray *actionArray = CCArray::create();
     actionArray->addObject(move);
@@ -67,10 +87,25 @@ bool HuProjectile::initialize() {
 }
 
 bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosition, HuNPC *npc, CCLayer* layer) {
-    if (!CCNode::init()) {
-        return false;
+    
+    switch (projectileType) {
+        case MISSILE : {
+            damage = 50;
+            
+            break;
+        }
+            
+        case BULLET : {
+            damage = 20;
+            
+            break;
+        }
+        default:
+            damage = 1;
+            break;
     }
     
+    this->endingPosition = npc->getPosition();
     this->projectileType = type;
     this->startingPosition = startingPosition;
     this->npc = npc;
@@ -81,27 +116,39 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
     
 }
 
-void HuProjectile::projectileMoveFinished(CCNode *sender) {
+bool HuProjectile::initForPlayerAttack(ProjectileType type, cocos2d::CCPoint startingPosition, cocos2d::CCPoint endingPosition, cocos2d::CCLayer *layer) {
     
-    CCSprite *sprite = (CCSprite*)sender;
-    
-    int damage = 1;
     switch (projectileType) {
         case MISSILE : {
-            damage = 50;
+            damage = 5;
             
             break;
         }
-        
+            
         case BULLET : {
-            damage = 20;
+            damage = 2;
             
             break;
         }
         default:
+            damage = 1;
             break;
     }
     
+    this->npc = NULL;
+    this->endingPosition = endingPosition;
+    this->projectileType = type;
+    this->startingPosition = startingPosition;
+    this->layer = layer;
+    this->projectileType = type;
+    
+    return initialize();
+}
+
+void HuProjectile::projectileMoveFinished(CCNode *sender) {
+    
+    CCSprite *sprite = (CCSprite*)sender;
+
     if (npc->takeDamageFromNPC(damage)) {
         CCArray *npcs = HuGameNPCs::getNPCs();
         npcs->fastRemoveObject((CCNode*)npc);
@@ -122,6 +169,26 @@ void HuProjectile::projectileMoveFinished(CCNode *sender) {
     layer->removeChild(sprite);
     
 
+}
+
+void HuProjectile::projectileToPlayerMoveFinished(cocos2d::CCNode *sender) {
+    CCSprite *sprite = (CCSprite*)sender;
+    
+    HuPlayer::getInstance()->health -= damage;
+    
+    // clean up the projectile and do explosion
+    CCSprite *explosion = CCSprite::create("explosion_simple.png");
+    CCFiniteTimeAction *scale = CCScaleBy::create(0.5, 0.2);
+    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuProjectile::explosionFinished));
+    CCArray *actionArray = CCArray::create();
+    actionArray->addObject(scale);
+    actionArray->addObject(finished);
+    CCSequence *actionSequence = CCSequence::create(actionArray);
+    explosion->setPosition(sprite->getPosition());
+    layer->addChild(explosion);
+    explosion->runAction(actionSequence);
+    
+    layer->removeChild(sprite);
 }
 
 void HuProjectile::explosionFinished(CCNode *sender) {

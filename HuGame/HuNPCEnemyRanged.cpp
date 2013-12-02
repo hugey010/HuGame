@@ -7,8 +7,8 @@
 //
 
 #include "HuNPCEnemyRanged.h"
-
 #include "HuPlayer.h"
+#include "HuProjectile.h"
 
 using namespace cocos2d;
 
@@ -52,14 +52,15 @@ void HuNPCEnemyRanged::setupActions() {
 void HuNPCEnemyRanged::enemyMoveFinished(CCNode *sender) {
     
     // schedule attack
-    this->schedule(schedule_selector(HuNPCEnemyRanged::attack), 1, kCCRepeatForever, 0);
+    if (sprite->isVisible()) {
+        this->schedule(schedule_selector(HuNPCEnemyRanged::attack), 1, kCCRepeatForever, 0);
+    }
 }
 
 void HuNPCEnemyRanged::attack() {
-    // do basic attack
-    if (sprite->isVisible()) {
-        HuPlayer::getInstance()->health -= dealsDamage;
-    }
+    // do ranged attack
+    HuProjectile *projectile = new HuProjectile;
+    projectile->initForPlayerAttack(MISSILE, sprite->getPosition(), ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 5), layer);
 }
 
 void HuNPCEnemyRanged::killNPC() {

@@ -253,7 +253,7 @@ void HuEndRoundMenuScene::upgradeDefensePressed(CCObject *sender) {
         case DEFENSE_UPGRADE_2 : {
             if (player->currency >= COST_FORTRESS_3) {
                 player->currency -= COST_FORTRESS_3;
-                player->defenseUpgradeLevel = DEFENSE_UPGRADE_2;
+                player->defenseUpgradeLevel = DEFENSE_UPGRADE_3;
                 player->maxHealth += 50;
                 player->health = player->maxHealth;
                 

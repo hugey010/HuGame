@@ -1,21 +1,21 @@
 //
-//  HuNPCEnemySoldier.h
+//  HuNPCEnemyRanged.h
 //  HuGame
 //
-//  Created by Tyler on 11/30/13.
+//  Created by Tyler on 12/1/13.
 //
 //
 
-#ifndef __HuGame__HuNPCEnemySoldier__
-#define __HuGame__HuNPCEnemySoldier__
+#ifndef __HuGame__HuNPCEnemyRanged__
+#define __HuGame__HuNPCEnemyRanged__
 
 #include "HuNPC.h"
 
-class HuNPCEnemySoldier : HuNPC {
+class HuNPCEnemyRanged : HuNPC {
 public:
     static cocos2d::CCPoint generateEnemyInitialPoint();
     void attack();
-
+    
 private:
     void setupSprite();
     void setupStats();
@@ -24,4 +24,4 @@ private:
     void killNPC();
 };
 
-#endif /* defined(__HuGame__HuNPCEnemySoldier__) */
+#endif /* defined(__HuGame__HuNPCEnemyRanged__) */

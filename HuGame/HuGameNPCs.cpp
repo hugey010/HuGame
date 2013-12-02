@@ -11,6 +11,7 @@
 #include "CCGestureRecognizer/CCSwipeGestureRecognizer.h"
 #include "HuNPC.h"
 #include "HuNPCEnemySoldier.h"
+#include "HuNPCEnemyRanged.h"
 
 using namespace cocos2d;
 
@@ -25,7 +26,7 @@ bool HuGameNPCs::init()
     
     npcs = new CCArray;
     this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, kCCRepeatForever, 0);
-    //this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.5, kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.5, kCCRepeatForever, 0);
     
     // DEBUG: just for creating one enemy per round
     //this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, 0, 0);
@@ -35,7 +36,9 @@ bool HuGameNPCs::init()
 
 void HuGameNPCs::makeRangedEnemy()
 {
-    
+    HuNPC *npc = (HuNPC*)new HuNPCEnemyRanged;
+    npc->initWithLayer(this);
+    npcs->addObject((CCNode*)npc);
 }
 
 void HuGameNPCs::makeSoldierEnemy()

@@ -14,10 +14,11 @@
 #include "Constants.h"
 
 
-class HuNPC : cocos2d::CCNode {
+class HuNPC : public cocos2d::CCNode {
 public:
     
     cocos2d::CCSprite *sprite;
+    cocos2d::CCLayer *layer;
     int health;
     int givesCurrency;
     int dealsDamage;
@@ -35,14 +36,13 @@ protected:
     
 private:
     std::set<ElementalDamageTypes> currentElementalDamage;
-    cocos2d::CCLayer *layer;
     
     // REQUIRED: methods must be implemented by subclass
-    void setupSprite();
-    void setupStats();
-    void setupActions();
-    void enemyMoveFinished(cocos2d::CCNode *sender);
-    void killNPC();
+    virtual void setupSprite(){};
+    virtual void setupStats(){};
+    virtual void setupActions(){};
+    virtual void enemyMoveFinished(cocos2d::CCNode *sender){};
+    virtual void killNPC(){};
 
 };
 

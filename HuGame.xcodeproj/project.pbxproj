@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F28E2411841C76B00AF86AD /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2401841C76B00AF86AD /* bullet.png */; };
 		2F28E2431841CBF300AF86AD /* missile_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F28E2421841CBF300AF86AD /* missile_launcher.png */; };
+		2F3FFD5D184C00AE0062D998 /* HuNPCEnemyRanged.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FFD5B184C00AE0062D998 /* HuNPCEnemyRanged.cpp */; };
+		2F3FFD63184C0EB60062D998 /* turtle_tank.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD62184C0EB60062D998 /* turtle_tank.png */; };
 		2FB258591849B8D0008346CC /* HuNPCEnemySoldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */; };
 		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
 		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
@@ -321,6 +323,9 @@
 /* Begin PBXFileReference section */
 		2F28E2401841C76B00AF86AD /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		2F28E2421841CBF300AF86AD /* missile_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_launcher.png; sourceTree = "<group>"; };
+		2F3FFD5B184C00AE0062D998 /* HuNPCEnemyRanged.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPCEnemyRanged.cpp; sourceTree = "<group>"; };
+		2F3FFD5C184C00AE0062D998 /* HuNPCEnemyRanged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPCEnemyRanged.h; sourceTree = "<group>"; };
+		2F3FFD62184C0EB60062D998 /* turtle_tank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle_tank.png; sourceTree = "<group>"; };
 		2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPCEnemySoldier.cpp; sourceTree = "<group>"; };
 		2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPCEnemySoldier.h; sourceTree = "<group>"; };
 		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
@@ -997,6 +1002,8 @@
 				96D0B67917DE68DC006A2FA9 /* HuNPC.cpp */,
 				2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */,
 				2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */,
+				2F3FFD5B184C00AE0062D998 /* HuNPCEnemyRanged.cpp */,
+				2F3FFD5C184C00AE0062D998 /* HuNPCEnemyRanged.h */,
 			);
 			name = EnemyNPCs;
 			sourceTree = "<group>";
@@ -1108,6 +1115,7 @@
 		96FF9DDB178A658300CF6E9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F3FFD62184C0EB60062D998 /* turtle_tank.png */,
 				2F28E2421841CBF300AF86AD /* missile_launcher.png */,
 				2F28E2401841C76B00AF86AD /* bullet.png */,
 				960C5BEF183B36EC008692BE /* missile.png */,
@@ -2356,6 +2364,7 @@
 				96FF9DE9178A658300CF6E9D /* Icon-Small.png in Resources */,
 				96FF9DEB178A658300CF6E9D /* Icon-Small@2x.png in Resources */,
 				96FF9DED178A658300CF6E9D /* Icon.png in Resources */,
+				2F3FFD63184C0EB60062D998 /* turtle_tank.png in Resources */,
 				96FF9DEF178A658300CF6E9D /* Icon@2x.png in Resources */,
 				96FF9DF1178A658300CF6E9D /* iTunesArtwork in Resources */,
 				96DFCAF21833D80300488903 /* broken-fence.png in Resources */,
@@ -2607,6 +2616,7 @@
 				96FFA0F5178A658800CF6E9D /* SkeletonJson.cpp in Sources */,
 				96FFA0F8178A658800CF6E9D /* Skin.cpp in Sources */,
 				96FFA0FB178A658800CF6E9D /* Slot.cpp in Sources */,
+				2F3FFD5D184C00AE0062D998 /* HuNPCEnemyRanged.cpp in Sources */,
 				96FFA0FE178A658800CF6E9D /* SlotData.cpp in Sources */,
 				96FFA101178A658800CF6E9D /* spine-cocos2dx.cpp in Sources */,
 				96FFA126178A658800CF6E9D /* chipmunk.c in Sources */,

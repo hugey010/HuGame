@@ -1,24 +1,25 @@
 //
-//  HuNPCEnemySoldier.cpp
+//  HuNPCEnemyRanged.cpp
 //  HuGame
 //
-//  Created by Tyler on 11/30/13.
+//  Created by Tyler on 12/1/13.
 //
 //
 
-#include "HuNPCEnemySoldier.h"
+#include "HuNPCEnemyRanged.h"
+
 #include "HuPlayer.h"
 
 using namespace cocos2d;
 
-void HuNPCEnemySoldier::setupSprite() {
-    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("Player.png", CCRectMake(0, 0, 27, 40)));
-    sprite->setPosition(HuNPCEnemySoldier::generateEnemyInitialPoint());
+void HuNPCEnemyRanged::setupSprite() {
+    sprite = CCSprite::createWithSpriteFrame(CCSpriteFrame::create("turtle_tank.png", CCRectMake(0, 0, 50, 50)));
+    sprite->setPosition(HuNPCEnemyRanged::generateEnemyInitialPoint());
     layer->addChild(sprite);
-    layer->addChild(this);
+    layer->addChild((CCNode*)this);
 }
 
-void HuNPCEnemySoldier::setupStats() {
+void HuNPCEnemyRanged::setupStats() {
     health = 100;
     givesCurrency = 1;
     dealsDamage = 1;
@@ -26,21 +27,17 @@ void HuNPCEnemySoldier::setupStats() {
     
 }
 
-void HuNPCEnemySoldier::setupActions() {
-    HuPlayer *player = HuPlayer::getInstance();
-    
+void HuNPCEnemyRanged::setupActions() {
     
     int leftRight = (sprite->getPositionX() < (SCREEN_WIDTH / 2)) ? 1 : -1;
-    
-    // rotate image to it faces forwards
     sprite->setScaleX(leftRight * sprite->getScaleX());
     
-    float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (player->baseWidth / 2);
+    float realFinalX = (SCREEN_WIDTH / 2) - leftRight * (SCREEN_WIDTH / 4);
     float realFinalY = sprite->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
     
     CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
-    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemySoldier::enemyMoveFinished));
+    CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemyRanged::enemyMoveFinished));
     
     CCArray *actionArray = CCArray::create();
     actionArray->addObject(move);
@@ -52,23 +49,23 @@ void HuNPCEnemySoldier::setupActions() {
     sprite->runAction(actionSequence);
 }
 
-void HuNPCEnemySoldier::enemyMoveFinished(CCNode *sender) {
-
+void HuNPCEnemyRanged::enemyMoveFinished(CCNode *sender) {
+    
     // schedule attack
-    this->schedule(schedule_selector(HuNPCEnemySoldier::attack), 1, kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuNPCEnemyRanged::attack), 1, kCCRepeatForever, 0);
 }
 
-void HuNPCEnemySoldier::attack() {
+void HuNPCEnemyRanged::attack() {
     // do basic attack
     if (sprite->isVisible()) {
         HuPlayer::getInstance()->health -= dealsDamage;
     }
 }
 
-void HuNPCEnemySoldier::killNPC() {
+void HuNPCEnemyRanged::killNPC() {
 }
 
-CCPoint HuNPCEnemySoldier::generateEnemyInitialPoint() {
+CCPoint HuNPCEnemyRanged::generateEnemyInitialPoint() {
     float x = 0;
     float y = 0;
     
@@ -81,4 +78,3 @@ CCPoint HuNPCEnemySoldier::generateEnemyInitialPoint() {
     
     return ccp(x, y);
 }
-

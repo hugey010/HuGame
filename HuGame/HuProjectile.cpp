@@ -71,8 +71,14 @@ bool HuProjectile::initialize() {
 }
 
 bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosition, HuNPC *npc, CCLayer* layer) {
+
+    this->endingPosition = npc->sprite->getPosition();
+    this->startingPosition = startingPosition;
+    this->npc = npc;
+    this->layer = layer;
+    this->projectileType = type;
     
-    switch (projectileType) {
+    switch (type) {
         case MISSILE : {
             damage = 200;
             
@@ -84,23 +90,20 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
             
             break;
         }
-        default:
-            damage = 1;
-            break;
+
     }
     
-    this->endingPosition = npc->sprite->getPosition();
-    this->projectileType = type;
-    this->startingPosition = startingPosition;
-    this->npc = npc;
-    this->layer = layer;
-    this->projectileType = type;
-    
     return initialize();
-    
 }
 
 bool HuProjectile::initForPlayerAttack(ProjectileType type, cocos2d::CCPoint startingPosition, cocos2d::CCPoint endingPosition, cocos2d::CCLayer *layer) {
+    
+    this->npc = NULL;
+    this->endingPosition = endingPosition;
+    this->projectileType = type;
+    this->startingPosition = startingPosition;
+    this->layer = layer;
+    this->projectileType = type;
     
     switch (projectileType) {
         case MISSILE : {
@@ -118,13 +121,6 @@ bool HuProjectile::initForPlayerAttack(ProjectileType type, cocos2d::CCPoint sta
             damage = 1;
             break;
     }
-    
-    this->npc = NULL;
-    this->endingPosition = endingPosition;
-    this->projectileType = type;
-    this->startingPosition = startingPosition;
-    this->layer = layer;
-    this->projectileType = type;
     
     return initialize();
 }

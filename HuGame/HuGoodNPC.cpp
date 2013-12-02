@@ -20,8 +20,8 @@ bool HuGoodNPC::initialize() {
         return false;
     }
     
-    float max = 5.0;
-    float min = 1.0;
+    float max;
+    float min;
     
     switch (soldierType) {
         case SOLDIER_TYPE_SOLDIER : {
@@ -96,6 +96,8 @@ void HuGoodNPC::attack(CCNode *sender) {
             projectileType = BULLET;
             break;
     }
+    
+    CCLog("projectile type = %d", projectileType);
     
     projectile->initWithMandatories(projectileType, sprite->getPosition(), targetNPC, layer);
     

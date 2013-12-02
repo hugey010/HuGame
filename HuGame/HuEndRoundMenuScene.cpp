@@ -113,7 +113,7 @@ bool HuEndRoundMenuScene::init()
     sellAllItem->setPosition(ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50));
     
     // DEFENSE UPGRADE ITEM
-    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel + 1);
+    CCString *fortressLevelString = CCString::createWithFormat("Fortress Level %d", (int)player->defenseUpgradeLevel);
     CCLabelTTF *defenseUpgradeLabel = CCLabelTTF::create(fortressLevelString->getCString(), MENU_FONT, MENU_FONT_SIZE);
     defenseUpgradeItemLabel = CCMenuItemLabel::create(defenseUpgradeLabel, this, menu_selector(HuEndRoundMenuScene::upgradeDefensePressed));
     defenseUpgradeItemLabel->setPosition(ccp(defenseLabel->getPositionX(), soldierLabel->getPositionY()));

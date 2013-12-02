@@ -25,8 +25,8 @@ bool HuGameNPCs::init()
     }
     
     npcs = new CCArray;
-    this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, kCCRepeatForever, 0);
-    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.5, kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.3, kCCRepeatForever, 0);
+    this->schedule(schedule_selector(HuGameNPCs::makeRangedEnemy), 0.6, kCCRepeatForever, 0);
     
     // DEBUG: just for creating one enemy per round
     //this->schedule(schedule_selector(HuGameNPCs::makeSoldierEnemy), 0.1, 0, 0);

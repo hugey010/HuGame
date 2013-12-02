@@ -105,7 +105,7 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
             break;
     }
     
-    this->endingPosition = npc->getPosition();
+    this->endingPosition = npc->sprite->getPosition();
     this->projectileType = type;
     this->startingPosition = startingPosition;
     this->npc = npc;

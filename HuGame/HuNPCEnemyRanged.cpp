@@ -10,6 +10,8 @@
 #include "HuPlayer.h"
 #include "HuProjectile.h"
 
+#define M_PI        3.14159265358979323846264338327950288   /* pi             */
+
 using namespace cocos2d;
 
 void HuNPCEnemyRanged::setupSprite() {
@@ -104,7 +106,8 @@ float HuNPCEnemyRanged::secondsToReachFinalPosition() {
             return 1.0;
         }
         default: {
-            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 100.0 / (float)player->level);
+            float t = (float)player->level / 100.0;
+            return 1.0 - (sin (t - M_PI / 2.0 ) + 1.0) / 2.0;
         }
 
     }
@@ -132,7 +135,8 @@ float HuNPCEnemyRanged::attackInterval() {
             return 1.0;
         }
         default: {
-            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 100.0 / (float)player->level);
+            float t = (float)player->level / 100.0;
+            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, t);
         }
     }
 }

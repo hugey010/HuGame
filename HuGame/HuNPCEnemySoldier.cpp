@@ -19,7 +19,7 @@ void HuNPCEnemySoldier::setupSprite() {
 }
 
 void HuNPCEnemySoldier::setupStats() {
-    health = 100;
+    health = 50;
     givesCurrency = 1;
     dealsDamage = 1;
     attackSpeed = 2;
@@ -39,7 +39,7 @@ void HuNPCEnemySoldier::setupActions() {
     float realFinalY = sprite->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
     
-    CCFiniteTimeAction *move = CCMoveTo::create(5.0, realDestination);
+    CCFiniteTimeAction *move = CCMoveTo::create(SOLDIER_MOVEMENT_TIME, realDestination);
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemySoldier::enemyMoveFinished));
     
     CCArray *actionArray = CCArray::create();

@@ -71,6 +71,9 @@ bool HuProjectile::initialize() {
 }
 
 bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosition, HuNPC *npc, CCLayer* layer) {
+    if (!npc->sprite->isVisible()) {
+        return false;
+    }
 
     this->endingPosition = npc->sprite->getPosition();
     this->startingPosition = startingPosition;
@@ -86,7 +89,7 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
         }
             
         case BULLET : {
-            damage = 1;
+            damage = 5;
             
             break;
         }

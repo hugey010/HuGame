@@ -61,7 +61,6 @@ bool HuNPC::takeDamageFromNPC(int damage) {
         return false;
     }
 
-    CCLog("damage - %d", damage);
     this->health -= damage;
     if (health <= 0) {
         sprite->setVisible(false);

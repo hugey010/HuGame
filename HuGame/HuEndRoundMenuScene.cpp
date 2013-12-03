@@ -168,6 +168,36 @@ void HuEndRoundMenuScene::sellAllPressed(cocos2d::CCObject *psender)
     player->numberOfSoldiers = 0;
     player->numberOfCannons = 0;
     
+    // sell defense
+    player->defenseUpgradeLevel = DEFENSE_UPGRADE_0;
+    switch (player->defenseUpgradeLevel) {
+        case DEFENSE_UPGRADE_0: {
+            // didnt cost anything to not but anything
+            break;
+        }
+            
+        case DEFENSE_UPGRADE_1 : {
+            player->currency += COST_FORTRESS_1;
+
+            break;
+        }
+            
+        case DEFENSE_UPGRADE_2 : {
+            player->currency += COST_FORTRESS_1 + COST_FORTRESS_2;
+
+            break;
+        }
+            
+        case DEFENSE_UPGRADE_3 : {
+            player->currency += COST_FORTRESS_1 + COST_FORTRESS_2 + COST_FORTRESS_3;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    
     refreshLabels();
 }
 

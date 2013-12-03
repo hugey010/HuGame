@@ -21,7 +21,7 @@ void HuNPCEnemyRanged::setupSprite() {
 
 void HuNPCEnemyRanged::setupStats() {
     health = 200;
-    givesCurrency = 3;
+    givesCurrency = 5;
     dealsDamage = 3;
     attackSpeed = 1;
     
@@ -36,7 +36,7 @@ void HuNPCEnemyRanged::setupActions() {
     float realFinalY = sprite->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
     
-    CCFiniteTimeAction *move = CCMoveTo::create(3.0, realDestination);
+    CCFiniteTimeAction *move = CCMoveTo::create(CANNON_MOVEMENT_TIME, realDestination);
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemyRanged::enemyMoveFinished));
     
     CCArray *actionArray = CCArray::create();

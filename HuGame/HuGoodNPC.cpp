@@ -96,9 +96,7 @@ void HuGoodNPC::attack(CCNode *sender) {
             projectileType = BULLET;
             break;
     }
-    
-    CCLog("projectile type = %d", projectileType);
-    
+        
     projectile->initWithMandatories(projectileType, sprite->getPosition(), targetNPC, layer);
     
 }

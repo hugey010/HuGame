@@ -53,14 +53,14 @@ void HuGameNPCs::makeSoldierEnemy()
 float HuGameNPCs::rateOfSoldiers() {
     int level = HuPlayer::getInstance()->level;
     
-    return 1.0 / (float)pow(level, 1.7);
+    return 1.0 / (float)pow(level, 1.9);
 }
 
 float HuGameNPCs::rateOfRanged() {
     int level = HuPlayer::getInstance()->level;
     
     //return 2.0;
-    return 2.0 / (float)pow(level, 1.7);
+    return 1.0 / (float)pow(level, 1.9);
 
 }
 

@@ -73,3 +73,11 @@ bool HuNPC::takeDamageFromNPC(int damage) {
     
     return false;
 }
+
+float HuNPC::bezierat( float a, float b, float c, float d, float t )
+{
+    return (powf(1-t,3) * a +
+            3*t*(powf(1-t,2))*b +
+            3*powf(t,2)*(1-t)*c +
+            powf(t,3)*d );
+}

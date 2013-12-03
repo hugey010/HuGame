@@ -24,6 +24,8 @@ private:
     void killNPC();
     
     float secondsToReachFinalPosition();
+    float attackInterval();
+
 };
 
 #endif /* defined(__HuGame__HuNPCEnemyRanged__) */

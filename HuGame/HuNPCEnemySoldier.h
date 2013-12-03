@@ -24,7 +24,9 @@ private:
     void killNPC();
     
     void attackActionFinished(cocos2d::CCNode *sender);
+    
     float secondsToReachFinalPosition();
+    float attackInterval();
 
 };
 

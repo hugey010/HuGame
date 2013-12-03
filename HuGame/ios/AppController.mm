@@ -58,8 +58,8 @@ static AppDelegate s_sharedApplication;
     [window makeKeyAndVisible];
     
 
-    // TODO: this isn't working to set the style of control center and top bar to the lock thing
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    // TODO: this isn't working to set the style of control center and top bar to the lock thing    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 
     cocos2d::CCApplication::sharedApplication()->run();
     return YES;

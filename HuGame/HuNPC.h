@@ -22,13 +22,15 @@ public:
     int health;
     int givesCurrency;
     int dealsDamage;
-    int attackSpeed;
+    float attackSpeed;
   
     void initWithLayer(cocos2d::CCLayer *layer);
     
     // return true if it kills the npc
     bool takeDamageFromPlayer(ElementalDamageTypes damageType);
     bool takeDamageFromNPC(int damage);
+    float bezierat( float a, float b, float c, float d, float t);
+
     
 protected:
     // don't allow normal initialization - do not override
@@ -44,6 +46,7 @@ private:
     virtual void enemyMoveFinished(cocos2d::CCNode *sender){};
     virtual void killNPC(){};
     //virtual float secondsToReachFinalPosition();
+
 
 };
 

@@ -22,7 +22,6 @@ void HuNPCEnemySoldier::setupStats() {
     health = 50;
     givesCurrency = 1;
     dealsDamage = 1;
-    attackSpeed = 2;
     
 }
 
@@ -55,7 +54,10 @@ void HuNPCEnemySoldier::setupActions() {
 void HuNPCEnemySoldier::enemyMoveFinished(CCNode *sender) {
 
     // schedule attack
-    this->schedule(schedule_selector(HuNPCEnemySoldier::attack), 1, kCCRepeatForever, 0);
+    float interval = attackInterval();
+    if (sprite->isVisible()) {
+        this->schedule(schedule_selector(HuNPCEnemySoldier::attack), interval, kCCRepeatForever, interval);
+    }
 }
 
 void HuNPCEnemySoldier::attack() {
@@ -135,7 +137,7 @@ float HuNPCEnemySoldier::secondsToReachFinalPosition() {
             break;
         }
         case 9:{
-            speed = 1.0;
+            speed = 1.25;
         }
         case 10:
         case 11:
@@ -154,5 +156,36 @@ float HuNPCEnemySoldier::secondsToReachFinalPosition() {
     }
     return speed;
 }
+
+float HuNPCEnemySoldier::attackInterval() {
+    
+    HuPlayer *player = HuPlayer::getInstance();
+    float interval = 1.0;
+    switch (player->level) {
+        case 0 :
+        case 1:
+        case 2: {
+            return interval = 3.0;
+        }
+        case 3: {
+            return interval = 2.0;
+        }
+        case 4: {
+            return interval = 1.5;
+        }
+        case 5:{
+            return interval = 1.25;
+        }
+        case 6: {
+            return interval = 1.0;
+        }
+        default: {
+            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 0.5);
+        }
+            
+    }
+    return interval;
+}
+
 
 

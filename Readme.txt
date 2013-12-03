@@ -23,5 +23,16 @@ Game balancing alrogithm
 Get harder as the levels increase
 Start easy, end impossibly
 
-Method:
-There is a set total health for all the enemies per each round. 
+Method: The purchasable npcs pick the damage gained in the previous round (plus a little extra). This means the user has to outdamage the change in total enemy health. This is both easy, because swipe is an area of effect attack, and difficult, because the change is an exponential function.
+What remains constant:
+Enemies - health, damage per second, reward amount, speed
+Friendlies - damage per second, cost
+
+What changes:
+Enemies - the number per round is a function of the current user level to the power of 1.7. Ranged enemies are generated at half the rate of melee enemies.
+
+The result: A game that starts easy and becomes exponentially more difficult.
+
+Miscellaneous:
+-I really wanted to implement flying enemies but ran out of time. It makes swiping much more difficult when you have to cover more vertical area.
+- It is frustrating to click the buttons on the menu.

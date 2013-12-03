@@ -27,8 +27,8 @@
 
 
 // MENU DEFINITIONS
-#define MENU_FONT_SIZE (float)20.0
-#define MENU_FONT_HEADER_SIZE (float)30.0
+#define MENU_FONT_SIZE (float)24.0
+#define MENU_FONT_HEADER_SIZE (float)40.0
 #define MENU_FONT "Helvetica"
 
 // HUD DEFINITIONS

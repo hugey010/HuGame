@@ -39,7 +39,7 @@ void HuNPCEnemySoldier::setupActions() {
     float realFinalY = sprite->getPositionY();
     CCPoint realDestination = ccp(realFinalX, realFinalY);
     
-    CCFiniteTimeAction *move = CCMoveTo::create(SOLDIER_MOVEMENT_TIME, realDestination);
+    CCFiniteTimeAction *move = CCMoveTo::create(secondsToReachFinalPosition(), realDestination);
     CCFiniteTimeAction *finished = CCCallFuncN::create(this, callfuncN_selector(HuNPCEnemySoldier::enemyMoveFinished));
     
     CCArray *actionArray = CCArray::create();
@@ -99,4 +99,60 @@ CCPoint HuNPCEnemySoldier::generateEnemyInitialPoint() {
     
     return ccp(x, y);
 }
+
+// seconds to reach final position
+float HuNPCEnemySoldier::secondsToReachFinalPosition() {
+    HuPlayer *player = HuPlayer::getInstance();
+    float speed = 1.0;
+    switch (player->level) {
+        case 0 :
+        case 1:
+        case 2: {
+            speed = 5.0;
+            break;
+        }
+        case 3: {
+            speed = 4.0;
+            break;
+        }
+        case 4: {
+            speed = 3.5;
+            break;
+        }
+        case 5:{
+            speed = 3.0;
+            break;
+        }
+        case 6: {
+            speed = 2.5;
+            break;
+        }
+        case 7:{
+            speed = 2.0;
+        }
+        case 8: {
+            speed = 1.5;
+            break;
+        }
+        case 9:{
+            speed = 1.0;
+        }
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+        {
+            
+        }
+            
+    }
+    return speed;
+}
+
 

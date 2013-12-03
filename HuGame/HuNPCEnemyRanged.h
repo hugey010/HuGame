@@ -22,6 +22,8 @@ private:
     void setupActions();
     void enemyMoveFinished(cocos2d::CCNode *sender);
     void killNPC();
+    
+    float secondsToReachFinalPosition();
 };
 
 #endif /* defined(__HuGame__HuNPCEnemyRanged__) */

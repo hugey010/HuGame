@@ -43,6 +43,7 @@ private:
     virtual void setupActions(){};
     virtual void enemyMoveFinished(cocos2d::CCNode *sender){};
     virtual void killNPC(){};
+    //virtual float secondsToReachFinalPosition();
 
 };
 

@@ -41,12 +41,11 @@
 
 #define ENEMY_SPEED 300
 
+// soldier attack intervals
 #define SOLDIER_MAX_FIRING_INTERVAL 0.5 //.5
 #define SOLDIER_MIN_FIRING_INTERVAL 0.3 //.1
-#define SOLDIER_MOVEMENT_TIME 3.0
 #define CANNON_MAX_FIRING_INTERVAL 1.5
 #define CANNON_MIN_FIRING_INTERVAL 0.5
-#define CANNON_MOVEMENT_TIME 2.0
 
 
 // cost constants

@@ -24,6 +24,8 @@ private:
     void killNPC();
     
     void attackActionFinished(cocos2d::CCNode *sender);
+    float secondsToReachFinalPosition();
+
 };
 
 #endif /* defined(__HuGame__HuNPCEnemySoldier__) */

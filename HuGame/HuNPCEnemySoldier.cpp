@@ -105,56 +105,41 @@ CCPoint HuNPCEnemySoldier::generateEnemyInitialPoint() {
 // seconds to reach final position
 float HuNPCEnemySoldier::secondsToReachFinalPosition() {
     HuPlayer *player = HuPlayer::getInstance();
-    float speed = 1.0;
     switch (player->level) {
         case 0 :
         case 1:
         case 2: {
-            speed = 5.0;
-            break;
+            return 5.0;
         }
         case 3: {
-            speed = 4.0;
-            break;
+            return 4.0;
         }
         case 4: {
-            speed = 3.5;
-            break;
+            return 3.5;
         }
         case 5:{
-            speed = 3.0;
-            break;
+            return 3.0;
         }
         case 6: {
-            speed = 2.5;
-            break;
+            return 2.5;
         }
         case 7:{
-            speed = 2.0;
+            return 2.0;
         }
         case 8: {
-            speed = 1.5;
-            break;
+            return 1.5;
         }
         case 9:{
-            speed = 1.25;
+            return 1.25;
         }
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 15:
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-        {
-            
+        case 10: {
+            return 1.0;
+        }
+        case 11: {
+            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 100.0 / (float)player->level);
         }
             
     }
-    return speed;
 }
 
 float HuNPCEnemySoldier::attackInterval() {
@@ -180,7 +165,7 @@ float HuNPCEnemySoldier::attackInterval() {
             return interval = 1.0;
         }
         default: {
-            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 0.5);
+            return 1.0 - bezierat(0.34, 0.02, 0.34, 0.94, 100.0 / (float)player->level);
         }
             
     }

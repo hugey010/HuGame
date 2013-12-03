@@ -35,6 +35,7 @@ Friendlies - damage per second, cost
 
 What changes:
 Enemies - the number per round is a function of the current user level to the power of 1.9. Ranged enemies are generated at half the rate of melee enemies.
+	- the attack and movement speeds start easy then once below 1 second revert to a cubic bezier curve which reaches 0 at level 100;
 
 The result: A game that starts easy and becomes exponentially more difficult.
 

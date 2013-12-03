@@ -1,4 +1,9 @@
-11/13/2013
+HuGame - Because I Don't Know What Else To Call It
+Tyler Hugenberg
+CSE 3541 Lab 6
+
+Please check out my code on github:
+http://github.com/hugey010/HuGame
 
 Against Professor Boggus' recommendation, I decided to make  my lab 6 an iPhone game based made with the cocos2d-x framework. The main algorithms involved that I'm expecting to be graded on are the generation of enemy npc units and collision detection. There are also algorithms for projectile positioning and rotation as well as the culling and memory management involved in destroying enemy npcs. The swipe functionality is something to behold as it works actually very well. Here's the rundown:
 

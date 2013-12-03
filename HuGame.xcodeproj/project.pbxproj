@@ -19,6 +19,7 @@
 		2F3FFD72184D3F2C0062D998 /* adobe_wall_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD71184D3F2C0062D998 /* adobe_wall_flipped.png */; };
 		2F3FFD74184D44D40062D998 /* explosion_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FFD73184D44D40062D998 /* explosion_blue.png */; };
 		2FB258591849B8D0008346CC /* HuNPCEnemySoldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */; };
+		2FD5D074184DAE7D00114423 /* missile_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD5D073184DAE7D00114423 /* missile_blue.png */; };
 		960893D017AEBC4D00A779E6 /* HuGameFortress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */; };
 		960893D217AEC21100A779E6 /* puppy.png in Resources */ = {isa = PBXBuildFile; fileRef = 960893D117AEC21100A779E6 /* puppy.png */; };
 		960893D517AEC30C00A779E6 /* HuGameBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 960893D317AEC30C00A779E6 /* HuGameBackground.cpp */; };
@@ -342,6 +343,7 @@
 		2F3FFD73184D44D40062D998 /* explosion_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion_blue.png; sourceTree = "<group>"; };
 		2FB258571849B8D0008346CC /* HuNPCEnemySoldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuNPCEnemySoldier.cpp; sourceTree = "<group>"; };
 		2FB258581849B8D0008346CC /* HuNPCEnemySoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuNPCEnemySoldier.h; sourceTree = "<group>"; };
+		2FD5D073184DAE7D00114423 /* missile_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile_blue.png; sourceTree = "<group>"; };
 		960893CE17AEBC4D00A779E6 /* HuGameFortress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HuGameFortress.cpp; sourceTree = "<group>"; };
 		960893CF17AEBC4D00A779E6 /* HuGameFortress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuGameFortress.h; sourceTree = "<group>"; };
 		960893D117AEC21100A779E6 /* puppy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puppy.png; path = Resources/Sprites/puppy.png; sourceTree = "<group>"; };
@@ -1149,6 +1151,7 @@
 				2F3FFD66184C258A0062D998 /* kitten.png */,
 				2F3FFD62184C0EB60062D998 /* turtle_tank.png */,
 				2F28E2421841CBF300AF86AD /* missile_launcher.png */,
+				2FD5D073184DAE7D00114423 /* missile_blue.png */,
 				2F28E2401841C76B00AF86AD /* bullet.png */,
 				960C5BEF183B36EC008692BE /* missile.png */,
 				96DFCAF11833D80300488903 /* broken-fence.png */,
@@ -2399,6 +2402,7 @@
 				2F3FFD67184C258A0062D998 /* kitten.png in Resources */,
 				96FF9DF1178A658300CF6E9D /* iTunesArtwork in Resources */,
 				96DFCAF21833D80300488903 /* broken-fence.png in Resources */,
+				2FD5D074184DAE7D00114423 /* missile_blue.png in Resources */,
 				96FF9E90178A658400CF6E9D /* ChangeLog in Resources */,
 				96FFA004178A658600CF6E9D /* project.pbxproj in Resources */,
 				2F3FFD72184D3F2C0062D998 /* adobe_wall_flipped.png in Resources */,
@@ -2771,8 +2775,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

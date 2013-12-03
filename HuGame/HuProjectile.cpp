@@ -9,6 +9,7 @@
 #include "HuProjectile.h"
 #include "HuGameNPCs.h"
 #include <math.h>
+#include "Constants.h"
 
 using namespace cocos2d;
 
@@ -20,9 +21,15 @@ bool HuProjectile::initialize() {
     }
     float time = 0;
     
+    
     switch (this->projectileType) {
         case MISSILE : {
-            this->sprite = CCSprite::create("missile.png");
+            CCString *missileString = CCString::create("missile.png");
+            if (npc == NULL) {
+                // use blue missile becuase its an enemy attacking
+                missileString = CCString::create("missile_blue.png");
+            }
+            this->sprite = CCSprite::create(missileString->getCString());
             sprite->setScale(0.2);
             sprite->setPosition(ccp(startingPosition.x - 40, startingPosition.y));
 
@@ -83,13 +90,13 @@ bool HuProjectile::initWithMandatories(ProjectileType type, CCPoint startingPosi
     
     switch (type) {
         case MISSILE : {
-            damage = 200;
+            damage = GOOD_NPC_DAMAGE_MISSILE;
             
             break;
         }
             
         case BULLET : {
-            damage = 5;
+            damage = GOOD_NPC_DAMAGE_BULLET;
             
             break;
         }
